@@ -172,7 +172,7 @@
 ## 资源下载方法   
 ### GIT使用简明教程   
 #### 安装git   
-&emsp;&emsp;Windows下的 git 名为 msysGit ，从 [http://msysgit.github.io/](http://msysgit.github.io/) 上下载安装文件，双击安装即可。
+&emsp;&emsp;Windows下的 git 名为 msysGit ，从 http://msysgit.github.io/ 上下载安装文件，双击安装即可。
 
 &emsp;&emsp;在Ubuntu下，执行以下命令即可，它会从网上下载安装 git （在我们发布的 Ubuntu 虚拟机里，已经安装有 git ，无需再次安装）：<br>
 
@@ -255,7 +255,7 @@
 
    
 #### 录制的视频 和 开发板的 BSP 包   
-&emsp;&emsp;这 2 部分资料都存放在百度网盘中，链接地址：[http://wiki.100ask.org/Download](http://wiki.100ask.org/Download)<br>
+&emsp;&emsp;这 2 部分资料都存放在百度网盘中，链接地址：http://wiki.100ask.org/Download
 
 &emsp;&emsp;打开上述链接地址后，可以找到这2项：<br>
 

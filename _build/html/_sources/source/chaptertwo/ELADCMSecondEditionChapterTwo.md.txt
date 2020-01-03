@@ -552,7 +552,7 @@ cd命令有些缩略用法：
    nameserver  8.8.8.8   
 ```
    
-&emsp;&emsp;&emsp;&emsp;路由信息使用route命令查看，其输出信息可以参考链接： [https://akaedu.github.io/book/ch36s05.html](https://akaedu.github.io/book/ch36s05.html)
+&emsp;&emsp;&emsp;&emsp;路由信息使用route命令查看，其输出信息可以参考链接： (https://akaedu.github.io/book/ch36s05.html
 
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;摘录如下：
 
@@ -1404,9 +1404,9 @@ cd命令有些缩略用法：
 
 &emsp;&emsp;&emsp;&emsp;MobaXterm向Windows桌面提供所有重要的远程网络工具（SSH，X11，RDP，VNC，FTP，MOSH ......）和Unix命令（bash，ls，cat，sed，grep，awk，rsync）等，仅仅需要一个exe文件即可。
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MobaXterm官网    [https://mobaxterm.mobatek.net/](https://mobaxterm.mobatek.net/)
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MobaXterm官网: https://mobaxterm.mobatek.net/
 
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MobaXterm使用文档 [https://mobaxterm.mobatek.net/documentation.html](https://mobaxterm.mobatek.net/documentation.html)
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;MobaXterm使用文档: https://mobaxterm.mobatek.net/documentation.html
 
    
 #### 安装及获取ubuntuIP地址   
@@ -1516,11 +1516,11 @@ cd命令有些缩略用法：
 ### 使用SourceInsight阅读、编辑源码   
 &emsp;&emsp;Source Insight是Source Dynamics 的源代码编辑器。Source Insight提供语法突出显示，代码导航和可自定义的键盘快捷键。它不仅仅是一个编辑器，而是一个理解大型源代码库的工具，因此被称为“程序编辑器和分析器”。它灵活轻便，提供有用的功能，如关系，上下文和符号窗口。它还可以显示引用树，类继承图和调用树，因为它在自解析源时构建了符号信息的内部数据库。它的最大好处是加快了对不熟悉项目的代码理解。
 
-&emsp;&emsp;&emsp;&emsp;官网主页 [https://www.sourceinsight.com/](https://www.sourceinsight.com/)
+&emsp;&emsp;&emsp;&emsp;官网主页: https://www.sourceinsight.com/
 
-&emsp;&emsp;&emsp;&emsp;软件下载页面 [https://www.sourceinsight.com/trial/](https://www.sourceinsight.com/trial/)
+&emsp;&emsp;&emsp;&emsp;软件下载页面: https://www.sourceinsight.com/trial/
 
-&emsp;&emsp;&emsp;&emsp;用户使用教程 [https://www.sourceinsight.com/doc/v4/userguide/index.html](https://www.sourceinsight.com/doc/v4/userguide/index.html)
+&emsp;&emsp;&emsp;&emsp;用户使用教程: https://www.sourceinsight.com/doc/v4/userguide/index.html
 
    
 #### 安装并新建项目   

@@ -5894,7 +5894,7 @@ platform_driver_register
 ### 参考资料   
 &emsp;&emsp;对于ARM的中断控制器，述语上称之为GIC (Generic Interrupt Controller)，到目前已经更新到v4版本了。
 
-&emsp;&emsp;各个版本的差别可以看这里：[https://developer.arm.com/ip-products/system-ip/system-controllers/interrupt-controllers https://developer.arm.com/ip-products/system-ip/system-controllers/interrupt-controllers](https://developer.arm.com/ip-products/system-ip/system-controllers/interrupt-controllers https://developer.arm.com/ip-products/system-ip/system-controllers/interrupt-controllers)
+&emsp;&emsp;各个版本的差别可以看这里：https://developer.arm.com/ip-products/system-ip/system-controllers/interrupt-controllers
 
 &emsp;&emsp;简单地说，GIC v3/v4用于 ARMv8 架构，即64位ARM芯片。
 
@@ -5904,7 +5904,7 @@ platform_driver_register
 
 ## 常见问题   
 ### 安装驱动时version magic不匹配   
-&emsp;&emsp;要想彻底了解内核的LOCALVERSION信息，可以看这个贴子：[https://blog.csdn.net/gatieme/article/details/78510497 https://blog.csdn.net/gatieme/article/details/78510497](https://blog.csdn.net/gatieme/article/details/78510497 https://blog.csdn.net/gatieme/article/details/78510497)
+&emsp;&emsp;要想彻底了解内核的LOCALVERSION信息，可以看这个贴子： https://blog.csdn.net/gatieme/article/details/78510497
 
 &emsp;&emsp;总结一下：
 
