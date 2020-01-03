@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; 嵌入式Linux应用开发完全手册第2版 1.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/100ask_net_ico.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="嵌入式Linux应用开发完全手册第2版 1.0 文档" href="../../index.html"/>
+        <link rel="next" title="第四篇. 嵌入式Linux应用开发基础知识" href="ELADCMSecondEditionChapterFour.html"/>
+        <link rel="prev" title="第三篇. 开发板快速上手" href="../chapterthird/ELADCMSecondEditionChapterThird.html"/>
+    <link href="../../_static/default.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> 嵌入式Linux应用开发完全手册第2版
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapterone/ELADCMSecondEditionChapterOne.html">第一篇. 韦东山全系列视频介绍及资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chaptertwo/ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterthird/ELADCMSecondEditionChapterThird.html">第三篇. 开发板快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html">第四篇. 嵌入式Linux应用开发基础知识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfive/ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">嵌入式Linux应用开发完全手册第2版</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/source/chapterfour/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html">第四篇. 嵌入式Linux应用开发基础知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#helloworld">HelloWorld背后没那么简单</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#hello-c">交叉编译hello.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id1">请回答这几个问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id2">演示</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#gcc">GCC编译器的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id3">配套视频内容大纲</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#font-color-dd0000-gcc-font"><font color="#dd0000">GCC编译过程</font>(精简版)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#font-color-dd0000-font"><font color="#dd0000">常用编译选项</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id4"><font color="#dd0000">怎么编译多个文件</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id5"><font color="#dd0000">制作、使用动态库</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id6"><font color="#dd0000">制作、使用静态库</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id7"><font color="#dd0000">很有用的选项</font></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id8">GCC编译过程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#gcc-overall-option">GCC总体选项(Overall Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#warning-option">警告选项(Warning Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#debugging-option">调试选项(Debugging Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#optimization-option">优化选项(Optimization Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#linker-option">链接器选项(Linker Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#directory-option">目录选项(Directory Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#ld-objdump-objcopy">ld/objdump/objcopy选项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#makefile">Makefile的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id9">配套视频内容大纲</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id10">Makefile规则与示例</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id11">① 为什么需要Makefile</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id12">② Makefile其实挺简单</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#makefile2">③ 先介绍Makefile的2个函数</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id13">④ 一步一步完善Makefile</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id14">通用Makefile的使用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id15">通用Makefile的解析</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id16">① 零星知识点</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#a-make">A. make命令的使用：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#b">B. 即时变量、延时变量：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#c-export">C. 变量的导出(export)：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#d-makefileshell">D. Makefile中可以使用shell命令：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#e-makefile1">E. 在Makefile中怎么放置第1个目标：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#f">F. 假想目标：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#g">G. 常用的函数：</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id17">② 通用Makefile的设计思想</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#a-makefile">A. 在Makefile文件中确定要编译的文件、目录，比如：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#b-makefile-build-3">B. 在Makefile.build中设置编译规则，有3条编译规则：</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#c-makefilebuilt-in-oapp">C. 顶层Makefile中把顶层目录的built-in.o链接成APP：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id18">Makefile规则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id19">Makefile文件里的赋值方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id20">Makefile常用函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id21">字符串替换和分析函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id22">文件名函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id23">其他函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#io">文件IO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id24">文件从哪来？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id25">怎么访问文件？</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#io-open-read-write-lseek-close">通用的IO模型：open/read/write/lseek/close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#ioctl-mmap">不是通用的函数：ioctl/mmap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id26">怎么知道这些函数的用法？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#id27">系统调用函数怎么进入内核？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFour.html#sys-opensys-read">内核的sys_open、sys_read会做什么？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ELADCMSecondEditionChapterFour.html" class="btn btn-neutral float-right" title="第四篇. 嵌入式Linux应用开发基础知识" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapterthird/ELADCMSecondEditionChapterThird.html" class="btn btn-neutral" title="第三篇. 开发板快速上手" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, weidongshan www.100ask.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

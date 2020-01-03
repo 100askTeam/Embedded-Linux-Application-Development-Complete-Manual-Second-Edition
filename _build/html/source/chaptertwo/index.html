@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; 嵌入式Linux应用开发完全手册第2版 1.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/100ask_net_ico.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="嵌入式Linux应用开发完全手册第2版 1.0 文档" href="../../index.html"/>
+        <link rel="next" title="第二篇. Linux基本操作与开发工具使用" href="ELADCMSecondEditionChapterTwo.html"/>
+        <link rel="prev" title="第一篇. 韦东山全系列视频介绍及资料下载" href="../chapterone/ELADCMSecondEditionChapterOne.html"/>
+    <link href="../../_static/default.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> 嵌入式Linux应用开发完全手册第2版
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapterone/ELADCMSecondEditionChapterOne.html">第一篇. 韦东山全系列视频介绍及资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterthird/ELADCMSecondEditionChapterThird.html">第三篇. 开发板快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfour/ELADCMSecondEditionChapterFour.html">第四篇. 嵌入式Linux应用开发基础知识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfive/ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">嵌入式Linux应用开发完全手册第2版</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/source/chaptertwo/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id1">介绍与引导</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#vmware-ubuntu">下载安装VMWARE，下载ubuntu映象、打开</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntulinux">在ubuntu中练习常用Linux命令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntu">虚拟机和Ubuntu的网络设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id2">Linux基本操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id3">Ubuntu桌面简单操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntuwindows">Ubuntu和Windows的最大差别：目录</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id4">启动终端</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id5">设置屏幕</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id6">设置网络</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id7">Linux命令</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id8">Linux命令的提示符</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id9">Linux命令的格式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id10">记住命令并不难, 先背几个单词</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id11">绝对路径和相对路径</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id12">目录/文件操作命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id13">查找/搜索命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id14">压缩/解压命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id15">网络命令</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id16">其他命令</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#vi">vi编辑器</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id17">虚拟机和Ubuntu的网络设置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#windowswifi">Windows通过WIFI上网，开发板离无线路由器很近</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id18">连接网线</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#vmwarewifi">VMWare里选择WIFI网卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ip">设置IP</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#windows-ip">设置Windows IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntu-ip">设置Ubuntu IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id19">设置开发板IP</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id20">验证</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id21">Windows通过WIFI上网，开发板离无线路由器很远</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id22">连接网线</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#windows">Windows电脑和开发板的网线，都接到另一个集线器或路由器</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id23">电脑和开发板用网线直连(绝对不建议)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#vmware">VMWare里选择有线网卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id24">设置IP</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id25">设置Windows IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id26">设置Ubuntu IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id27">设置开发板IP</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id28">验证</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id29">Windows不使用WIFI网卡</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id30">连接网线</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id31">Windows通过有线网卡接路由器上网，开发板离路由器很近</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id32">Windows通过有线网卡接路由器上网，开发板离路由器很远</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id33">不上网，Windows电脑和开发板的网线，都接到集线器或路由器</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id34">电脑和开发板用网线直连(不建议)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id35">VMWare里选择有线网卡</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id36">设置IP</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id37">设置Windows IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id38">设置Ubuntu IP</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id39">设置开发板IP</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id40">验证</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id41">只想让Ubuntu能上网、能跟Windows互联(校园网必看)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#vmware3">VMWare的3种网络模式简介</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#nat">NAT模式适用情况</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#nat-vmwareubuntu">NAT模式的使用：VMWare和Ubuntu的设置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id42">测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#windowsubuntu">Windows和Ubuntu之间远程操作</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#mobaxtermubuntu">使用MobaXterm登录Ubuntu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#filezillaubuntu">使用FileZilla与Ubuntu传输文件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id43">开发板和Ubuntu之间传文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#nfsubuntu">开发板通过NFS挂载Ubuntu的目录</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntunfs">在Ubuntu上安装、配置NFS服务</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id44">在开发板上挂载Ubuntu的NFS文件系统</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id45">常见问题</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id46">开发工具的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#mobaxterm">MobaXterm的使用</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ubuntuip">安装及获取ubuntuIP地址</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#ssh">新建SSH连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id47">新建串口连接</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#usb">安装USB串口模块驱动</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id48">连接串口线</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id49">设置使用MobaXterm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#filezillawindowsubuntu">使用FileZilla在Windows和Ubuntu之间传文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#sourceinsight">使用SourceInsight阅读、编辑源码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id50">安装并新建项目</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#source-insight">Source Insight操作示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterTwo.html#id51">Source Insight快捷键</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ELADCMSecondEditionChapterTwo.html" class="btn btn-neutral float-right" title="第二篇. Linux基本操作与开发工具使用" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapterone/ELADCMSecondEditionChapterOne.html" class="btn btn-neutral" title="第一篇. 韦东山全系列视频介绍及资料下载" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, weidongshan www.100ask.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

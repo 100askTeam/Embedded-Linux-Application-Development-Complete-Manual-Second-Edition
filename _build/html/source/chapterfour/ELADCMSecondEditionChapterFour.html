@@ -1,0 +1,1485 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第四篇. 嵌入式Linux应用开发基础知识 &mdash; 嵌入式Linux应用开发完全手册第2版 1.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/100ask_net_ico.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="嵌入式Linux应用开发完全手册第2版 1.0 文档" href="../../index.html"/>
+        <link rel="up" title="&lt;no title&gt;" href="index.html"/>
+        <link rel="next" title="&lt;no title&gt;" href="../chapterfive/index.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="index.html"/>
+    <link href="../../_static/default.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> 嵌入式Linux应用开发完全手册第2版
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chapterone/ELADCMSecondEditionChapterOne.html">第一篇. 韦东山全系列视频介绍及资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chaptertwo/ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterthird/ELADCMSecondEditionChapterThird.html">第三篇. 开发板快速上手</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第四篇. 嵌入式Linux应用开发基础知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#helloworld">HelloWorld背后没那么简单</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hello-c">交叉编译hello.c</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">请回答这几个问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">演示</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gcc">GCC编译器的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">配套视频内容大纲</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#font-color-dd0000-gcc-font"><font color="#dd0000">GCC编译过程</font>(精简版)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#font-color-dd0000-font"><font color="#dd0000">常用编译选项</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><font color="#dd0000">怎么编译多个文件</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5"><font color="#dd0000">制作、使用动态库</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6"><font color="#dd0000">制作、使用静态库</font></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7"><font color="#dd0000">很有用的选项</font></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">GCC编译过程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gcc-overall-option">GCC总体选项(Overall Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#warning-option">警告选项(Warning Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-option">调试选项(Debugging Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimization-option">优化选项(Optimization Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linker-option">链接器选项(Linker Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#directory-option">目录选项(Directory Option)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ld-objdump-objcopy">ld/objdump/objcopy选项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#makefile">Makefile的使用</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id9">配套视频内容大纲</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Makefile规则与示例</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id14">通用Makefile的使用</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">通用Makefile的解析</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id18">Makefile规则</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id19">Makefile文件里的赋值方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">Makefile常用函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">字符串替换和分析函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id22">文件名函数</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id23">其他函数</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#io">文件IO</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id24">文件从哪来？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id25">怎么访问文件？</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#io-open-read-write-lseek-close">通用的IO模型：open/read/write/lseek/close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ioctl-mmap">不是通用的函数：ioctl/mmap</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id26">怎么知道这些函数的用法？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id27">系统调用函数怎么进入内核？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sys-opensys-read">内核的sys_open、sys_read会做什么？</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfive/ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">嵌入式Linux应用开发完全手册第2版</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+      
+    <li>第四篇. 嵌入式Linux应用开发基础知识</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/source/chapterfour/ELADCMSecondEditionChapterFour.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux">
+<h1>第四篇. 嵌入式Linux应用开发基础知识<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h1>
+<div class="section" id="helloworld">
+<h2>HelloWorld背后没那么简单<a class="headerlink" href="#helloworld" title="永久链接至标题">¶</a></h2>
+<div class="section" id="hello-c">
+<h3>交叉编译hello.c<a class="headerlink" href="#hello-c" title="永久链接至标题">¶</a></h3>
+<p>  使用GIT下载所有源码后，本节源码位于如下目录：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	01_all_series_quickstart<span class="se">\0</span>4_快速入门<span class="o">(</span>正式开始<span class="o">)</span><span class="se">\0</span>1_嵌入式Linux应用开发基础知识<span class="se">\s</span>ource<span class="se">\0</span>1_hello   
+</pre></div>
+</div>
+<p>  hello.c的源码如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="c1">#include &lt;stdio.h&gt;   </span>
+	   
+	/* 执行命令: ./hello weidongshan   
+	 * <span class="nv">argc</span> <span class="o">=</span> <span class="m">2</span>   
+	 * argv<span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> ./hello   
+	 * argv<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> weidongshan   
+	 */   
+	   
+	int main<span class="o">(</span>int argc, char **argv<span class="o">)</span>   
+	<span class="o">{</span>   
+	    <span class="k">if</span> <span class="o">(</span>argc &gt;<span class="o">=</span> <span class="m">2</span><span class="o">)</span>   
+	          printf<span class="o">(</span><span class="s2">&quot;Hello, %s!\n&quot;</span>, argv<span class="o">[</span><span class="m">1</span><span class="o">])</span><span class="p">;</span>   
+	    <span class="k">else</span>   
+	          printf<span class="o">(</span><span class="s2">&quot;Hello, world!\n&quot;</span><span class="o">)</span><span class="p">;</span>   
+	    <span class="k">return</span> <span class="m">0</span><span class="p">;</span>   
+	<span class="o">}</span>   
+</pre></div>
+</div>
+<p>  在Ubuntu中可以执行以下命令编译、执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	$ gcc -o hello hello.c   
+	$ ./hello   
+	Hello, world!   
+	$ ./hello weidongshan   
+	Hello, weidongshan!   
+</pre></div>
+</div>
+<p>  上述命令编译得到的可执行程序hello可以在Ubuntu中运行，但是如果把它放到ARM板子上去，它是无法执行的。因为它是使用gcc编译的，是给PC机编译的，里面的机器指令是x86的。</p>
+<p>  我们要想给ARM板编译出hello程序，需要使用交叉编译工具链，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	$ arm-linux-gnueabihf-gcc -o hello hello.c   
+</pre></div>
+</div>
+<p>  这样编译出来的hello程序才可以在ARM板子上运行。</p>
+</div>
+<div class="section" id="id1">
+<h3>请回答这几个问题<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h3>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_001.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_001.png" />
+&lt;1200px&gt;
+  ① 怎么确定交叉编译器中头文件的默认路径？</p>
+<p>    进入交叉编译器的目录里，执行：find  -name  “stdio.h”，它位于一个“include”目录下的根目录里。</p>
+<p>    这个“include”目录，就是要找的路径。</p>
+<p>  ② 怎么自己指定头文件目录？</p>
+<p>    编译时，加上“-I &lt;头文件目录&gt;”这样的选项。</p>
+<p>  ③ 怎么确定交叉编译器中库文件的默认路径？</p>
+<p>    进入交叉编译器的目录里，执行：find  -name  lib，可以得到xxxx/lib、xxxx/usr/lib，一般来说这2个目录就是要找的路径。</p>
+<p>    如果有很多类似的lib，进去看看，有很多so文件的目录一般就是要找的路径。</p>
+<p>  ④ 怎么自己指定库文件目录、指定要用的库文件？</p>
+<p>    编译时，加上“-L &lt;库文件目录&gt;”这样的选项，用来指定库目录；</p>
+<p>    编译时，加上“-labc”这样的选项，用来指定库文件libabc.so。</p>
+</div>
+<div class="section" id="id2">
+<h3>演示<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="gcc">
+<h2>GCC编译器的使用<a class="headerlink" href="#gcc" title="永久链接至标题">¶</a></h2>
+<p>  源文件需要经过编译才能生成可执行文件。在Windows下进行开发时，只需要点几个按钮即可编译，集成开发环境(比如Visual studio)已经将各种编译工具的使用封装好了。Linux下也有很优秀的集成开发工具，但是更多的时候是直接使用编译工具；即使使用集成开发工具，也需要掌握一些编译选项。</p>
+<p>  PC机上的编译工具链为gcc、ld、objcopy、objdump等，它们编译出来的程序在x86平台上运行。要编译出能在ARM平台上运行的程序，必须使用交叉编译工具xxx-gcc、xxx-ld等(不同版本的编译器的前缀不一样，比如arm-linux-gcc)，下面分别介绍。</p>
+<div class="section" id="id3">
+<h3>配套视频内容大纲<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<div class="section" id="font-color-dd0000-gcc-font">
+<h4><font color="#dd0000">GCC编译过程</font>(精简版)<a class="headerlink" href="#font-color-dd0000-gcc-font" title="永久链接至标题">¶</a></h4>
+<p>  一个C/C++文件要经过预处理(preprocessing)、编译(compilation)、汇编(assembly)和链接(linking)等4步才能变成可执行文件。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_002.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_002.png" />
+&lt;800px&gt;
+  在日常交流中通常使用“编译”统称这4个步骤，如果不是特指这4个步骤中的某一个，本教程也依惯例使用“编译”这个统称。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	cc1 main.c -o /tmp/ccXCx1YG.s   
+	as       -o /tmp/ccZfdaDo.o /tmp/ccXCx1YG.s   
+	   
+	cc1 sub.c -o /tmp/ccXCx1YG.s   
+	as       -o /tmp/ccn8Cjq6.o /tmp/ccXCx1YG.s   
+	   
+	collect2 -o <span class="nb">test</span> /tmp/ccZfdaDo.o /tmp/ccn8Cjq6.o ....   
+</pre></div>
+</div>
+</div>
+<div class="section" id="font-color-dd0000-font">
+<h4><font color="#dd0000">常用编译选项</font><a class="headerlink" href="#font-color-dd0000-font" title="永久链接至标题">¶</a></h4>
+<p>  在学习时，我们暂时只需要了解下表中的选项。</p>
+<p>| 常用选项 | 描述   |<br>
+|———|————————————————–
+| -E 	  | 预处理，开发过程中想快速确定某个宏可以使用“-E  -dM”<br>
+| -c 	  | 把预处理、编译、汇编都做了，但是不链接<br>
+| -o 	  | 指定输出文件<br>
+| -I 	  | 指定头文件目录<br>
+| -L 	  | 指定链接时库文件目录<br>
+| -l 	  | 指定链接哪一个库文件<br></p>
+</div>
+<div class="section" id="id4">
+<h4><font color="#dd0000">怎么编译多个文件</font><a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>  ① 一起编译、链接：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	gcc  -o <span class="nb">test</span>  main.c  sub.c   
+</pre></div>
+</div>
+<p>  ② 分开编译，统一链接：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	gcc -c -o main.o  main.c   
+	gcc -c -o sub.o   sub.c   
+	gcc -o <span class="nb">test</span> main.o sub.o   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4><font color="#dd0000">制作、使用动态库</font><a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>  制作、编译：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	gcc -c -o main.o  main.c   
+	gcc -c -o sub.o   sub.c   
+	gcc -shared  -o libsub.so  sub.o  sub2.o  sub3.o<span class="o">(</span>可以使用多个.o生成动态库<span class="o">)</span>   
+	gcc -o <span class="nb">test</span> main.o  -lsub  -L /libsub.so/所在目录/   
+</pre></div>
+</div>
+<p>  运行：</p>
+<p>    ① 先把libusb.so放到PC或板子上的/lib目录，然后就可以运行test程序。</p>
+<p>    ② 如果不想把libusb.so放到/lib，也可以放在某个目录比如/a，然后如下执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:/a     
+		./test   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id6">
+<h4><font color="#dd0000">制作、使用静态库</font><a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	gcc -c -o main.o  main.c   
+	gcc -c -o sub.o   sub.c   
+	ar  crs  libsub.a  sub.o  sub2.o  sub3.o<span class="o">(</span>可以使用多个.o生成静态库<span class="o">)</span>   
+	gcc  -o  <span class="nb">test</span>  main.o  libsub.a  <span class="o">(</span>如果.a不在当前目录下，需要指定它的绝对或相对路径<span class="o">)</span>   
+</pre></div>
+</div>
+<p>  运行：</p>
+<p>    不需要把静态库libsub.a放到板子上。</p>
+</div>
+<div class="section" id="id7">
+<h4><font color="#dd0000">很有用的选项</font><a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	gcc -E main.c   // 查看预处理结果，比如头文件是哪个   
+	gcc -E -dM main.c  &gt; <span class="m">1</span>.txt  // 把所有的宏展开，存在1.txt里   
+	gcc -Wp,-MD,abc.dep -c -o main.o main.c  // 生成依赖文件abc.dep，后面Makefile会用   
+</pre></div>
+</div>
+<p>  我们的视频会配套写成书：《嵌入式Linux应用开发完全手册 升级版》。下面的资料会写进书里，我会写得详细一点。</p>
+<p>  下面的资料来自GCC官方文档及一些中文资料，没必要逐一研读，用到时再翻翻。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h3>GCC编译过程<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<p>  一个C/C++文件要经过预处理(preprocessing)、编译(compilation)、汇编(assembly)和链接(linking)等4步才能变成可执行文件。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_002.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_002.png" />
+&lt;800px&gt;
+  在日常交流中通常使用“编译”统称这4个步骤，如果不是特指这4个步骤中的某一个，本教程也依惯例使用“编译”这个统称。</p>
+<p>  本节文档使用x86上的gcc来试验，使用ARM板的交叉编译工具链做实验时效果也是类似的。不同的交叉编译器工具链前缀可能不同，比如arm-linux-gcc。</p>
+<p>    （1）预处理</p>
+<p>      C/C++源文件中，以“#”开头的命令被称为预处理命令，如包含命令“#include”、宏定义命令“#define”、条件编译命令“#if”、“#ifdef”等。预处理就是将要包含(include)的文件插入原文件中、将宏定义展开、根据条件编译命令选择要使用的代码，最后将这些东西输出到一个“.i”文件中等待进一步处理。</p>
+<p>    （2）编译</p>
+<p>      编译就是把C/C++代码(比如上述的“.i”文件)“翻译”成汇编代码，所用到的工具为cc1(它的名字就是cc1，x86有自己的cc1命令，ARM板也有自己的cc1命令)。</p>
+<p>    （3）汇编</p>
+<p>      汇编就是将第二步输出的汇编代码翻译成符合一定格式的机器代码，在Linux系统上一般表现为ELF目标文件(OBJ文件)，用到的工具为as。x86有自己的as命令，ARM版也有自己的as命令，也可能是xxxx-as（比如arm-linux-as）。</p>
+<p>“反汇编”是指将机器代码转换为汇编代码，这在调试程序时常常用到。<br />    （4）链接</p>
+<p>      链接就是将上步生成的OBJ文件和系统库的OBJ文件、库文件链接起来，最终生成了可以在特定平台运行的可执行文件，用到的工具为ld或collect2。</p>
+<p>      编译程序时，加上-v选项就可以看到这几个步骤。比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			gcc -o hello hello.c -v      
+</pre></div>
+</div>
+<p>      可以看到很多输出结果，我们把其中的主要信息摘出来：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			cc1 hello.c -o /tmp/cctETob7.s   
+			as -o /tmp/ccvv2KbL.o /tmp/cctETob7.s   
+			collect2 -o hello crt1.o crti.o crtbegin.o /tmp/ccvv2KbL.o crtend.o crtn.o   
+</pre></div>
+</div>
+<p>      以上3个命令分别对应于编译步骤中的预处理+编译、汇编和链接，ld被collect2调用来链接程序。预处理和编译被放在了一个命令（cc1）中进行的，可以把它再次拆分为以下两步：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			cpp -o hello.i hello.c   
+			cc1 hello.i -o /tmp/cctETob7.s   
+</pre></div>
+</div>
+<p>      我们不需要手工去执行cpp、cc1、collect2等命令，我们直接执行gcc并指定不同的参数就可以了。</p>
+<p>      可以通过各种选项来控制gcc的动作，下面介绍一些常用的选项。</p>
+<p>| 常用选项 	 | 描述 |<br>
+|———–|————————————————-<br>
+| -E 		| 预处理，开发过程中想快速确定某个宏可以使用“-E  -dM”<br>
+| -c 		| 把预处理、编译、汇编都做了，但是不链接<br>
+| -o 		| 指定输出文件<br>
+| -I 		| 指定头文件目录<br>
+| -L 		| 指定链接时库文件目录<br>
+| -l 		| 指定链接哪一个库文件<br></p>
+</div>
+<div class="section" id="gcc-overall-option">
+<h3>GCC总体选项(Overall Option)<a class="headerlink" href="#gcc-overall-option" title="永久链接至标题">¶</a></h3>
+<p>  （1）-c</p>
+<p>    预处理、编译和汇编源文件，但是不作链接，编译器根据源文件生成OBJ文件。缺省情况下，GCC通过用<code class="docutils literal notranslate"><span class="pre">.o'替换源文件名的后缀</span></code>.c’，<code class="docutils literal notranslate"><span class="pre">.i'，</span></code>.s’等，产生OBJ文件名。可以使用-o选项选择其他名字。GCC忽略-c选项后面任何无法识别的输入文件。</p>
+<p>  （2）-S</p>
+<p>    编译后即停止，不进行汇编。对于每个输入的非汇编语言文件，输出结果是汇编语言文件。缺省情况下，GCC通过用<code class="docutils literal notranslate"><span class="pre">.s'替换源文件名后缀</span></code>.c’，`.i’等等，产生汇编文件名。可以使用-o选项选择其他名字。GCC忽略任何不需要汇编的输入文件。</p>
+<p>  （3）-E</p>
+<p>    预处理后即停止，不进行编译。预处理后的代码送往标准输出。</p>
+<p>  （4）-o file</p>
+<p>    指定输出文件为file。无论是预处理、编译、汇编还是链接，这个选项都可以使用。如果没有使用<code class="docutils literal notranslate"><span class="pre">-o'选项，默认的输出结果是：可执行文件为</span></code>a.out’；修改输入文件的名称是<code class="docutils literal notranslate"><span class="pre">source.suffix'，则它的OBJ文件是</span></code>source.o’，汇编文件是 `source.s’，而预处理后的C源代码送往标准输出。</p>
+<p>  （5）-v</p>
+<p>    显示制作GCC工具自身时的配置命令；同时显示编译器驱动程序、预处理器、编译器的版本号。</p>
+<p>    以一个程序为例，它包含三个文件，代码在02_options目录下。下面列出源码：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>		<span class="c1">// File: main.c   </span>
+			<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;   </span><span class="cp"></span>
+			<span class="cp">#include</span> <span class="cpf">&quot;sub.h&quot;   </span><span class="cp"></span>
+   
+			<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>   
+			<span class="p">{</span>   
+				<span class="kt">int</span> <span class="n">i</span><span class="p">;</span>   
+				<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Main fun!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>   
+				<span class="n">sub_fun</span><span class="p">();</span>   
+				<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>   
+			<span class="p">}</span>   
+   
+		<span class="c1">// File: sub.h   </span>
+			<span class="kt">void</span> <span class="nf">sub_fun</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>   
+   
+		<span class="c1">// File: sub.c   </span>
+			<span class="kt">void</span> <span class="nf">sub_fun</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>   
+			<span class="p">{</span>   
+				<span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sub fun!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>   
+			<span class="p">}</span>   
+</pre></div>
+</div>
+<p>    ARM版本的编译工具与gcc、ld等工具的使用方法相似，很多选项是一样的。本节使用gcc、ld等工具进行编译、链接，这样可以在PC上直接看到运行结果。使用上面介绍的选项进行编译，命令如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ gcc  -c  -o  main.o  main.c   
+		$ gcc  -c  -o  sub.o  sub.c   
+		$ gcc  -o  <span class="nb">test</span>  main.o  sub.o   
+</pre></div>
+</div>
+<p>    其中，main.o、sub.o是经过了预处理、编译、汇编后生成的OBJ文件，它们还没有被链接成可执行文件；最后一步将它们链接成可执行文件test，可以直接运行以下命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ ./test   
+		Main fun!   
+		Sub fun!   
+</pre></div>
+</div>
+<p>    现在试试其他选项，以下命令生成的main.s是main.c的汇编语言文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ gcc  -S  -o  main.s  main.c   
+</pre></div>
+</div>
+<p>    以下命令对main.c进行预处理，并将得到的结果打印出来。里面扩展了所有包含的文件、所有定义的宏。在编写程序时，有时候查找某个宏定义是非常繁琐的事，可以使用`-dM –E’选项来查看。命令如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ gcc  -E  main.c   
+</pre></div>
+</div>
+</div>
+<div class="section" id="warning-option">
+<h3>警告选项(Warning Option)<a class="headerlink" href="#warning-option" title="永久链接至标题">¶</a></h3>
+<p>  （1）-Wall</p>
+<p>    这个选项基本打开了所有需要注意的警告信息，比如没有指定类型的声明、在声明之前就使用的函数、局部变量除了声明就没再使用等。</p>
+<p>    上面的main.c文件中，第6行定义的变量i没有被使用，但是使用“gcc –c –o main.o main.c”进行编译时并没有出现提示。</p>
+<p>    可以加上-Wall选项，例子如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ gcc -Wall -c main.c   
+</pre></div>
+</div>
+<p>    执行上述命令后，得到如下警告信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		main.c: In <span class="k">function</span> <span class="sb">`</span>main<span class="s1">&#39;:   </span>
+<span class="s1">		main.c:6: warning: unused variable `i&#39;</span>   
+</pre></div>
+</div>
+<p>    这个警告虽然对程序没有坏的影响，但是有些警告需要加以关注，比如类型匹配的警告等。</p>
+</div>
+<div class="section" id="debugging-option">
+<h3>调试选项(Debugging Option)<a class="headerlink" href="#debugging-option" title="永久链接至标题">¶</a></h3>
+<p>  （1）-g</p>
+<p>    以操作系统的本地格式(stabs，COFF，XCOFF，或DWARF)产生调试信息，GDB能够使用这些调试信息。在大多数使用stabs格式的系统上，<code class="docutils literal notranslate"><span class="pre">-g'选项加入只有GDB才使用的额外调试信息。可以使用下面的选项来生成额外的信息：</span></code>-gstabs+’，<code class="docutils literal notranslate"><span class="pre">-gstabs'，</span></code>-gxcoff+’，<code class="docutils literal notranslate"><span class="pre">-gxcoff'，</span></code>-gdwarf+’或`-gdwarf’，具体用法请读者参考GCC手册。</p>
+</div>
+<div class="section" id="optimization-option">
+<h3>优化选项(Optimization Option)<a class="headerlink" href="#optimization-option" title="永久链接至标题">¶</a></h3>
+<p>  （1）-O或-O1</p>
+<p>    优化：对于大函数，优化编译的过程将占用稍微多的时间和相当大的内存。不使用<code class="docutils literal notranslate"><span class="pre">-O'或</span></code>-O1’选项的目的是减少编译的开销，使编译结果能够调试、语句是独立的：如果在两条语句之间用断点中止程序，可以对任何变量重新赋值，或者在函数体内把程序计数器指到其他语句，以及从源程序中精确地获取你所期待的结果。</p>
+<p>    不使用<code class="docutils literal notranslate"><span class="pre">-O'或</span></code>-O1’选项时，只有声明了register的变量才分配使用寄存器。</p>
+<p>    使用了<code class="docutils literal notranslate"><span class="pre">-O'或</span></code>-O1’选项，编译器会试图减少目标码的大小和执行时间。如果指定了<code class="docutils literal notranslate"><span class="pre">-O'或</span></code>-O1’选项,，<code class="docutils literal notranslate"><span class="pre">-fthread-jumps'和</span></code>-fdefer-pop’选项将被打开。在有delay slot的机器上，<code class="docutils literal notranslate"><span class="pre">-fdelayed-branch'选项将被打开。在即使没有帧指针</span> <span class="pre">(frame</span> <span class="pre">pointer)也支持调试的机器上，</span></code>-fomit-frame-pointer’选项将被打开。某些机器上还可能会打开其他选项。</p>
+<p>  （2）-O2</p>
+<p>    多优化一些。除了涉及空间和速度交换的优化选项，执行几乎所有的优化工作。例如不进行循环展开(loop unrolling)和函数内嵌(inlining)。和<code class="docutils literal notranslate"><span class="pre">-O'或</span></code>-O1’选项比较，这个选项既增加了编译时间，也提高了生成代码的运行效果。</p>
+<p>  （3）-O3</p>
+<p>    优化的更多。除了打开-O2所做的一切，它还打开了-finline-functions选项。</p>
+<p>  （4）-O0</p>
+<p>    不优化。</p>
+<p>  如果指定了多个-O选项，不管带不带数字，生效的是最后一个选项。</p>
+<p>:在一般应用中，经常使用-O2选项，比如对于options程序：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	$ gcc  -O2  -c  -o  main.o  main.c   
+	$ gcc  -O2  -c  -o  sub.o  sub.c   
+	$ gcc  -o  <span class="nb">test</span>  main.o  sub.o   
+</pre></div>
+</div>
+</div>
+<div class="section" id="linker-option">
+<h3>链接器选项(Linker Option)<a class="headerlink" href="#linker-option" title="永久链接至标题">¶</a></h3>
+<p>  下面的选项用于链接OBJ文件，输出可执行文件或库文件。</p>
+<p>::（1）object-file-name<br />      如果某些文件没有特别明确的后缀(a special recognized suffix)，GCC就认为他们是OBJ文件或库文件(根据文件内容,链接器能够区分OBJ文件和库文件)。如果GCC执行链接操作，这些OBJ文件将成为链接器的输入文件。</p>
+<p>      比如上面的“gcc -o test main.o sub.o”中，main.o、sub.o就是输入的文件。</p>
+<p>    （2）-llibrary</p>
+<p>      链接名为library的库文件。</p>
+<p>      链接器在标准搜索目录中寻找这个库文件，库文件的真正名字是<code class="docutils literal notranslate"><span class="pre">liblibrary.a'。搜索目录除了一些系统标准目录外，还包括用户以</span></code>-L’选项指定的路径。一般说来用这个方法找到的文件是库文件──即由OBJ文件组成的归档文件(archive file)。链接器处理归档文件的方法是：扫描归档文件，寻找某些成员，这些成员的符号目前已被引用，不过还没有被定义。但是，如果链接器找到普通的OBJ文件，而不是库文件，就把这个OBJ文件按平常方式链接进来。指定<code class="docutils literal notranslate"><span class="pre">-l'选项和指定文件名的唯一区别是，</span></code>-l’选项用<code class="docutils literal notranslate"><span class="pre">lib'和</span></code>.a’把library包裹起来，而且搜索一些目录。</p>
+<p>      即使不明显地使用-llibrary选项，一些默认的库也被链接进去，可以使用-v选项看到这点：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>			$ gcc -v -o test main.o sub.o   
+</pre></div>
+</div>
+<p>      输出的信息如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/collect2 --eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2    
+			-o <span class="nb">test</span>    
+			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../../crt1.o /usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../../crti.o    
+			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/crtbegin.o    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../..    
+			main.o    
+			sub.o    
+			-lgcc -lgcc_eh -lc -lgcc -lgcc_eh    
+			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/crtend.o    
+			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../../crtn.o   
+</pre></div>
+</div>
+<p>      可以看见，除了main.o、sub.o两个文件外，还链接了启动文件crt1.o、crti.o、crtend.o 、crtn.o，还有一些库文件(-lgcc 				-lgcc_eh -lc -lgcc -lgcc_eh)。</p>
+<p>    （3）-nostartfiles</p>
+<p>      不链接系统标准启动文件，而标准库文件仍然正常使用：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -v -nostartfiles -o <span class="nb">test</span> main.o sub.o   
+</pre></div>
+</div>
+<p>      输出的信息如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/collect2 --eh-frame-hdr -m elf_i386 -dynamic-linker    
+			/lib/ld-linux.so.2    
+			-o <span class="nb">test</span>    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../..    
+			main.o    
+			sub.o    
+			-lgcc -lgcc_eh -lc -lgcc -lgcc_eh   
+			/usr/bin/ld: warning: cannot find entry symbol _start<span class="p">;</span> defaulting to <span class="m">08048184</span>   
+</pre></div>
+</div>
+<p>      可以看见启动文件crt1.o、crti.o、crtend.o 、crtn.o没有被链接进去。需要说明的是，对于一般应用程序，这些启动文件是必需的，这里仅是作为例子(这样编译出来的test文件无法执行)。在编译bootloader、内核时，将用到这个选项。</p>
+<p>    （4）-nostdlib</p>
+<p>      不链接系统标准启动文件和标准库文件，只把指定的文件传递给链接器。这个选项常用于编译内核、bootloader等程序，它们不需要启动文件、标准库文件。</p>
+<p>      仍以options程序作为例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -v -nostdlib -o <span class="nb">test</span> main.o sub.o   
+</pre></div>
+</div>
+<p>      输出的信息如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/collect2 --eh-frame-hdr -m elf_i386 -dynamic-linker /lib/ld-linux.so.2    
+			-o <span class="nb">test</span>    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2    
+			-L/usr/lib/gcc-lib/i386-redhat-linux/3.2.2/../../..    
+			main.o    
+			sub.o   
+			/usr/bin/ld: warning: cannot find entry symbol _start<span class="p">;</span> defaulting to <span class="m">08048074</span>   
+			main.o<span class="o">(</span>.text+0x19<span class="o">)</span>: In <span class="k">function</span> <span class="sb">`</span>main<span class="s1">&#39;:   </span>
+<span class="s1">			: undefined reference to `printf&#39;</span>   
+			sub.o<span class="o">(</span>.text+0xf<span class="o">)</span>: In <span class="k">function</span> <span class="sb">`</span>sub_fun<span class="s1">&#39;:   </span>
+<span class="s1">			: undefined reference to `printf&#39;</span>   
+			collect2: ld returned <span class="m">1</span> <span class="nb">exit</span> status   
+</pre></div>
+</div>
+<p>      出现了一大堆错误，因为printf等函数是在库文件中实现的。在编译bootloader、内核时，用到这个选项──它们用到的很多函数是自包含的。</p>
+<p>    （5）-static</p>
+<p>      在支持动态链接(dynamic linking)的系统上，阻止链接共享库。</p>
+<p>      仍以options程序为例，是否使用-static选项编译出来的可执行程序大小相差巨大：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -c -o main.c   
+			$ gcc -c -o sub.c   
+			$ gcc -o <span class="nb">test</span> main.o sub.o   
+			$ gcc -o test_static main.o sub.o –static   
+			$ ls -l <span class="nb">test</span> test_static   
+			-rwxr-xr-x <span class="m">1</span> book book   <span class="m">6591</span> Jan <span class="m">16</span> <span class="m">23</span>:51 <span class="nb">test</span>   
+			-rwxr-xr-x <span class="m">1</span> book book <span class="m">546479</span> Jan <span class="m">16</span> <span class="m">23</span>:51 test_static   
+</pre></div>
+</div>
+<p>      其中test文件为6591字节，test_static文件为546479字节。当不使用-static编译文件时，程序执行前要链接共享库文件，所以还需要将共享库文件放入文件系统中。</p>
+<p>    （6）-shared</p>
+<p>      生成一个共享OBJ文件，它可以和其他OBJ文件链接产生可执行文件。只有部分系统支持该选项。</p>
+<p>      当不想以源代码发布程序时，可以使用-shared选项生成库文件，比如对于options程序，可以如下制作库文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -c -o sub.o sub.c   
+			$ gcc -shared -o libsub.so sub.o   
+</pre></div>
+</div>
+<p>      以后要使用sub.c中的函数sub_fun时，在链接程序时，指定引脚libsub.so即可，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -o <span class="nb">test</span> main.o  -lsub  -L /libsub.so/所在的目录/   
+</pre></div>
+</div>
+<p>      可以将多个文件制作为一个库文件，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -shared  -o libsub.so  sub.o  sub2.o  sub3.o   
+</pre></div>
+</div>
+<p>    （7）-Xlinker option</p>
+<p>      把选项option传递给链接器。可以用来传递系统特定的链接选项，GCC无法识别这些选项。如果需要传递携带参数的选项，必须使用两次<code class="docutils literal notranslate"><span class="pre">-Xlinker'，一次传递选项，另一次传递其参数。例如，如果传递</span></code>-assert definitions’，要成<code class="docutils literal notranslate"><span class="pre">-Xlinker</span> <span class="pre">-assert</span> <span class="pre">-Xlinker</span> <span class="pre">definitions'，而不能写成</span></code>-Xlinker “-assert definitions”’，因为这样会把整个字符串当做一个参数传递，显然这不是链接器期待的。</p>
+<p>    （8）-Wl,option</p>
+<p>      把选项option传递给链接器。如果option中含有逗号，就在逗号处分割成多个选项。链接器通常是通过gcc、arm-linux-gcc等命令间接启动的，要向它传入参数时，参数前面加上`-Wl,’。</p>
+<p>    （9）-u symbol</p>
+<p>      使链接器认为取消了symbol的符号定义，从而链接库模块以取得定义。可以使用多个 `-u’选项，各自跟上不同的符号，使得链接器调入附加的库模块。</p>
+</div>
+<div class="section" id="directory-option">
+<h3>目录选项(Directory Option)<a class="headerlink" href="#directory-option" title="永久链接至标题">¶</a></h3>
+<p>  下列选项指定搜索路径，用于查找头文件，库文件，或编译器的某些成员。</p>
+<p>    （1）-Idir</p>
+<p>      在头文件的搜索路径列表中添加dir 目录。</p>
+<p>      头文件的搜索方法为：如果以“#include &lt; &gt;”包含文件，则只在标准库目录开始搜索(包括使用-Idir选项定义的目录)；如果以“#include “ ””包含文件，则先从用户的工作目录开始搜索，再搜索标准库目录。</p>
+<p>    （2）-I-</p>
+<p>      任何在<code class="docutils literal notranslate"><span class="pre">-I-'前面用</span></code>-I’选项指定的搜索路径只适用于<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;file&quot;'这种情况；它们不能用来搜索</span></code>#include <file>’包含的头文件。如果用<code class="docutils literal notranslate"><span class="pre">-I'选项指定的搜索路径位于</span></code>-I-‘选项后面，就可以在这些路径中搜索所有的<code class="docutils literal notranslate"><span class="pre">#include'指令(一般说来-I选项就是这么用的)。还有，</span></code>-I-‘选项能够阻止当前目录(存放当前输入文件的地方)成为搜索`#include “file”’的第一选择。</p>
+<p><code class="docutils literal notranslate"><span class="pre">-I-'不影响使用系统标准目录，因此，</span></code>-I-‘和`-nostdinc’是不同的选项。</p>
+<p>    （3）-Ldir</p>
+<p>      在`-l’选项的搜索路径列表中添加dir目录。</p>
+<p>      仍使用options程序进行说明，先制作库文件libsub.a：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc -c -o sub.o sub.c   
+			$ gcc -shared -o libsub.a sub.o   
+</pre></div>
+</div>
+<p>      编译main.c：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc  -c -o  main.o  main.c   
+</pre></div>
+</div>
+<p>      链接程序，下面的指令将出错，提示找不到库文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			$ gcc  -o  <span class="nb">test</span>  main.o  -lsub   
+			/usr/bin/ld: cannot find -lsub   
+			collect2: ld returned <span class="m">1</span> <span class="nb">exit</span> status   
+</pre></div>
+</div>
+<p>      可以使用-Ldir选项将当前目录加入搜索路径，如下则链接成功：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		$ gcc -L. -o <span class="nb">test</span> main.o -lsub   
+</pre></div>
+</div>
+<p>    （4）-Bprefix</p>
+<p>      这个选项指出在何处寻找可执行文件，库文件，以及编译器自己的数据文件。编译器驱动程序需要使用某些工具，比如：<code class="docutils literal notranslate"><span class="pre">cpp'，</span></code>cc1’ (或C++的<code class="docutils literal notranslate"><span class="pre">cc1plus')，</span></code>as’和`ld’。它把prefix当作欲执行的工具的前缀，这个前缀可以用来指定目录，也可以用来修改工具名字。</p>
+<p>      对于要运行的工具，编译器驱动程序首先试着加上<code class="docutils literal notranslate"><span class="pre">-B'前缀(如果存在)，如果没有找到文件，或没有指定</span></code>-B’选项，编译器接着会试验两个标准前缀<code class="docutils literal notranslate"><span class="pre">/usr/lib/gcc/'和</span></code>/usr/local/lib/gcc-lib/’。如果仍然没能够找到所需文件，编译器就在<code class="docutils literal notranslate"><span class="pre">PATH'环境变量指定的路径中寻找没加任何前缀的文件名。如果有需要，运行时(run-time)支持文件</span></code>libgcc.a’也在<code class="docutils literal notranslate"><span class="pre">-B'前缀的搜索范围之内。如果这里没有找到，就在上面提到的两个标准前缀中寻找，仅此而已。如果上述方法没有找到这个文件，就不链接它了。多数情况的多数机器上，</span></code>libgcc.a’并非必不可少。</p>
+<p>      可以通过环境变量GCC_EXEC_PREFIX获得近似的效果；如果定义了这个变量，其值就和上面说的一样被用作前缀。如果同时指定了<code class="docutils literal notranslate"><span class="pre">-B'选项和GCC_EXEC_PREFIX变量，编译器首先使用</span></code>-B’选项，然后才尝试环境变量值。</p>
+</div>
+<div class="section" id="ld-objdump-objcopy">
+<h3>ld/objdump/objcopy选项<a class="headerlink" href="#ld-objdump-objcopy" title="永久链接至标题">¶</a></h3>
+<p>  我们在开发APP时，一般不需要直接调用这3个命令；在开发裸机、bootloader时，或是调试APP时会涉及，到时再讲。</p>
+</div>
+</div>
+<div class="section" id="makefile">
+<h2>Makefile的使用<a class="headerlink" href="#makefile" title="永久链接至标题">¶</a></h2>
+<p>  在Linux中使用make命令来编译程序，特别是大程序；而make命令所执行的动作依赖于Makefile文件。最简单的Makefile文件如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	hello: hello.c   
+	gcc -o hello hello.c   
+	clean:   
+	rm -f  hello   
+</pre></div>
+</div>
+<p>  将上述4行存为Makefile文件(注意必须以Tab键缩进第2、4行，不能以空格键缩进)，放入01_hello目录下，然后直接执行make命令即可编译程序，执行“make clean”即可清除编译出来的结果。</p>
+<p>  make命令根据文件更新的时间戳来决定哪些文件需要重新编译，这使得可以避免编译已经编译过的、没有变化的程序，可以大大提高编译效率。</p>
+<p>  要想完整地了解Makefile的规则，请参考《GNU Make 使用手册》，以下仅粗略介绍。</p>
+<div class="section" id="id9">
+<h3>配套视频内容大纲<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id10">
+<h4>Makefile规则与示例<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h4>
+<p>  <font color="#dd0000">参考文档：gunmake.htm</font></p>
+<div class="section" id="id11">
+<h5>① 为什么需要Makefile<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h5>
+<p>  怎么高效地编译程序？</p>
+<p>  想达到什么样的效果？请参考Visual Studio：修改源文件或头文件，只需要重新编译<font color="#dd0000">牵涉到的文件</font>，就可以重新生成APP</p>
+</div>
+<div class="section" id="id12">
+<h5>② Makefile其实挺简单<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h5>
+<p>  一个简单的Makefile文件包含一系列的“规则”，其样式如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	目标<span class="o">(</span>target<span class="o">)</span>…: 依赖<span class="o">(</span>prerequiries<span class="o">)</span>…   
+	&lt;tab&gt;命令<span class="o">(</span><span class="nb">command</span><span class="o">)</span>   
+</pre></div>
+</div>
+<p>  如果“依赖文件”比“目标文件”更加新，那么执行“命令”来重新生成“目标文件”。</p>
+<p>  命令被执行的2个条件：依赖文件比目标文件<font color="#dd0000">新</font>，或是 目标文件还<font color="#dd0000">没生成</font>。</p>
+</div>
+<div class="section" id="makefile2">
+<h5>③ 先介绍Makefile的2个函数<a class="headerlink" href="#makefile2" title="永久链接至标题">¶</a></h5>
+<p>  A.  $(foreach var,list,text)</p>
+<p>    简单地说，就是 for each var in list, change it to text。</p>
+<p>    对list中的每一个元素，取出来赋给var，然后把var改为text所描述的形式。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		objs :<span class="o">=</span> a.o b.o   
+		dep_files :<span class="o">=</span> <span class="k">$(</span>foreach  f,  <span class="k">$(</span>objs<span class="k">)</span>,  .<span class="k">$(</span>f<span class="k">)</span>.d<span class="k">)</span>  // 最终 dep_files :<span class="o">=</span> .a.o.d .b.o.d   
+		B.  <span class="k">$(</span>wildcard pattern<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    pattern所列出的文件是否存在，把存在的文件都列出来。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		src_files :<span class="o">=</span> <span class="k">$(</span> wildcard  *.c<span class="k">)</span>  // 最终 src_files中列出了当前目录下的所有.c文件   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h5>④ 一步一步完善Makefile<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h5>
+<p>    第1个Makefile，简单粗暴，效率低：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">test</span> : main.c sub.c sub.h   
+			gcc -o <span class="nb">test</span> main.c sub.c   
+</pre></div>
+</div>
+<p>    第2个Makefile，效率高，相似规则太多太啰嗦，不支持检测头文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">test</span> : main.o sub.o   
+			gcc -o <span class="nb">test</span> main.o sub.o   
+			   
+		main.o : main.c   
+			gcc -c -o main.o  main.c   
+   
+		sub.o : sub.c   
+			gcc -c -o sub.o  sub.c	   
+			   
+		clean:   
+			rm *.o <span class="nb">test</span> -f   
+</pre></div>
+</div>
+<p>    第3个Makefile，效率高，精炼，不支持检测头文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">test</span> : main.o sub.o   
+			gcc -o <span class="nb">test</span> main.o sub.o   
+			   
+		%.o : %.c   
+			gcc -c -o <span class="nv">$@</span>  $&lt;   
+			   
+		clean:   
+			rm *.o <span class="nb">test</span> -f   
+</pre></div>
+</div>
+<p>    第4个Makefile，效率高，精炼，支持检测头文件(但是需要手工添加头文件规则)：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">test</span> : main.o sub.o   
+			gcc -o <span class="nb">test</span> main.o sub.o   
+			   
+		%.o : %.c   
+			gcc -c -o <span class="nv">$@</span>  $&lt;   
+   
+		sub.o : sub.h   
+   
+   
+		clean:   
+			rm *.o <span class="nb">test</span> -f   
+</pre></div>
+</div>
+<p>    第5个Makefile，效率高，精炼，支持自动检测头文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		objs :<span class="o">=</span> main.o sub.o   
+   
+		<span class="nb">test</span> : <span class="k">$(</span>objs<span class="k">)</span>   
+			gcc -o <span class="nb">test</span> $^   
+   
+		<span class="c1"># 需要判断是否存在依赖文件   </span>
+		<span class="c1"># .main.o.d .sub.o.d   </span>
+		dep_files :<span class="o">=</span> <span class="k">$(</span>foreach f, <span class="k">$(</span>objs<span class="k">)</span>, .<span class="k">$(</span>f<span class="k">)</span>.d<span class="k">)</span>   
+		dep_files :<span class="o">=</span> <span class="k">$(</span>wildcard <span class="k">$(</span>dep_files<span class="k">))</span>   
+   
+		<span class="c1"># 把依赖文件包含进来   </span>
+		ifneq <span class="o">(</span><span class="k">$(</span>dep_files<span class="k">)</span>,<span class="o">)</span>   
+		include <span class="k">$(</span>dep_files<span class="k">)</span>   
+		endif   
+   
+   
+		%.o : %.c   
+			gcc -Wp,-MD,.<span class="nv">$@</span>.d  -c -o <span class="nv">$@</span>  $&lt;   
+			   
+   
+		clean:   
+			rm *.o <span class="nb">test</span> -f   
+   
+		distclean:   
+			rm  <span class="k">$(</span>dep_files<span class="k">)</span> *.o <span class="nb">test</span> -f   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id14">
+<h4>通用Makefile的使用<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h4>
+<p>  我参考Linux内核的Makefile编写了一个通用的Makefile，它可以用来编译应用程序：</p>
+<p>    ① 支持多个目录、多层目录、多个文件；</p>
+<p>    ② 支持给所有文件设置编译选项；</p>
+<p>    ③ 支持给某个目录设置编译选项；</p>
+<p>    ④ 支持给某个文件单独设置编译选项；</p>
+<p>    ⑤ 简单、好用。</p>
+<p>  使用git下载本教程的文档后，下列目录中就有说明和示例：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	01_all_series_quickstart<span class="se">\0</span>4_快速入门<span class="o">(</span>正式开始<span class="o">)</span><span class="se">\0</span>1_嵌入式Linux应用开发基础知识<span class="se">\s</span>ource<span class="se">\0</span>5_general_Makefile   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id15">
+<h4>通用Makefile的解析<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id16">
+<h5>① 零星知识点<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h5>
+<div class="section" id="a-make">
+<h6>A. make命令的使用：<a class="headerlink" href="#a-make" title="永久链接至标题">¶</a></h6>
+<p>  执行make命令时，它会去<font color="#dd0000">当前目录</font>下查找名为“Makefile”的文件，并根据它的指示去执行操作，生成<font color="#dd0000">第一个</font>目标。</p>
+<p>  我们可以使用“<font color="#dd0000">-f</font>”选项指定文件，不再使用名为“Makefile”的文件，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	make  -f  Makefile.build    
+</pre></div>
+</div>
+<p>  我们可以使用“<font color="#dd0000">-C</font>”选项指定目录，切换到其他目录里去，比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	make -C  a/  -f  Makefile.build    
+</pre></div>
+</div>
+<p>  我们可以指定目标，不再默认生成<font color="#dd0000">第一个</font>目标：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	make -C  a/  -f  Makefile.build   &lt;font <span class="nv">color</span><span class="o">=</span><span class="s2">&quot;#dd0000&quot;</span>&gt;other_target&lt;/font&gt;   
+</pre></div>
+</div>
+</div>
+<div class="section" id="b">
+<h6>B. 即时变量、延时变量：<a class="headerlink" href="#b" title="永久链接至标题">¶</a></h6>
+<p>  变量的定义语法形式如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="nv">A</span>  <span class="o">=</span>  xxx   // 延时变量   
+	B  ?<span class="o">=</span> xxx   // 延时变量，只有第一次定义时赋值才成功；如果曾定义过，此赋值无效   
+	C  :<span class="o">=</span> xxx   // 立即变量   
+	<span class="nv">D</span>  <span class="o">+=</span> yyy   // 如果D在前面是延时变量，那么现在它还是延时变量；   
+				// 如果D在前面是立即变量，那么现在它还是立即变量   
+</pre></div>
+</div>
+<p>  在GNU make中对变量的赋值有两种方式：延时变量、立即变量。</p>
+<p>  上图中，变量A是延时变量，它的值在使用时才展开、才确定。比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="nv">A</span>  <span class="o">=</span>  <span class="nv">$@</span>   
+	test:   
+		@echo <span class="nv">$A</span>   
+</pre></div>
+</div>
+<p>  上述Makefile中，变量A的值在执行时才确定，它等于test，是延时变量。</p>
+<p>  如果使用“A := $&#64;”，这是立即变量，这时$&#64;为空，所以A的值就是空。</p>
+</div>
+<div class="section" id="c-export">
+<h6>C. 变量的导出(export)：<a class="headerlink" href="#c-export" title="永久链接至标题">¶</a></h6>
+<p>  在编译程序时，我们会不断地使用“make -C dir”切换到其他目录，执行其他目录里的Makefile。如果想让某个变量的值在所有目录中都可见，要把它export出来。</p>
+<p>  比如“CC		= $(CROSS_COMPILE)gcc”，这个CC变量表示编译器，在整个过程中都是一样的。定义它之后，要使用“export  CC”把它导出来。</p>
+</div>
+<div class="section" id="d-makefileshell">
+<h6>D. Makefile中可以使用shell命令：<a class="headerlink" href="#d-makefileshell" title="永久链接至标题">¶</a></h6>
+<p>  比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	TOPDIR :<span class="o">=</span> <span class="k">$(</span>shell <span class="nb">pwd</span><span class="k">)</span>   
+</pre></div>
+</div>
+<p>  这是个立即变量，TOPDIR等于shell命令pwd的结果。</p>
+</div>
+<div class="section" id="e-makefile1">
+<h6>E. 在Makefile中怎么放置第1个目标：<a class="headerlink" href="#e-makefile1" title="永久链接至标题">¶</a></h6>
+<p>  执行make命令时如果不指定目标，那么它默认是去生成第1个目标。</p>
+<p>  所以“第1个目标”，位置很重要。有时候不太方便把第1个目标完整地放在文件前面，这时可以在文件的前面直接放置目标，在后面再完善它的依赖与命令。比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	First_target:   // 这句话放在前面   
+	．．．．      // 其他代码，比如include其他文件得到后面的xxx变量   
+	First_target : <span class="k">$(</span>xxx<span class="k">)</span>   <span class="k">$(</span>yyy<span class="k">)</span>   // 在文件的后面再来完善   
+		<span class="nb">command</span>   
+</pre></div>
+</div>
+</div>
+<div class="section" id="f">
+<h6>F. 假想目标：<a class="headerlink" href="#f" title="永久链接至标题">¶</a></h6>
+<p>  我们的Makefile中有这样的目标：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	clean:   
+		rm -f <span class="k">$(</span>shell find -name <span class="s2">&quot;*.o&quot;</span><span class="k">)</span>   
+		rm -f <span class="k">$(</span>TARGET<span class="k">)</span>   
+</pre></div>
+</div>
+<p>  如果当前目录下恰好有名为“clean”的文件，那么执行“make clean”时它就不会执行那些删除命令。</p>
+<p>  这时我们需要把“clean”这个目标，设置为“假想目标”，这样可以确保执行“make clean”时那些删除命令肯定可以得到执行。</p>
+<p>  使用下面的语句把“clean”设置为假想目标：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	.PHONY : clean   
+</pre></div>
+</div>
+</div>
+<div class="section" id="g">
+<h6>G. 常用的函数：<a class="headerlink" href="#g" title="永久链接至标题">¶</a></h6>
+<p>  i.  $(<font color="#dd0000">foreach</font> var,list,text)</p>
+<p>    简单地说，就是 for each var in list, change it to text。</p>
+<p>    对list中的每一个元素，取出来赋给var，然后把var改为text所描述的形式。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		objs :<span class="o">=</span> a.o b.o   
+		dep_files :<span class="o">=</span> <span class="k">$(</span>foreach  f,  <span class="k">$(</span>objs<span class="k">)</span>,  .<span class="k">$(</span>f<span class="k">)</span>.d<span class="k">)</span>  // 最终 dep_files :<span class="o">=</span> .a.o.d .b.o.d   
+</pre></div>
+</div>
+<p>  ii.  $(<font color="#dd0000">wildcard</font> pattern)</p>
+<p>    pattern所列出的文件是否存在，把存在的文件都列出来。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		src_files :<span class="o">=</span> <span class="k">$(</span> wildcard  *.c<span class="k">)</span>  // 最终 src_files中列出了当前目录下的所有.c文件   
+</pre></div>
+</div>
+<p>  iii.  $(<font color="#dd0000">filter</font> pattern…,text)</p>
+<p>    把text中符合pattern格式的内容，filter(过滤)出来、留下来。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		obj-y :<span class="o">=</span> a.o b.o c/ d/   
+		DIR :<span class="o">=</span>  <span class="k">$(</span>filter  %/,  <span class="k">$(</span>obj-y<span class="k">))</span>   //结果为：c/ d/   
+</pre></div>
+</div>
+<p>  iv.  $(<font color="#dd0000">filter-out</font> pattern…,text)</p>
+<p>    把text中符合pattern格式的内容，filter-out(过滤)出来、扔掉。</p>
+<p>    例子：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		obj-y :<span class="o">=</span> a.o b.o c/ d/   
+		DIR :<span class="o">=</span>  <span class="k">$(</span>filter-out  %/,  <span class="k">$(</span>obj-y<span class="k">))</span>   //结果为：a.o  b.o   
+</pre></div>
+</div>
+<p>  vi.  $(<font color="#dd0000">patsubst</font> pattern,replacement,text)</p>
+<p>    寻找<code class="docutils literal notranslate"><span class="pre">text’中符合格式</span></code>pattern’的字，用<code class="docutils literal notranslate"><span class="pre">replacement’替换它们。</span></code>pattern’和`replacement’中可以使用通配符。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		subdir-y   :<span class="o">=</span>  c/  d/   
+		subdir-y	:<span class="o">=</span> <span class="k">$(</span>patsubst  %/,  %,  <span class="k">$(</span>subdir-y<span class="k">))</span>   // 结果为：c  d   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id17">
+<h5>② 通用Makefile的设计思想<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h5>
+<div class="section" id="a-makefile">
+<h6>A. 在Makefile文件中确定要编译的文件、目录，比如：<a class="headerlink" href="#a-makefile" title="永久链接至标题">¶</a></h6>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	obj-y +<span class="o">=</span> main.o   
+	obj-y +<span class="o">=</span> a/   
+</pre></div>
+</div>
+<p>  “Makefile”文件总是被“Makefile.build”包含的。</p>
+</div>
+<div class="section" id="b-makefile-build-3">
+<h6>B. 在Makefile.build中设置编译规则，有3条编译规则：<a class="headerlink" href="#b-makefile-build-3" title="永久链接至标题">¶</a></h6>
+<p>  i. 怎么编译子目录？ 进入子目录编译：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="k">$(</span>subdir-y<span class="k">)</span>:   
+		make -C <span class="nv">$@</span> -f <span class="k">$(</span>TOPDIR<span class="k">)</span>/Makefile.build   
+</pre></div>
+</div>
+<p>  ii. 怎么编译当前目录中的文件？</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	%.o : %.c   
+		<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> <span class="k">$(</span>EXTRA_CFLAGS<span class="k">)</span> <span class="k">$(</span>CFLAGS_<span class="nv">$@</span><span class="k">)</span> -Wp,-MD,<span class="k">$(</span>dep_file<span class="k">)</span> -c -o <span class="nv">$@</span> $&lt;   
+</pre></div>
+</div>
+<p>  iii. 当前目录下的.o和子目录下的built-in.o要打包起来：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	built-in.o : <span class="k">$(</span>cur_objs<span class="k">)</span> <span class="k">$(</span>subdir_objs<span class="k">)</span>   
+		<span class="k">$(</span>LD<span class="k">)</span> -r -o <span class="nv">$@</span> $^   
+</pre></div>
+</div>
+</div>
+<div class="section" id="c-makefilebuilt-in-oapp">
+<h6>C. 顶层Makefile中把顶层目录的built-in.o链接成APP：<a class="headerlink" href="#c-makefilebuilt-in-oapp" title="永久链接至标题">¶</a></h6>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="k">$(</span>TARGET<span class="k">)</span> : built-in.o   
+		<span class="k">$(</span>CC<span class="k">)</span> <span class="k">$(</span>LDFLAGS<span class="k">)</span> -o <span class="k">$(</span>TARGET<span class="k">)</span> built-in.o   
+</pre></div>
+</div>
+<p>  ③ 情景演绎</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_003.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_003.png" />
+&lt;1000px&gt;
+  本节下面的内容中不需要看，这是为写书《<font color="#dd0000">嵌入式Linux应用开发完全手册 升级版</font>》而准备的。结合3.0节看视频就可以了。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>Makefile规则<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h3>
+<p>  一个简单的Makefile文件包含一系列的“规则”，其样式如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	目标<span class="o">(</span>target<span class="o">)</span>…: 依赖<span class="o">(</span>prerequiries<span class="o">)</span>…   
+	&lt;tab&gt;命令<span class="o">(</span><span class="nb">command</span><span class="o">)</span>   
+</pre></div>
+</div>
+<p>  目标(target)通常是要生成的文件的名称，可以是可执行文件或OBJ文件，也可以是一个执行的动作名称，诸如`clean’。</p>
+<p>  依赖是用来产生目标的材料(比如源文件)，一个目标经常有几个依赖。</p>
+<p>  命令是生成目标时执行的动作，一个规则可以含有几个命令，每个命令占一行。</p>
+<p>  <font color="#dd0000">注意</font>：每个命令行前面必须是一个Tab字符，即命令行第一个字符是Tab。这是容易出错的地方。</p>
+<p>  通常，如果一个依赖发生了变化，就需要规则调用命令以更新或创建目标。但是并非所有的目标都有依赖，例如，目标“clean”的作用是清除文件，它没有依赖。</p>
+<p>  规则一般是用于解释怎样和何时重建目标。make首先调用命令处理依赖，进而才能创建或更新目标。当然，一个规则也可以是用于解释怎样和何时执行一个动作，即打印提示信息。</p>
+<p>  一个Makefile文件可以包含规则以外的其他文本，但一个简单的Makefile文件仅仅需要包含规则。虽然真正的规则比这里展示的例子复杂，但格式是完全一样的。</p>
+<p>  对于上面的Makefile，执行“make”命令时，仅当hello.c文件比hello文件新，才会执行命令“arm-linux-gcc –o hello hello.c”生成可执行文件hello；如果还没有hello文件，这个命令也会执行。</p>
+<p>  运行“make clean”时，由于目标clean没有依赖，它的命令“rm -f  hello”将被强制执行。</p>
+</div>
+<div class="section" id="id19">
+<h3>Makefile文件里的赋值方法<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h3>
+<p>  变量的定义语法形式如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="nv">immediate</span> <span class="o">=</span> deferred   
+	immediate ?<span class="o">=</span> deferred   
+	immediate :<span class="o">=</span> immediate   
+	<span class="nv">immediate</span> <span class="o">+=</span> deferred or immediate   
+	define immediate   
+	deferred   
+	endef   
+</pre></div>
+</div>
+<p>  在GNU make中对变量的赋值有两种方式：延时变量、立即变量。区别在于它们的定义方式和扩展时的方式不同，前者在这个变量使用时才扩展开，意即当真正使用时这个变量的值才确定；后者在定义时它的值就已经确定了。使用<code class="docutils literal notranslate"><span class="pre">=’，</span></code>?=’定义或使用define指令定义的变量是延时变量；使用<code class="docutils literal notranslate"><span class="pre">:=’定义的变量是立即变量。需要注意的一点是，</span></code>?=’仅仅在变量还没有定义的情况下有效，即`?=’被用来定义第一次出现的延时变量。</p>
+<p>  对于附加操作符`+=’，右边变量如果在前面使用（:=）定义为立即变量则它也是立即变量，否则均为延时变量。</p>
+</div>
+<div class="section" id="id20">
+<h3>Makefile常用函数<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<p>  函数调用的格式如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$(function arguments)   
+</pre></div>
+</div>
+<p>  这里<code class="docutils literal notranslate"><span class="pre">function’是函数名，</span></code>arguments’是该函数的参数。参数和函数名之间是用空格或Tab隔开，如果有多个参数，它们之间用逗号隔开。这些空格和逗号不是参数值的一部分。</p>
+<p>  内核的Makefile中用到大量的函数，现在介绍一些常用的。</p>
+<div class="section" id="id21">
+<h4>字符串替换和分析函数<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h4>
+<p>  （1）$(subst from,to,text)</p>
+<p>    在文本<code class="docutils literal notranslate"><span class="pre">text’中使用</span></code>to’替换每一处`from’。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>subst ee,EE,feet on the street<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘fEEt on the street’。</p>
+<p>  （2）$(patsubst pattern,replacement,text)</p>
+<p>    寻找<code class="docutils literal notranslate"><span class="pre">text’中符合格式</span></code>pattern’的字，用<code class="docutils literal notranslate"><span class="pre">replacement’替换它们。</span></code>pattern’和`replacement’中可以使用通配符。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>patsubst %.c,%.o,x.c.c bar.c<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为：`x.c.o bar.o’。</p>
+<p>  （3）$(strip string)</p>
+<p>    去掉前导和结尾空格，并将中间的多个空格压缩为单个空格。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>strip a   b c <span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为`a b c’。</p>
+<p>  （4）$(findstring find,in)</p>
+<p>    在字符串<code class="docutils literal notranslate"><span class="pre">in’中搜寻</span></code>find’，如果找到，则返回值是`find’，否则返回值为空。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>findstring a,a b c<span class="k">)</span>   
+		<span class="k">$(</span>findstring a,b c<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    将分别产生值<code class="docutils literal notranslate"><span class="pre">a’和</span></code>’(空字符串)。</p>
+<p>  （5）$(filter pattern…,text)</p>
+<p>    返回在<code class="docutils literal notranslate"><span class="pre">text’中由空格隔开且匹配格式</span></code>pattern…’的字，去除不符合格式`pattern…’的字。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="k">$(</span>filter %.c %.s,foo.c bar.c baz.s ugh.h<span class="k">)</span>    
+</pre></div>
+</div>
+<p>    结果为`foo.c bar.c baz.s’。</p>
+<p>  （6）$(filter-out pattern…,text)</p>
+<p>    返回在<code class="docutils literal notranslate"><span class="pre">text’中由空格隔开且不匹配格式</span></code>pattern…’的字，去除符合格式`pattern…’的字。它是函数filter的反函数。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>filter %.c %.s,foo.c bar.c baz.s ugh.h<span class="k">)</span>    
+</pre></div>
+</div>
+<p>    结果为`ugh.h’。</p>
+<p>  （7）$(sort list)</p>
+<p>    将‘list’中的字按字母顺序排序，并去掉重复的字。输出由单个空格隔开的字的列表。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>sort foo bar lose<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    返回值是‘bar foo lose’。</p>
+</div>
+<div class="section" id="id22">
+<h4>文件名函数<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h4>
+<p>  （1）$(dir names…)</p>
+<p>    抽取‘names…’中每一个文件名的路径部分，文件名的路径部分包括从文件名的首字符到最后一个斜杠(含斜杠)之前的一切字符。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>dir src/foo.c hacks<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘src/ ./’。</p>
+<p>  （2）$(notdir names…)</p>
+<p>    抽取‘names…’中每一个文件名中除路径部分外一切字符（真正的文件名）。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>notdir src/foo.c hacks<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘foo.c hacks’。</p>
+<p>  （3）$(suffix names…)</p>
+<p>    抽取‘names…’中每一个文件名的后缀。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>suffix src/foo.c src-1.0/bar.c hacks<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘.c .c’。</p>
+<p>  （4）$(basename names…)</p>
+<p>    抽取‘names…’中每一个文件名中除后缀外一切字符。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>basename src/foo.c src-1.0/bar hacks<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘src/foo src-1.0/bar hacks’。</p>
+<p>  （5）$(addsuffix suffix,names…)</p>
+<p>    参数‘names…’是一系列的文件名，文件名之间用空格隔开；suffix是一个后缀名。将suffix(后缀)的值附加在每一个独立文件名的后面，完成后将文件名串联起来，它们之间用单个空格隔开。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>addsuffix .c,foo bar<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘foo.c bar.c’。</p>
+<p>  （6）$(addprefix prefix,names…)</p>
+<p>    参数‘names’是一系列的文件名，文件名之间用空格隔开；prefix是一个前缀名。将preffix(前缀)的值附加在每一个独立文件名的前面，完成后将文件名串联起来，它们之间用单个空格隔开。</p>
+<p>    比如：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="k">$(</span>addprefix src/,foo bar<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘src/foo src/bar’。</p>
+<p>  （7）$(wildcard pattern)</p>
+<p>    参数‘pattern’是一个文件名格式，包含有通配符(通配符和shell中的用法一样)。函数wildcard的结果是一列和格式匹配的且真实存在的文件的名称，文件名之间用一个空格隔开。</p>
+<p>    比如若当前目录下有文件1.c、2.c、1.h、2.h，则：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		c_src :<span class="o">=</span> <span class="k">$(</span>wildcard *.c<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘1.c 2.c’。</p>
+</div>
+<div class="section" id="id23">
+<h4>其他函数<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h4>
+<p>  （1）$(foreach var,list,text)</p>
+<p>    前两个参数，‘var’和‘list’将首先扩展，注意最后一个参数‘text’此时不扩展；接着，‘list’扩展所得的每个字，都赋给‘var’变量；然后‘text’引用该变量进行扩展，因此‘text’每次扩展都不相同。</p>
+<p>    函数的结果是由空格隔开的‘text’ 在‘list’中多次扩展后，得到的新‘list’，就是说：‘text’多次扩展的字串联起来，字与字之间由空格隔开，如此就产生了函数foreach的返回值。</p>
+<p>    下面是一个简单的例子，将变量‘files’的值设置为 ‘dirs’中的所有目录下的所有文件的列表：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="nb">dirs</span> :<span class="o">=</span> a b c d   
+		files :<span class="o">=</span> <span class="k">$(</span>foreach dir,<span class="k">$(</span><span class="nb">dirs</span><span class="k">)</span>,<span class="k">$(</span>wildcard <span class="k">$(</span>dir<span class="k">)</span>/*<span class="k">))</span>   
+</pre></div>
+</div>
+<p>    这里‘text’是‘$(wildcard $(dir)/*)’，它的扩展过程如下：</p>
+<p>      ①第一个赋给变量dir的值是`a’，扩展结果为‘$(wildcard a/*)’；</p>
+<p>      ②第二个赋给变量dir的值是`b’，扩展结果为‘$(wildcard b/*)’；</p>
+<p>      ③第三个赋给变量dir的值是`c’，扩展结果为‘$(wildcard c/*)’；</p>
+<p>      ④如此继续扩展。</p>
+<p>    这个例子和下面的例有共同的结果：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		files :<span class="o">=</span> <span class="k">$(</span>wildcard a/* b/* c/* d/*<span class="k">)</span>   
+</pre></div>
+</div>
+<p>  （2）$(if condition,then-part[,else-part])</p>
+<p>    首先把第一个参数‘condition’的前导空格、结尾空格去掉，然后扩展。如果扩展为非空字符串，则条件‘condition’为‘真’；如果扩展为空字符串，则条件‘condition’为‘假’。</p>
+<p>    如果条件‘condition’为‘真’,那么计算第二个参数‘then-part’的值，并将该值作为整个函数if的值。</p>
+<p>    如果条件**‘condition’为‘假’,并且第三个参数存在，则计算第三个参数‘else-part’的值，并将该值作为整个**函数if的值；如果第三个参数不存在，函数if将什么也不计算，返回空值。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>注意：仅能计算‘then-part’和‘else-part’二者之一，不能同时计算。这样有可能产生副作用（例如函数shell的调用）。
+</pre></div>
+</div>
+<p>  （3）$(origin variable)</p>
+<p>    变量‘variable’是一个查询变量的名称，不是对该变量的引用。所以，不能采用‘$’和圆括号的格式书写该变量，当然，如果需要使用非常量的文件名，可以在文件名中使用变量引用。</p>
+<p>    函数origin的结果是一个字符串，该字符串变量是这样定义的：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		‘undefined<span class="s1">&#39;				：如果变量‘variable’从没有定义；   </span>
+<span class="s1">		‘default&#39;</span>					：变量‘variable’是缺省定义；   
+		‘environment<span class="s1">&#39;				：变量‘variable’作为环境变量定义，选项‘-e’没有打开；   </span>
+<span class="s1">		‘environment override&#39;</span>		：变量‘variable’作为环境变量定义，选项‘-e’已打开；   
+		‘file<span class="s1">&#39; 					：变量‘variable’在Makefile中定义；   </span>
+<span class="s1">		‘command line&#39;</span> 			：变量‘variable’在命令行中定义；   
+		‘override<span class="s1">&#39; 				：变量‘variable’在Makefile中用override指令定义；   </span>
+<span class="s1">		‘automatic&#39;</span> 				：变量‘variable’是自动变量   
+</pre></div>
+</div>
+<p>  （4）$(shell command arguments)</p>
+<p>    函数shell是make与外部环境的通讯工具。函数shell的执行结果和在控制台上执行‘command arguments’的结果相似。不过如果‘command arguments’的结果含有换行符（和回车符），则在函数shell的返回结果中将把它们处理为单个空格，若返回结果最后是换行符（和回车符）则被去掉。</p>
+<p>    比如当前目录下有文件1.c、2.c、1.h、2.h，则：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		c_src :<span class="o">=</span> <span class="k">$(</span>shell ls *.c<span class="k">)</span>   
+</pre></div>
+</div>
+<p>    结果为‘1.c 2.c’。</p>
+<p>    《Makefile介绍》这小节可以在阅读内核、bootloader、应用程序的Makefile文件时，作为手册来查询。下面以options程序的Makefile作为例子进行演示，Makefile的内容如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>		<span class="c1"># File: Makefile   </span>
+		src  :<span class="o">=</span> <span class="k">$(</span>shell ls *.c<span class="k">)</span>   
+		objs :<span class="o">=</span> <span class="k">$(</span>patsubst %.c,%.o,<span class="k">$(</span>src<span class="k">))</span>   
+		   
+		test: <span class="k">$(</span>objs<span class="k">)</span>   
+				gcc -o <span class="nv">$@</span> $^   
+		   
+		%.o:%.c   
+			gcc -c -o <span class="nv">$@</span> $&lt;   
+		   
+		clean:   
+			rm -f <span class="nb">test</span> *.o	   
+</pre></div>
+</div>
+<p>    上述Makefile中$&#64;、$^、$&lt;称为自动变量。$&#64;表示规则的目标文件名；$^表示所有依赖的名字，名字之间用空格隔开；$&lt;表示第一个依赖的文件名。‘%’是通配符，它和一个字符串中任意个数的字符相匹配。</p>
+<p>    options目录下所有的文件为main.c，Makefile，sub.c和sub.h，下面一行行地分析：</p>
+<p>      ① 第1行src变量的值为‘main.c sub.c’。</p>
+<p>      ② 第2行objs变量的值为‘main.o sub.o’，是src变量经过patsubst函数处理后得到的。</p>
+<p>      ③ 第4行实际上就是：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			<span class="nb">test</span> : main.o sub.o   
+</pre></div>
+</div>
+<p>        目标test的依赖有二：main.o和sub.o。开始时这两个文件还没有生成，在执行生成test的命令之前先将main.o、sub.o作为目标查找到合适的规则，以生成main.o、sub.o。</p>
+<p>      ④ 第7、8行就是用来生成main.o、sub.o的规则：</p>
+<p>        对于main.o这个规则就是：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				main.o:main.c   
+					gcc -c -o main.o main.c   
+</pre></div>
+</div>
+<p>        对于sub.o这个规则就是：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				sub.o:sub.c   
+					gcc -c -o sub.o sub.c   
+</pre></div>
+</div>
+<p>        这样，test的依赖main.o和sub.o就生成了。</p>
+<p>      ⑤ 第5行的命令在生成main.o、sub.o后得以执行。</p>
+<p>        在options目录下第一次执行make命令可以看到如下信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				gcc -c -o main.o main.c   
+				gcc -c -o sub.o sub.c   
+				gcc -o <span class="nb">test</span> main.o sub.o   
+</pre></div>
+</div>
+<p>        然后修改sub.c文件，再次执行make命令，可以看到如下信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				gcc -c -o sub.o sub.c   
+				gcc -o <span class="nb">test</span> main.o sub.o   
+</pre></div>
+</div>
+<p>        可见，只编译了更新过的sub.c文件，对main.c文件不用再次编译，节省了编译的时间。</p>
+</div>
+</div>
+</div>
+<div class="section" id="io">
+<h2>文件IO<a class="headerlink" href="#io" title="永久链接至标题">¶</a></h2>
+<p>  参考书：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_004.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_004.png" />
+&lt;600px&gt;</p>
+<p>  这2本书的内容类似，第一本对知识点有更细致的描述，适合初学者；第二本比较直接，一上来就是各种函数的介绍，适合当作字典，不懂时就去翻看一下。</p>
+<p>  做纯Linux应用的入，看这2本书就可以了，不需要学习我们的视频。我们的侧重于“<font color="#dd0000">嵌入式Linux</font>”。</p>
+<p>  在Linux系统中，一切都是“<font color="#dd0000">文件</font>”：普通文件、驱动程序、网络通信等等。所有的操作，都是通过“文件IO”来操作的。所以，很有必要掌握文件操作的常用接口。</p>
+<div class="section" id="id24">
+<h3>文件从哪来？<a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h3>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_005.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_005.png" />
+&lt;600px&gt;</p>
+</div>
+<div class="section" id="id25">
+<h3>怎么访问文件？<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h3>
+<div class="section" id="io-open-read-write-lseek-close">
+<h4>通用的IO模型：open/read/write/lseek/close<a class="headerlink" href="#io-open-read-write-lseek-close" title="永久链接至标题">¶</a></h4>
+<p>  使用GIT下载所有源码后，本节源码位于如下目录：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	01_all_series_quickstart<span class="se">\0</span>4_快速入门<span class="o">(</span>正式开始<span class="o">)</span><span class="se">\0</span>1_嵌入式Linux应用开发基础知识<span class="se">\s</span>ource<span class="se">\0</span>6_fileio<span class="se">\c</span>opy.c   
+</pre></div>
+</div>
+<p>  copy.c源码如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="c1">#include &lt;sys/types.h&gt;   </span>
+	<span class="c1">#include &lt;sys/stat.h&gt;   </span>
+	<span class="c1">#include &lt;fcntl.h&gt;   </span>
+	<span class="c1">#include &lt;unistd.h&gt;   </span>
+	<span class="c1">#include &lt;stdio.h&gt;   </span>
+   
+	/*   
+	* ./copy <span class="m">1</span>.txt <span class="m">2</span>.txt   
+	* <span class="nv">argc</span>   <span class="o">=</span> <span class="m">3</span>   
+	* argv<span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;./copy&quot;</span>   
+	* argv<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;1.txt&quot;</span>   
+	* argv<span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;2.txt&quot;</span>   
+	*/   
+	int main<span class="o">(</span>int argc, char **argv<span class="o">)</span>   
+	<span class="o">{</span>   
+		int fd_old, fd_new<span class="p">;</span>   
+		char buf<span class="o">[</span><span class="m">1024</span><span class="o">]</span><span class="p">;</span>   
+		int len<span class="p">;</span>   
+   
+		/* <span class="m">1</span>. 判断参数 */   
+		<span class="k">if</span> <span class="o">(</span>argc !<span class="o">=</span> <span class="m">3</span><span class="o">)</span>   
+		<span class="o">{</span>   
+				printf<span class="o">(</span><span class="s2">&quot;Usage: %s &lt;old-file&gt; &lt;new-file&gt;\n&quot;</span>, argv<span class="o">[</span><span class="m">0</span><span class="o">])</span><span class="p">;</span>   
+				<span class="k">return</span> -1<span class="p">;</span>   
+		<span class="o">}</span>   
+   
+		/* <span class="m">2</span>. 打开老文件 */   
+		<span class="nv">fd_old</span> <span class="o">=</span> open<span class="o">(</span>argv<span class="o">[</span><span class="m">1</span><span class="o">]</span>, O_RDONLY<span class="o">)</span><span class="p">;</span>   
+		<span class="k">if</span> <span class="o">(</span><span class="nv">fd_old</span> <span class="o">==</span> -1<span class="o">)</span>   
+		<span class="o">{</span>   
+				printf<span class="o">(</span><span class="s2">&quot;can not open file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">1</span><span class="o">])</span><span class="p">;</span>   
+				<span class="k">return</span> -1<span class="p">;</span>   
+		<span class="o">}</span>   
+   
+		/* <span class="m">3</span>. 创建新文件 */   
+		<span class="nv">fd_new</span> <span class="o">=</span> open<span class="o">(</span>argv<span class="o">[</span><span class="m">2</span><span class="o">]</span>, O_WRONLY <span class="p">|</span> O_CREAT <span class="p">|</span> O_TRUNC, S_IRUSR <span class="p">|</span> S_IWUSR <span class="p">|</span> S_IRGRP <span class="p">|</span> S_IWGRP <span class="p">|</span> S_IROTH <span class="p">|</span> S_IWOTH<span class="o">)</span><span class="p">;</span>   
+		<span class="k">if</span> <span class="o">(</span><span class="nv">fd_new</span> <span class="o">==</span> -1<span class="o">)</span>   
+		<span class="o">{</span>   
+				printf<span class="o">(</span><span class="s2">&quot;can not creat file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">2</span><span class="o">])</span><span class="p">;</span>   
+				<span class="k">return</span> -1<span class="p">;</span>   
+		<span class="o">}</span>   
+   
+		/* <span class="m">4</span>. 循环： 读老文件-写新文件 */   
+		<span class="k">while</span> <span class="o">((</span><span class="nv">len</span> <span class="o">=</span> read<span class="o">(</span>fd_old, buf, <span class="m">1024</span><span class="o">))</span> &gt; <span class="m">0</span><span class="o">)</span>   
+		<span class="o">{</span>   
+				<span class="k">if</span> <span class="o">(</span>write<span class="o">(</span>fd_new, buf, len<span class="o">)</span> !<span class="o">=</span> len<span class="o">)</span>   
+				<span class="o">{</span>   
+						printf<span class="o">(</span><span class="s2">&quot;can not write %s\n&quot;</span>, argv<span class="o">[</span><span class="m">2</span><span class="o">])</span><span class="p">;</span>   
+						<span class="k">return</span> -1<span class="p">;</span>   
+				<span class="o">}</span>   
+		<span class="o">}</span>   
+   
+		/* <span class="m">5</span>. 关闭文件 */   
+		close<span class="o">(</span>fd_old<span class="o">)</span><span class="p">;</span>   
+		close<span class="o">(</span>fd_new<span class="o">)</span><span class="p">;</span>   
+   
+		<span class="k">return</span> <span class="m">0</span><span class="p">;</span>   
+	<span class="o">}</span>   
+</pre></div>
+</div>
+<p>  本节源码完全可以在Ubuntu上测试，跟在ARM板上没什么不同。</p>
+<p>  执行以下命令编译、运行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	$ gcc -o copy copy.c   
+	$ ./copy  copy.c new.c   
+</pre></div>
+</div>
+</div>
+<div class="section" id="ioctl-mmap">
+<h4>不是通用的函数：ioctl/mmap<a class="headerlink" href="#ioctl-mmap" title="永久链接至标题">¶</a></h4>
+<p>  使用GIT下载所有源码后，本节源码位于如下目录：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	01_all_series_quickstart<span class="se">\0</span>4_快速入门<span class="o">(</span>正式开始<span class="o">)</span><span class="se">\0</span>1_嵌入式Linux应用开发基础知识<span class="se">\s</span>ource<span class="se">\0</span>6_fileio<span class="se">\c</span>opy_mmap.c   
+</pre></div>
+</div>
+<p>  在Linux中，还可以把一个文件的所有内容映射到内存，然后直接读写内存即可读写文件。</p>
+<p>  copy_mmap.c源码如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="c1">#include &lt;sys/types.h&gt;   </span>
+	<span class="c1">#include &lt;sys/stat.h&gt;   </span>
+	<span class="c1">#include &lt;fcntl.h&gt;   </span>
+	<span class="c1">#include &lt;unistd.h&gt;   </span>
+	<span class="c1">#include &lt;stdio.h&gt;   </span>
+	<span class="c1">#include &lt;sys/mman.h&gt;   </span>
+   
+	/*   
+		* ./copy <span class="m">1</span>.txt <span class="m">2</span>.txt   
+		* <span class="nv">argc</span>   <span class="o">=</span> <span class="m">3</span>   
+		* argv<span class="o">[</span><span class="m">0</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;./copy&quot;</span>   
+		* argv<span class="o">[</span><span class="m">1</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;1.txt&quot;</span>   
+		* argv<span class="o">[</span><span class="m">2</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&quot;2.txt&quot;</span>   
+		*/   
+	int main<span class="o">(</span>int argc, char **argv<span class="o">)</span>   
+	<span class="o">{</span>   
+			int fd_old, fd_new<span class="p">;</span>   
+			struct stat stat<span class="p">;</span>   
+			char *buf<span class="p">;</span>   
+   
+			/* <span class="m">1</span>. 判断参数 */   
+			<span class="k">if</span> <span class="o">(</span>argc !<span class="o">=</span> <span class="m">3</span><span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;Usage: %s &lt;old-file&gt; &lt;new-file&gt;\n&quot;</span>, argv<span class="o">[</span><span class="m">0</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">2</span>. 打开老文件 */   
+			<span class="nv">fd_old</span> <span class="o">=</span> open<span class="o">(</span>argv<span class="o">[</span><span class="m">1</span><span class="o">]</span>, O_RDONLY<span class="o">)</span><span class="p">;</span>   
+			<span class="k">if</span> <span class="o">(</span><span class="nv">fd_old</span> <span class="o">==</span> -1<span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;can not open file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">1</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">3</span>. 确定老文件的大小 */   
+			<span class="k">if</span> <span class="o">(</span>fstat<span class="o">(</span>fd_old, <span class="p">&amp;</span>stat<span class="o">)</span> <span class="o">==</span> -1<span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;can not get stat of file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">1</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">4</span>. 映射老文件 */   
+			<span class="nv">buf</span> <span class="o">=</span> mmap<span class="o">(</span>NULL, stat.st_size, PROT_READ, MAP_SHARED, fd_old, <span class="m">0</span><span class="o">)</span><span class="p">;</span>   
+			<span class="k">if</span> <span class="o">(</span><span class="nv">buf</span> <span class="o">==</span> MAP_FAILED<span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;can not mmap file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">1</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">5</span>. 创建新文件 */   
+			<span class="nv">fd_new</span> <span class="o">=</span> open<span class="o">(</span>argv<span class="o">[</span><span class="m">2</span><span class="o">]</span>, O_WRONLY <span class="p">|</span> O_CREAT <span class="p">|</span> O_TRUNC, S_IRUSR <span class="p">|</span> S_IWUSR <span class="p">|</span> S_IRGRP <span class="p">|</span> S_IWGRP <span class="p">|</span> S_IROTH <span class="p">|</span> S_IWOTH<span class="o">)</span><span class="p">;</span>   
+			<span class="k">if</span> <span class="o">(</span><span class="nv">fd_new</span> <span class="o">==</span> -1<span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;can not creat file %s\n&quot;</span>, argv<span class="o">[</span><span class="m">2</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">6</span>. 写新文件 */   
+			<span class="k">if</span> <span class="o">(</span>write<span class="o">(</span>fd_new, buf, stat.st_size<span class="o">)</span> !<span class="o">=</span> stat.st_size<span class="o">)</span>   
+			<span class="o">{</span>   
+					printf<span class="o">(</span><span class="s2">&quot;can not write %s\n&quot;</span>, argv<span class="o">[</span><span class="m">2</span><span class="o">])</span><span class="p">;</span>   
+					<span class="k">return</span> -1<span class="p">;</span>   
+			<span class="o">}</span>   
+   
+			/* <span class="m">5</span>. 关闭文件 */   
+			close<span class="o">(</span>fd_old<span class="o">)</span><span class="p">;</span>   
+			close<span class="o">(</span>fd_new<span class="o">)</span><span class="p">;</span>   
+   
+			<span class="k">return</span> <span class="m">0</span><span class="p">;</span>   
+	<span class="o">}</span>   
+</pre></div>
+</div>
+<p>  本节源码完全可以在Ubuntu上测试，跟在ARM板上没什么不同。</p>
+<p>  执行以下命令编译、运行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	$ gcc -o copy_mmap copy_mmap.c   
+	$ ./copy_mmap  copy_mmap.c  new2.c   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id26">
+<h3>怎么知道这些函数的用法？<a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h3>
+<p>  Linux下有3大帮助方法：help、man、info。</p>
+<p>  想查看某个命令的用法时，比如查看ls命令的用法，可以执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	ls  --help   
+</pre></div>
+</div>
+<p>  <font color="#dd0000">help</font>只能用于查看某个命令的用法，而<font color="#dd0000">man</font>手册既可以查看命令的用法，还可以查看函数的详细介绍等等。它含有9大分类，如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	Executable programs or shell commands      // 命令   
+	System calls <span class="o">(</span>functions provided by the kernel<span class="o">)</span>  // 系统调用，比如 man <span class="m">2</span> open   
+	Library calls <span class="o">(</span>functions within program libraries<span class="o">)</span>  // 函数库调用   
+	Special files <span class="o">(</span>usually found in /dev<span class="o">)</span>          // 特殊文件, 比如 man <span class="m">4</span> tty    
+	File formats and conventions eg /etc/passwd  // 文件格式和约定, 比如man <span class="m">5</span> passwd   
+	Games  // 游戏   
+	Miscellaneous <span class="o">(</span>including macro packages and conventions<span class="o">)</span>, e.g. man<span class="o">(</span><span class="m">7</span><span class="o">)</span>, groff<span class="o">(</span><span class="m">7</span><span class="o">)</span> //杂项   
+	System administration commands <span class="o">(</span>usually only <span class="k">for</span> root<span class="o">)</span> // 系统管理命令   
+	Kernel routines <span class="o">[</span>Non standard<span class="o">]</span>  // 内核例程   
+</pre></div>
+</div>
+<p>  比如想查看open函数的用法时，可以直接执行“man open”，发现这不是想要内容时再执行“man  2  open”。</p>
+<p>  在man命令中可以及时按“h”查看帮助信息了解快捷键。常用的快捷键是：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	f  往前翻一页   
+	b  往后翻一页   
+	/patten 往前搜   
+	?patten 往后搜   
+</pre></div>
+</div>
+<p>  就内容来说，<font color="#dd0000">info</font>手册比man手册编写得要更全面，但man手册使用起来更容易些。</p>
+<p>  以书来形容info手册和man手册的话，<font color="#dd0000">info手册相当于一章，里面含有若干节</font>，阅读时你需要掌握如果从这一节跳到下一节；而man手册只相当于一节，阅读起来当然更容易。</p>
+<p>  就个人而言，我很少使用<font color="#dd0000">info</font>命令。</p>
+<p>  可以直接执行“info”命令后，输入“H”查看它的快捷键，在info手册中，某一节被称为“node”，常用的快捷键如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	Up        Move up one line.   
+	Down      Move down one line.   
+	PgUp      Scroll backward one screenful.   
+	PgDn      Scroll forward one screenful.   
+	Home      Go to the beginning of this node.   
+	End       Go to the end of this node.   
+   
+	TAB       Skip to the next hypertext link.   
+	RET       Follow the hypertext link under the cursor.   
+	l         Go back to the last node seen in this window.   
+   
+	<span class="o">[</span>         Go to the previous node in the document.   
+	<span class="o">]</span>         Go to the next node in the document.   
+	p         Go to the previous node on this level.   
+	n         Go to the next node on this level.   
+	u         Go up one level.   
+	t         Go to the top node of this document.   
+	d         Go to the main <span class="s1">&#39;directory&#39;</span> node.   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id27">
+<h3>系统调用函数怎么进入内核？<a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h3>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_006.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_006.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="sys-opensys-read">
+<h3>内核的sys_open、sys_read会做什么？<a class="headerlink" href="#sys-opensys-read" title="永久链接至标题">¶</a></h3>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_007.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterFour_007.png" />
+&lt;600px&gt;</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapterfive/index.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, weidongshan www.100ask.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

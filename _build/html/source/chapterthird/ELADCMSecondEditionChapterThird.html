@@ -1,0 +1,1901 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>第三篇. 开发板快速上手 &mdash; 嵌入式Linux应用开发完全手册第2版 1.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/100ask_net_ico.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="嵌入式Linux应用开发完全手册第2版 1.0 文档" href="../../index.html"/>
+        <link rel="up" title="&lt;no title&gt;" href="index.html"/>
+        <link rel="next" title="&lt;no title&gt;" href="../chapterfour/index.html"/>
+        <link rel="prev" title="&lt;no title&gt;" href="index.html"/>
+    <link href="../../_static/default.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> 嵌入式Linux应用开发完全手册第2版
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../chapterone/ELADCMSecondEditionChapterOne.html">第一篇. 韦东山全系列视频介绍及资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chaptertwo/ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">第三篇. 开发板快速上手</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">资料下载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">接线与启动</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ask-am335x">100ASK_AM335X开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">串口连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">启动方式选择</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#firefly-rk3288">Firefly-rk3288开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id6">串口连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">启动方式选择</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#roc-rk3399-pc">roc-rk3399-pc开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">串口连接</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">启动方式选择</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#imx6ull">IMX6ULL开发板</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id10">系统烧写</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id11">100ASK_AM335X开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#nandflash">NandFlash启动/更新系统</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">SD卡启动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">Firefly-rk3288开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">SD卡启动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id20">roc-rk3399-pc 开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">SD卡启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id24">IMX6ULL开发板</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id25">部件实验</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id26">100ASK_AM335X开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">网卡接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usbhost">USBhost接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#otg">OTG接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id28">耳机接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#lcd">LCD显示测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id33">触摸屏校准测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id34">屏幕背光调节</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rtc">RTC测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id35">按键测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#led">LED灯测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id36">串口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rs485">RS485测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#can">Can功能测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id43">Firefly-rk3288开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id44">网卡接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usb-host">4.2.2 USB Host接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id45">OTG接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id48">耳机接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id51">RTC测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id52">按键测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id53">LED灯测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id54">串口测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id57">roc-rk3399-pc 开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id58">网卡接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id59">USB Host接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id60">OTG接口测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id63">RTC测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id64">按键测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id65">LED灯测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id66">串口测试</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id69">后续开发准备工作：准备交叉编译工具链、编译内核</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id70">100ASK_AM335X开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id71">获取源码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id74">配置交叉编译工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id77">编译内核</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id79">Firefly-rk3288 开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id80">获取源码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id83">配置交叉编译工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id86">编译内核</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id89">Roc-rk3399-pc 开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id90">获取源码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id93">配置交叉编译工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id96">编译内核</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id99">IMX6ULL开发板</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id100">获取源码</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id103">配置交叉编译工具链</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id106">编译内核</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfour/ELADCMSecondEditionChapterFour.html">第四篇. 嵌入式Linux应用开发基础知识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfive/ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">嵌入式Linux应用开发完全手册第2版</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="index.html">&lt;no title&gt;</a> &raquo;</li>
+      
+    <li>第三篇. 开发板快速上手</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/source/chapterthird/ELADCMSecondEditionChapterThird.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>第三篇. 开发板快速上手<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>资料下载<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>  打开http://wiki.100ask.net，可以看到所有资料的下载地址。找到对应开发板的BSP包，下载对应的BSP包。</p>
+</div>
+<div class="section" id="id3">
+<h2>接线与启动<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="section" id="ask-am335x">
+<h3>100ASK_AM335X开发板<a class="headerlink" href="#ask-am335x" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id4">
+<h4>串口连接<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h4>
+<p>  将串口模块与电脑USB口、板子RS232口连接：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_001.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_001.png" />
+&lt;800px&gt;</p>
+<p>  其中特别需要注意的几点：</p>
+<p>    ① 串口模块的电平选择开关拨到如图所示的左边，表示切换到RS232电平；</p>
+<p>    ② RS232延长线连接板子如图所示下方的RS232接口，下方的才是默认的debug接口；</p>
+<p>    ③ 板子的启动选择拨到如图所示的右边，以选择从Nand Flash启动；</p>
+<p>    ④ 板子如图所示插上配套的电源，电源开关暂时不用打开；</p>
+<p>  将USB转RS232/TTL串口模块插在电脑USB上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。</p>
+<p>  打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。</p>
+<p>  这里的“COM12”可能与你电脑上的不一样，记住你电脑上设备管理器中显示的数字。</p>
+<p>  如果电脑没有显示出端口号，就需要手动安装驱动，从驱动精灵官网（www.drivergenius.com）下载一个驱动精灵，安装、运行、检测，会自动安装上串口驱动。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" />
+&lt;400px&gt;</p>
+<p>  最后打开MobaXterm，点击左上角的“Session”，在弹出的界面选中“Serial”，如下图所示设置端口号（前面设备管理器显示的端口号）、波特率（Speed:115200）、流控（Flow control:None）,最后点击“OK”即可。</p>
+<p>  <strong>注意</strong>：流控（Flow Control）一定要选择none，否则你将无法在MobaXterm中向串口输入数据。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" />
+&lt;800px&gt;</p>
+<p>  随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_004.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_004.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id5">
+<h4>启动方式选择<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h4>
+<p>  如下图，板上有启动方式选择开关，也标有文字：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_005.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_005.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="firefly-rk3288">
+<h3>Firefly-rk3288开发板<a class="headerlink" href="#firefly-rk3288" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id6">
+<h4>串口连接<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h4>
+<p>  将串口模块与电脑USB口、板子UART口连接：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_006.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_006.png" />
+&lt;800px&gt;
+  其中特别需要注意的几点：</p>
+<p>    ①串口模块的电平选择开关拨到如图所示的右边，表示切换到TTL电平；</p>
+<p>    ②串口模块附赠两条排线，使用较宽的那根(2.54mm间距)连接串口模块最中间接口；</p>
+<p>    ③排线的另一端插在Firefly-RK3288如图所示位置，注意黑线(GND)在最下面；</p>
+<p>    ④板子如图所示准备好配套的电源，因为没有电源开关，插上就自动启动了，所以暂时先不插电源</p>
+<p>  将USB转RS232/TTL串口模块插在电脑USB上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。</p>
+<p>  打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。</p>
+<p>  这里的“COM12”可能与你电脑上的不一样，记住你电脑上设备管理器中显示的数字。</p>
+<p>  如果电脑没有显示出端口号，就需要手动安装驱动，从驱动精灵官网（www.drivergenius.com）下载一个驱动精灵，安装、运行、检测，会自动安装上串口驱动。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" />
+&lt;400px&gt;</p>
+<p>  最后打开MobaXterm，点击左上角的“Session”，在弹出的界面选中“Serial”，如下图所示设置端口号（前面设备管理器显示的端口号）、波特率（Speed:115200）、流控（Flow control:None）,最后点击“OK”即可。</p>
+<p>  注意：流控（Flow Control）一定要选择none，否则你将无法在MobaXterm中向串口输入数据。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" />
+&lt;800px&gt;</p>
+<p>  随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_007.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_007.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id7">
+<h4>启动方式选择<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h4>
+<p>  Firefly-rk3288开发板没有启动方式选择开关，rk3288芯片会优先从板上Flash启动，如果失败再从SD卡启动。</p>
+<p>  板上有电源开关，复位开关，各个功能也标有文字：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_008.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_008.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="roc-rk3399-pc">
+<h3>roc-rk3399-pc开发板<a class="headerlink" href="#roc-rk3399-pc" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id8">
+<h4>串口连接<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h4>
+<p>  将串口模块与电脑USB口、板子UART口连接：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_009.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_009.png" />
+&lt;800px&gt;
+  其中特别需要注意的几点：</p>
+<p>    ① 串口模块的电平选择开关拨到如图所示的右边，表示切换到TTL电平；</p>
+<p>    ② 串口模块附赠两条排线，使用较宽的那根(2.54mm间距)连接串口模块最中间接口；</p>
+<p>    ③ 排线的另一端插在Firefly-RK3288如图所示位置，注意黑线(GND)在最右面；</p>
+<p>    ④ 板子如图所示准备好配套的电源，因为没有电源开关，插上就自动启动了，所以暂时先不插电源</p>
+<p>  将USB转RS232/TTL串口模块插在电脑USB上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。</p>
+<p>  打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。</p>
+<p>  这里的“COM12”可能与你电脑上的不一样，记住你电脑上设备管理器中显示的数字。</p>
+<p>  如果电脑没有显示出端口号，就需要手动安装驱动，从驱动精灵官网（www.drivergenius.com）下载一个驱动精灵，安装、运行、检测，会自动安装上串口驱动。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" />
+&lt;400px&gt;</p>
+<p>  最后打开MobaXterm，点击左上角的“Session”，在弹出的界面选中“Serial”，如下图所示设置端口号（前面设备管理器显示的端口号）、波特率（Speed:115200）、流控（Flow control:None）,最后点击“OK”即可。</p>
+<p>  注意：流控（Flow Control）一定要选择none，否则你将无法在MobaXterm中向串口输入数据。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" />
+&lt;800px&gt;</p>
+<p>  随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterTow_039.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterTow_039.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id9">
+<h4>启动方式选择<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
+<p>  Firefly的roc-rk3399-pc开发板上没有启动方式选择开关，板子上也没有Flash。所以它只能使用SD卡启动。如果你买了它的EMMC Flash模块，那么RK3399优先从Flash启动，如果失败再从SD卡启动。</p>
+<p>  板上有电源开关，各个功能也标有文字：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_010.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_010.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="imx6ull">
+<h3>IMX6ULL开发板<a class="headerlink" href="#imx6ull" title="永久链接至标题">¶</a></h3>
+<p>  如果你使用的是野火或正点原子的IMX6ULL开发板，请参考它们的手册接线。</p>
+<p>  如果你使用的是百问网IMX6ULL-QEMU虚拟开发板，无需接线。</p>
+<p>  野火、正点原子用的内核版本是4.1.15，</p>
+<p>  我们用的内核版本是linux 4.9.88，</p>
+<p>  都是4.x版本，在学习上没有任何差别。</p>
+<p>  你拿到板子后，可以使用他们出厂的系统，</p>
+<p>  也可以根据我们提供的高级用户手册更改为我们的系统，高级手册都存放在WIKI中：打开http://wiki.100ask.net，查看左侧开发板，点击进去即可，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" />
+  百问网IMX6ULL-QEMU虚拟开发板的使用也很简单，打开WIKI首页后，点击类似上图的“百问网imx6ull-qemu”进去，即可看到使用方法。</p>
+</div>
+</div>
+<div class="section" id="id10">
+<h2>系统烧写<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h2>
+<p>  有的开发板配有Flash，出厂时已经烧好系统，那么本章可以先跳过。</p>
+<p>  有的开发板没有Flash，需要你在SD卡上烧好系统，然后使用SD卡启动板子，则需要阅读本章内容。</p>
+<p>  如果你想重烧系统、更新系统，也需要阅读本章内容。</p>
+<div class="section" id="id11">
+<h3>100ASK_AM335X开发板<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<p>  100ASK_AM335X开发板配有Flash，出厂时已经烧好系统，可以先跳过本章。</p>
+<div class="section" id="nandflash">
+<h4>NandFlash启动/更新系统<a class="headerlink" href="#nandflash" title="永久链接至标题">¶</a></h4>
+<div class="section" id="sd">
+<h5>格式化SD卡<a class="headerlink" href="#sd" title="永久链接至标题">¶</a></h5>
+<p>  进入资料光盘01_tools目录，右键以管理员权限运行HP USB Disk Storage Format Tool 2.0.6.EXE程序，来格式化SD卡。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_012.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_012.png" />
+&lt;300px&gt;
+    ① 选择需要格式化的sd卡</p>
+<p>    ② 选择sd卡文件系统类型为FAT32</p>
+<p>    ③ 选中Quick Format(快速格式化)</p>
+<p>    ④ 点击 start开始格式化</p>
+<p>    <font color="#dd0000">注意</font>：如果点击start 格式化提示错误，则点击确定再次start就可以了。</p>
+</div>
+<div class="section" id="id12">
+<h5>更新系统<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h5>
+<p>  拷贝资料光盘目录下的nandflash_system下所有文件到格式化好的SD卡中。</p>
+<p>  把SD卡插到开发板上，并设置启动方式为mmc启动，打开终端，开发板上电，串口有输出时按下任意键即可进入uboot参数设置界面,如下所示</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	U-Boot SPL <span class="m">2016</span>.05 <span class="o">(</span>Jun <span class="m">11</span> <span class="m">2019</span> - <span class="m">05</span>:46:58<span class="o">)</span>   
+	PMIC detected:TPS65217   
+	Trying to boot from MMC1   
+	reading u-boot.img   
+	reading u-boot.img   
+   
+	U-Boot <span class="m">2016</span>.05 <span class="o">(</span>Jun <span class="m">11</span> <span class="m">2019</span> - <span class="m">05</span>:46:58 -0400<span class="o">)</span>   
+	CPU  : AM335X-GP rev <span class="m">2</span>.1   
+		Watchdog enabled   
+	I2C:   ready   
+	DRAM:  <span class="m">512</span> MiB   
+	NAND:  <span class="m">512</span> MiB   
+	MMC:   OMAP SD/MMC: <span class="m">0</span>, OMAP SD/MMC: <span class="m">1</span>   
+	*** Warning - bad CRC, using default environment   
+   
+	Net:   cpsw   
+	Press SPACE to abort autoboot in <span class="m">2</span> seconds   
+	100ask# run updatesys   
+	100ask#   
+<span class="sb">```</span>	   
+<span class="p">&amp;</span>emsp<span class="p">;&amp;</span>emsp<span class="p">;</span>此时输入 run updatesys
+
+<span class="sb">```</span>bash	   
+	NAND erase.chip: device <span class="m">0</span> whole chip   
+	Skipping bad block at  0x0ba60000   
+	Erasing at 0x1ffe0000 -- <span class="m">100</span>% complete.   
+	OK   
+	switch to partitions <span class="c1">#0, OK   </span>
+	mmc0 is current device   
+	reading MLO   
+	<span class="m">51400</span> bytes <span class="nb">read</span> in <span class="m">8</span> ms <span class="o">(</span><span class="m">6</span>.1 MiB/s<span class="o">)</span>   
+	HW ECC BCH8 Selected   
+   
+	NAND write: device <span class="m">0</span> offset 0x0, size 0xc8c8   
+	<span class="m">51400</span> bytes written: OK   
+	reading 100ask-am335x.dtb   
+	<span class="m">42526</span> bytes <span class="nb">read</span> in <span class="m">10</span> ms <span class="o">(</span><span class="m">4</span>.1 MiB/s<span class="o">)</span>   
+	HW ECC BCH8 Selected   
+   
+	NAND write: device <span class="m">0</span> offset 0x80000, size 0xa61e   
+	<span class="m">42526</span> bytes written: OK   
+	reading u-boot.img   
+	<span class="m">434896</span> bytes <span class="nb">read</span> in <span class="m">31</span> ms <span class="o">(</span><span class="m">13</span>.4 MiB/s<span class="o">)</span>   
+	HW ECC BCH8 Selected   
+   
+	NAND write: device <span class="m">0</span> offset 0xc0000, size 0x6a2d0   
+	<span class="m">434896</span> bytes written: OK   
+	reading zImage   
+	<span class="m">5239760</span> bytes <span class="nb">read</span> in <span class="m">289</span> ms <span class="o">(</span><span class="m">17</span>.3 MiB/s<span class="o">)</span>   
+	HW ECC BCH8 Selected   
+   
+	NAND write: device <span class="m">0</span> offset 0x200000, size 0x4ff3d0   
+	<span class="m">5239760</span> bytes written: OK   
+	reading rootfs.ubi   
+	<span class="m">134742016</span> bytes <span class="nb">read</span> in <span class="m">7306</span> ms <span class="o">(</span><span class="m">17</span>.6 MiB/s<span class="o">)</span>   
+	SW ECC selected   
+   
+	NAND write: device <span class="m">0</span> offset 0xa00000, size 0x8080000   
+	<span class="m">134742016</span> bytes written: OK   
+	nand flash system update OK!   
+</pre></div>
+</div>
+<p>  如上所示，直到系统打印nand flash system update OK!，表示系统烧录nandlflash成功。</p>
+<p>  此时可以关闭开发板电源，拔出SD卡,设置启动方式为nand启动，开发板重新上电即可。</p>
+</div>
+</div>
+<div class="section" id="id13">
+<h4>SD卡启动<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id14">
+<h5>格式化sd卡<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/SD Card Formatter 5.0.1 Setup.exe软件，安装完成后打开。</p>
+<p>  然后把SD卡通过读卡器接到电脑上，使用SdCardFormatter格式化SD卡，格式化步骤如下如所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" />
+&lt;800px&gt;
+    ① 选择要格式化的SD卡，选中“Quick format”；</p>
+<p>    ② 在弹出的对话框中点击“是(Y)”；</p>
+<p>    ③ 等待格式化完成，完成时会看到如下图的提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" />
+&lt;400px&gt;</p>
+</div>
+<div class="section" id="id15">
+<h5>烧写sd卡系统镜像<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/ win32diskimager-1.0.0-install.exe软件，安装完成后打开。</p>
+<p>  然后使用wind32diskimage烧写编译后的系统镜像，烧写步骤如下所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" />
+&lt;800px&gt;
+    ① 选中需要烧写的SD卡设备，点击文件图标选择系统镜像文件，点击写入按钮开始烧写</p>
+<p>    ② 在弹出的对话框中，点击Yes按钮继续烧写, 等待烧写完成，会看到如下提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" />
+  烧写成功后，拔下SD卡，将启动开关拨到SD卡处，上电启动开发板。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id16">
+<h3>Firefly-rk3288开发板<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<p>  用户拿到全新的Firefly-RK328开发板时，默认系统为Firefly提供的Android系统，为了使用本教材，需要用户先破坏原来的系统，然后再使用SD卡烧写我们提供的系统。</p>
+<p>  参考前面Firefly-rk3288串口模块连接实物图，将开发板、串口模块、电脑连接起来。打开MobaXtermr软件的串口界面，插上电源，等待一会，按下键盘“Enter”键，待串口显示“shell&#64;firefly:/ $”则表示进入了系统，接着输入以下三个命令：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	shell@firefly:/ $ su   
+	shell@firefly:/ <span class="c1"># mkdosfs  /dev/block/mmcblk0   </span>
+	shell@firefly:/ <span class="c1"># sync   </span>
+</pre></div>
+</div>
+<p>  操作效果如下图所示，红色下划线部分为输入命令，操作完成后，即可破坏板上系统，然后就可以根据后面内容烧写SD卡、使用SD卡启动了。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_017.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_017.png" />
+&lt;800px&gt;</p>
+<div class="section" id="id17">
+<h4>SD卡启动<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id18">
+<h5>格式化sd卡<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/SD Card Formatter 5.0.1 Setup.exe软件，安装完成后打开。</p>
+<p>  然后把SD卡通过读卡器接到电脑上，使用SdCardFormatter格式化SD卡，格式化步骤如下如所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" />
+&lt;800px&gt;
+    ① 选择要格式化的SD卡，选中“Quick format”；</p>
+<p>    ② 在弹出的对话框中点击“是(Y)”；</p>
+<p>    ③ 等待格式化完成，完成时会看到如下图的提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" />
+&lt;400px&gt;</p>
+</div>
+<div class="section" id="id19">
+<h5>烧写sd卡系统镜像<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/ win32diskimager-1.0.0-install.exe软件，安装完成后打开。</p>
+<p>  然后使用wind32diskimage烧写编译后的系统镜像，烧写步骤如下所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" />
+&lt;800px&gt;
+    ① 选中需要烧写的SD卡设备，点击文件图标选择系统镜像文件，点击写入按钮开始烧写</p>
+<p>    ② 在弹出的对话框中，点击Yes按钮继续烧写, 等待烧写完成，会看到如下提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" />
+  烧写成功后，拔下SD卡，将启动开关拨到SD卡处，上电启动开发板。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id20">
+<h3>roc-rk3399-pc 开发板<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h3>
+<p>Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模块，如需使用emmc启动请参考firefly官方文档。<br />本教程只使用SD卡启动。</p>
+<div class="section" id="id21">
+<h4>SD卡启动<a class="headerlink" href="#id21" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id22">
+<h5>格式化sd卡<a class="headerlink" href="#id22" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/SD Card Formatter 5.0.1 Setup.exe软件，安装完成后打开。</p>
+<p>  然后把SD卡通过读卡器接到电脑上，使用SdCardFormatter格式化SD卡，格式化步骤如下如所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_013.png" />
+&lt;800px&gt;
+    ① 选择要格式化的SD卡，选中“Quick format”；</p>
+<p>    ② 在弹出的对话框中点击“是(Y)”；</p>
+<p>    ③ 等待格式化完成，完成时会看到如下图的提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_014.png" />
+&lt;400px&gt;</p>
+</div>
+<div class="section" id="id23">
+<h5>烧写sd卡系统镜像<a class="headerlink" href="#id23" title="永久链接至标题">¶</a></h5>
+<p>  首先安装资料光盘下01_tools/ win32diskimager-1.0.0-install.exe软件，安装完成后打开。</p>
+<p>  然后使用wind32diskimage烧写编译后的系统镜像，烧写步骤如下所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_015.png" />
+&lt;800px&gt;
+    ① 选中需要烧写的SD卡设备，点击文件图标选择系统镜像文件，点击写入按钮开始烧写</p>
+<p>    ② 在弹出的对话框中，点击Yes按钮继续烧写, 等待烧写完成，会看到如下提示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_016.png" />
+  烧写成功后，拔下SD卡，将启动开关拨到SD卡处，上电启动开发板。</p>
+</div>
+</div>
+<div class="section" id="id24">
+<h4>IMX6ULL开发板<a class="headerlink" href="#id24" title="永久链接至标题">¶</a></h4>
+<p>  如果你使用的是野火或正点原子的IMX6ULL开发板，请参考它们的手册接线。</p>
+<p>  如果你使用的是百问网IMX6ULL-QEMU虚拟开发板，无需接线。</p>
+<p>  野火、正点原子用的内核版本是4.1.15，</p>
+<p>  我们用的内核版本是linux 4.9.88，</p>
+<p>  都是4.x版本，在学习上没有任何差别。</p>
+<p>  你拿到板子后，可以使用他们出厂的系统，</p>
+<p>  也可以根据我们提供的高级用户手册更改为我们的系统，高级手册都存放在WIKI中：打开http://wiki.100ask.net，查看左侧开发板，点击进去即可，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" />
+  百问网IMX6ULL-QEMU虚拟开发板的使用也很简单，打开WIKI首页后，点击类似上图的“百问网imx6ull-qemu”进去，即可看到使用方法。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id25">
+<h2>部件实验<a class="headerlink" href="#id25" title="永久链接至标题">¶</a></h2>
+<div class="section" id="id26">
+<h3>100ASK_AM335X开发板<a class="headerlink" href="#id26" title="永久链接至标题">¶</a></h3>
+<p>  开发板各个功能所在位置以及名称如下图所示，如下所有的功能测试均在串口登录终端下进行测试：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_018.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_018.png" />
+&lt;800px&gt;</p>
+<div class="section" id="id27">
+<h4>网卡接口测试<a class="headerlink" href="#id27" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在终端下如何设置ip地址，测试网络的连通性，以及Http+Php的web环境可用性。</p>
+<p>  注意:需要一个可以上网的路由器，并且路由器带有RJ45 LAN接口，准备开发板配套的网线，并将网线一端插到网卡接口处，另一端插到路由器(交换机) LAN 接口处。</p>
+<p>  通过ifconfig 查看ip地址</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_019.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_019.png" />
+&lt;800px&gt;</p>
+<p>  通过上图得知已经自动获取IP地址，如未能获取则使用 udhcpc命令获取，如下图所示</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_020.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_020.png" />
+&lt;800px&gt;</p>
+<p>  网络连通性测试</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ping www.baidu.com    </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_021.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_021.png" />
+&lt;800px&gt;</p>
+<p>  <strong>http+Php测试</strong></p>
+<p>  其中 inet 后的192.168.1.87是路由分配给此网卡的IP地址，首先确保你的电脑和开发板处于同一个IP地址段，让后通过浏览器访问此IP，就能看到此开发板所支持的php特征描述</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_022.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_022.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="usbhost">
+<h4>USBhost接口测试<a class="headerlink" href="#usbhost" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在终端下如何在USBhost接口上使用usb存储设备。</p>
+<p>  注意: 需要准备一个usb2.0接口的设备，U盘，内核支持的USB蓝牙模块usb网卡或者usb摄像头等。</p>
+<p>  如下使用一个16G的U盘作为示例，插到USBhost任意接口，会打印出如下设备信息。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_023.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_023.png" />
+&lt;800px&gt;
+  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda</p>
+<p>  挂载相应的分区到mnt目录，需先通过fdisk命令获取分区类型,如下所示</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># fdisk -l /dev/sda   </span>
+</pre></div>
+</div>
+<p>  通过fdisk查看u盘分区类型得到/dev/sda2分区类型为linux所支持的文件系统类型，</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" />
+&lt;800px&gt;</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:/sys/class/leds<span class="o">]</span><span class="c1"># mount -t vfat /dev/sda2 /mnt   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" />
+&lt;800px&gt;
+  测试完以后，通过umount卸载/mnt目录的挂载,才可拔下usb设备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:/sys/class/leds<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="otg">
+<h4>OTG接口测试<a class="headerlink" href="#otg" title="永久链接至标题">¶</a></h4>
+<p>  此节演示如何测试OTG接口的两种模式，分别是device模式和host模式。</p>
+<p>  <strong>注意</strong>:需要准备一个 micro otg线，以及开发板配套的micro usb数据线，连接到开发板usb0接口上，具体位置请查看 开发板功能位置图</p>
+<div class="section" id="otg-device">
+<h5>otg device模式测试<a class="headerlink" href="#otg-device" title="永久链接至标题">¶</a></h5>
+<p>  usb作为从设备，被其它设备挂载,把sd卡的分区1挂在到PC机</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_026.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_026.png" />
+&lt;800px&gt;
+<img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" />
+&lt;800px&gt;
+  此时在设备管理器中可以看到一个名为 linux File-Stor Gadget USB Device的磁盘设备，在windows资源管理器中也可以看到有新的可移动设备盘符弹出</p>
+<p>  测试完成后，终端下执行rmmod g_mass_storage 卸载改模块驱动。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># rmmod g_mass_storage   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="otg-host">
+<h5>otg host模式<a class="headerlink" href="#otg-host" title="永久链接至标题">¶</a></h5>
+<p>  usb作为主设备挂载其它设备)将micro usb otg转接线插入开发板，另一端接常见的usb设备</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_028.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_028.png" />
+&lt;800px&gt;
+  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda</p>
+<p>  挂载相应的分区到mnt目录，需先通过fdisk命令获取分区类型,如下所示</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># fdisk -l /dev/sda   </span>
+</pre></div>
+</div>
+<p>通过fdisk查看u盘分区类型得到/dev/sda2分区类型为linux所支持的文件系统类型，<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" />
+&lt;800px&gt;</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:/sys/class/leds<span class="o">]</span><span class="c1"># mount -t vfat /dev/sda2 /mnt   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" />
+&lt;800px&gt;
+  测试完以后，通过umount卸载/mnt目录的挂载,才可拔下usb设备</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:/sys/class/leds<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id28">
+<h4>耳机接口测试<a class="headerlink" href="#id28" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用三段式耳机在100ask_am335x开发板上录制声音以及播放音频。</p>
+<p>  <strong>注意</strong>: 需要准备一个带麦克风的三段式耳机耳机上带麦克风。</p>
+<div class="section" id="id29">
+<h5>录制音频测试<a class="headerlink" href="#id29" title="永久链接至标题">¶</a></h5>
+<p>  将带麦克风的耳机或者独立供电的话筒插入耳机孔，使用如下命令进行录制。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># arecord -v  --format=cd --device=plughw:0,0  test.wav   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_029.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_029.png" />
+&lt;800px&gt;
+  参数讲解</p>
+<p>     –format=cd  指的是16 bit little endian, 44100, stereo</p>
+<p>     –device=plughw:0,0 指的是录音音频使用的声卡设备，如果有多个声卡设备，需要指定使用那个</p>
+<p>     test.wav 指的是录制音频文件的名称以及格式，其中test是录音音频文件的名称， wav是音频格式，其中都支持(wav, raw or au)这些格式</p>
+</div>
+<div class="section" id="id30">
+<h5>播放音频测试<a class="headerlink" href="#id30" title="永久链接至标题">¶</a></h5>
+<p>  将三段式的耳机线或者音响的音频线插入开发板耳机接口处，通过aplay进行播放。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># aplay -v--format=cd  --device=plughw:0,0  test.wav   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_030.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_030.png" />
+&lt;800px&gt;</p>
+<p>  参数讲解</p>
+<p>     –format=cd  指的是16 bit little endian, 44100, stereo</p>
+<p>     –device=plughw:0,0 指的是录音音频使用的声卡设备，如果有多个声卡设备，需要指定使用那个</p>
+<p>     test.wav 指的是录制音频文件的名称以及格式，其中test是录音音频文件的名称， wav是音频格式，其中都支持(wav, raw or au)这些格式</p>
+<p>  可以通过ssh登录开发板板将下载好的wav格式的音频上传至文件系统，用aplay进行播放。</p>
+</div>
+</div>
+<div class="section" id="lcd">
+<h4>LCD显示测试<a class="headerlink" href="#lcd" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过fb-test测试程序让lcd显示红绿蓝白4中颜色，用以观察lcd好坏。</p>
+<div class="section" id="id31">
+<h5>lcd显示红色<a class="headerlink" href="#id31" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># fb-test -r   </span>
+	fb-test <span class="m">1</span>.1.0 <span class="o">(</span>rosetta<span class="o">)</span>   
+	fb res 480x272 virtual 480x272, line_len <span class="m">960</span>, bpp <span class="m">16</span>   
+	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1">#   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_031.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_031.png" /></p>
+</div>
+<div class="section" id="id32">
+<h5>lcd显示所有<a class="headerlink" href="#id32" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># fb-test f   </span>
+	fb-test <span class="m">1</span>.1.0 <span class="o">(</span>rosetta<span class="o">)</span>   
+	fb res 480x272 virtual 480x272, line_len <span class="m">960</span>, bpp <span class="m">16</span>   
+	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1">#   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_032.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_032.png" /></p>
+</div>
+</div>
+<div class="section" id="id33">
+<h4>触摸屏校准测试<a class="headerlink" href="#id33" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过ts_calibrate程序校准触摸屏，用以验证触摸屏是否可用。</p>
+<p>  终端下运行 ts_calibrate 程序。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ts_calibrate   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_033.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_033.png" />
+&lt;800px&gt;
+  此时就能看到lcd上依次弹出 + 图标，依次点击即可，最后会生成坐标文件存放在/etc目录下</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_034.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_034.png" /></p>
+</div>
+<div class="section" id="id34">
+<h4>屏幕背光调节<a class="headerlink" href="#id34" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过echo 命令操作/sys目录来实现调节背光亮度。</p>
+<p>  背光亮度的设置范围为 0 – 8 ,0表示最暗，8表示最亮。</p>
+<p>  通过cat命令查看当前背光亮度等级。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cat /sys/class/backlight/backlight/brightness   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_035.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_035.png" />
+&lt;800px&gt;
+  查看背光最大亮度等级</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cat /sys/class/backlight/backlight/max_brightness   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_036.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_036.png" />
+&lt;800px&gt;
+  设置当前背光亮度值为8，此时请注意观察屏幕背光亮度是否有变化。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># echo 8 &gt; /sys/class/backlight/backlight/brightness   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_037.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_037.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="rtc">
+<h4>RTC测试<a class="headerlink" href="#rtc" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过使用date和hwclock工具设置软、硬件时间，测试当操作系统重启的时候，软件时钟读取RTC时钟是否同步（注意：确保板子上已经安装了纽扣电池）。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># date -s &quot;2019-06-18 12:00:00&quot;   </span>
+	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># hwclock -w   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_038.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_038.png" />
+&lt;800px&gt;
+    hwclock –r 显示硬件时钟与日期</p>
+<p>    hwclock –s 将系统时钟调整为与目前的硬件时钟一致。</p>
+<p>    hwclock –w 将硬件时钟调整为与目前的系统时钟一致。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># hwclock -r   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_039.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_039.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id35">
+<h4>按键测试<a class="headerlink" href="#id35" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过hexdump命令以及dmesg命令来查看按键是否有反应。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># hexdump  /dev/input/event1   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_040.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_040.png" />
+&lt;800px&gt;</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># dmesg | grep &quot;Dev: input1&quot;   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_041.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_041.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="led">
+<h4>LED灯测试<a class="headerlink" href="#led" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过echo 命令来控制led状态灯的亮灭。</p>
+<p>  <strong>注意</strong>: 默认led1  led2 led3灯已经定义为不同功能的状态灯，led4为设置为状态灯，可以自行操作</p>
+<p>进入<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_042.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_042.png" />
+&lt;800px&gt;
+  进入/sys/class/leds 目录查看</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cd /sys/class/leds/   </span>
+</pre></div>
+</div>
+<p>    am335x:green:cpu0  对应开发板led2</p>
+<p>    am335x:green:mmc0 对应开发板led1</p>
+<p>    am335x:green:nand  对应开发板led3</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_043.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_043.png" />
+&lt;800px&gt;
+  此时我们通过echo输入值到 brightness即可控制灯的亮灭，以下以am335x:green:mmc0为示例</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:/sys/class/leds/am335x:green:mmc0<span class="o">]</span><span class="c1"># echo 1 &gt; brightness  //灯亮   </span>
+	<span class="o">[</span>root@100ask_am335x:/sys/class/leds/am335x:green:mmc0<span class="o">]</span><span class="c1"># echo 0 &gt; brightness  //灯灭   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id36">
+<h4>串口测试<a class="headerlink" href="#id36" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用linux-serial-test程序测试串口的可用性。</p>
+<div class="section" id="id37">
+<h5>压力测试<a class="headerlink" href="#id37" title="永久链接至标题">¶</a></h5>
+<p>  这发送五秒钟并接收七秒钟，之后它将退出。如果接收的字节数与发送的字节数匹配且接收的模式正确，则退出代码将为零，因此可以将其用作自动测试脚本的一部分。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyO2 -b 115200 -o 5 -i 7   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id38">
+<h5>全速压力测试<a class="headerlink" href="#id38" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyO2 -b 3000000   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_045.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_045.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="rs485">
+<h4>RS485测试<a class="headerlink" href="#rs485" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用rs485_test程序测试rs485接口的可用性。</p>
+<p>  注意:需要准备另一款支持rs485的设备，来保证测试可行,以下测试是通过两块335x开发板进行测试。</p>
+<div class="section" id="id39">
+<h5>接收端<a class="headerlink" href="#id39" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># rs485_test -d /dev/ttyO2 -b 115200   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_046.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_046.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id40">
+<h5>发送端<a class="headerlink" href="#id40" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># rs485_test -d /dev/ttyO1 -b 115200   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_047.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_047.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="can">
+<h4>Can功能测试<a class="headerlink" href="#can" title="永久链接至标题">¶</a></h4>
+<p>  此节主要演示使用两块开发板通过ip 和 can-utils命令测试can0的通信。</p>
+<p>  100ask_am335x可以作为一个CAN设备使用。按照下图所示连接两块am335开发板，并参考原理图找到对应的引脚，用连接线连接100ask_am335x的CAN接线端子的L、H和另一块开发板的CAN接口，用户也可以使用自己的Can设备进行测试。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_048.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_048.png" />
+&lt;600px&gt;</p>
+<div class="section" id="id41">
+<h5>发送端<a class="headerlink" href="#id41" title="永久链接至标题">¶</a></h5>
+<p>  关闭can0接口</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can0 down   </span>
+</pre></div>
+</div>
+<p>  设置can0传输速率为50Kbits/sec</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can0 type can bitrate 50000     </span>
+</pre></div>
+</div>
+<p>  参考can0设置的参数</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip -details link show can0   </span>
+</pre></div>
+</div>
+<p>  打开can0接口</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can   </span>
+</pre></div>
+</div>
+<p>0 up<br />  使用cansend命令向另一端发送数据</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cansend can0 123#DEADBEEF   </span>
+	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cansend can0 123#DEADBEEF   </span>
+	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># cansend can0 123#DEADBE23   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_049.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_049.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id42">
+<h5>接收端<a class="headerlink" href="#id42" title="永久链接至标题">¶</a></h5>
+<p>  关闭can0接口</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can0 down   </span>
+</pre></div>
+</div>
+<p>  设置can0传输速率为50Kbits/sec</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can0 type can bitrate 50000     </span>
+</pre></div>
+</div>
+<p>  参考can0设置的参数</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip -details link show can0   </span>
+</pre></div>
+</div>
+<p>  打开can0接口</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># ip link set can0 up   </span>
+</pre></div>
+</div>
+<p>  打印can0的信息</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@100ask_am335x:~<span class="o">]</span><span class="c1"># candump can0   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_050.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_050.png" />
+&lt;800px&gt;
+<img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_051.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_051.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+</div>
+<div class="section" id="id43">
+<h3>Firefly-rk3288开发板<a class="headerlink" href="#id43" title="永久链接至标题">¶</a></h3>
+<p>  开发板各个功能所在位置以及名称如下图所示，如下所有的功能测试均在串口登录终端下进行测试：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_008.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_008.png" />
+&lt;800px&gt;</p>
+<div class="section" id="id44">
+<h4>网卡接口测试<a class="headerlink" href="#id44" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在串口终端下如何设置开发板的ip地址，测试网络的连通性。并使用电脑通过网络浏览器访问开发板，验证开发板的http+php可用,如图4.2.1.1所示，将网线插到此接口处。</p>
+<p>  **注意：**既然是在开发板和电脑之间测试网如，那双方需要有网络连接。两者之间需要有一个路由器，开发板通过网线与路由器连接。而电脑与路由器之间，可以使用网线连接，也可以使用WIFI连接。网卡接口位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_052.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_052.png" />
+&lt;400px&gt;
+    1)通过udhcpc命令获取ip地址，详细信息如下图(udhcpc获取IP输出示意图)所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_053.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_053.png" />
+&lt;800px&gt;
+  通过上图可知，使用udhcpc命令使开发板获得IP地址192.168.1.52(你的开发板自动获取的IP可能不一样)。</p>
+<p>  如果通过udhcpc命令无法获得IP，也可以使用ifconfig命令强制设置IP为同一网段的 192.168.1.112 ：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># ifconfig eth0 192.168.1.112   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_054.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_054.png" />
+&lt;800px&gt;
+    2)通过ifconfig命令查看详细ip信息：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_055.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_055.png" />
+&lt;800px&gt;
+    3)网络连通性测试：</p>
+<p>  在开发板上执行如下命令，如果有数据返回则表示开发板跟互联网是连通的(前提是你的路由器是可以上网的)：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># ping www.baidu.com    </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_056.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_056.png" />
+&lt;800px&gt;
+    当然，很多时候开发板不能正通互联网，这也没关系，只要能ping通我们的Windows、Ubuntu即可(例如我们的ubuntu IP地址是192.168.1.163)如下为ping通示例：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_058.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_058.png" />
+&lt;800px&gt;
+4)	http+Php测试：<br />  假设开发板的 IP 为 192.168.1.52 ，在电脑的网络浏览器中输入此IP，就能看到此开发板所支持的php特征描述：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_058.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_058.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="usb-host">
+<h4>4.2.2 USB Host接口测试<a class="headerlink" href="#usb-host" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在终端下如何在USB Host接口上使用usb存储设备，将usb设备插图图4.2.2所示的usbhost接口处。</p>
+<p>  **注意：**需要准备一个U盘、USB蓝牙模块、usb网卡或者usb摄像头等USB设备。 USB host接口位置示意图:</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_059.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_059.png" />
+&lt;400px&gt;
+  下面使用一个16G的U盘作为例子，插到任意一个USB Host接口，会打印出如下设备信息：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_060.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_060.png" />
+&lt;800px&gt;
+  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。</p>
+<p>  有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda即代表整个U盘，也代表第1个分区。</p>
+<p>  我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># fdisk  -l /dev/sda   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_061.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_061.png" />
+&lt;800px&gt;
+  从上图可知/dev/sda2是FAT16格式，挂载是可以指定类型为“vfat”：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># mount  -t vfat /dev/sda2 /mnt   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_062.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_062.png" />
+&lt;800px&gt;
+  测试完以后，通过umount卸载/mnt，才可拔下usb设备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@Firefly-rk3288:~<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id45">
+<h4>OTG接口测试<a class="headerlink" href="#id45" title="永久链接至标题">¶</a></h4>
+<p>  此节演示如何测试OTG接口的两种模式，分别是device模式和host模式。</p>
+<p>  **注意：**需要准备一个 OTG转接头(开发板清单中不配)、micro usb数据线(开发板清单里配有)。这2种设备如下图所示：</p>
+<p>  OTG转换头：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_063.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_063.png" />
+&lt;200px&gt;
+  micro usb线：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_064.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_064.png" />
+&lt;200px&gt;</p>
+<div class="section" id="id46">
+<h5>otg device模式测试：<a class="headerlink" href="#id46" title="永久链接至标题">¶</a></h5>
+<p>  使用micro usb线小的一头插入如下图5.3.1所示的红色框所在接口，另一端连接电脑USB接口，micro otg接口位置如下图(otg device模式连接示意图)所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_065.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_065.png" />
+&lt;400px&gt;</p>
+<p>  开发板作为USB从设备，接到电脑上；电脑会把开发板识别为一个U盘。</p>
+<p>  先执行以下命令：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_066.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_066.png" />
+&lt;800px&gt;</p>
+<p>  此时在电脑的设备管理器中可以看到一个名为 linux File-Stor Gadget USB Device的磁盘设备，在windows资源管理器中也可以看到有新的可移动设备盘符弹出：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" />
+&lt;800px&gt;</p>
+<p>  测试完成后，在终端下执行“rmmod g_mass_storage ”卸载改模块驱动：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># rmmod g_mass_storage   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id47">
+<h5>otg host模式：<a class="headerlink" href="#id47" title="永久链接至标题">¶</a></h5>
+<p>  开发板作为usb主设备，其他USB设备通过otg转接头插入开发板，开发板即可识别出这些USB外设备。otg转接头连接示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_065.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_065.png" />
+&lt;400px&gt;</p>
+<p>  下图是把U盘通过otg转接头插入开发板后，在串口打印的信息：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_067.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_067.png" />
+&lt;800px&gt;</p>
+<p>  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。</p>
+<p>  有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda即代表整个U盘，也代表第1个分区。</p>
+<p>  我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_024.png" />
+&lt;800px&gt;</p>
+<p>  从上图可知/dev/sda2是FAT16格式，挂载是可以指定类型为“vfat”：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_025.png" />
+&lt;800px&gt;</p>
+<p>  测试完以后，通过umount卸载/mnt，才可拔下usb设备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@Firefly-rk3288:~<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id48">
+<h4>耳机接口测试<a class="headerlink" href="#id48" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用三段式耳机在Firefly-rk3288开发板上录制声音、播放音频。</p>
+<p>  <strong>注意:</strong> 需要准备一个带麦克风的三段式耳机，如下图4.2.4 所示：</p>
+<p>  三段式耳机示意图</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_068.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_068.png" />
+&lt;400px&gt;
+  耳机连接位置示意图</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_069.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_069.png" />
+&lt;400px&gt;</p>
+<div class="section" id="id49">
+<h5>播放音频：<a class="headerlink" href="#id49" title="永久链接至标题">¶</a></h5>
+<p>  将耳机插入开发板耳机孔（耳机孔位置如上图红框所示），使用aplay进行播放音频文件：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># aplay -vv test.wav   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_070.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_070.png" />
+&lt;800px&gt;</p>
+<p>    参数讲解：</p>
+<p>      test.wav ：指定录音文件的名称以及格式。其中test是文件名称，wav是音频格式。支持的格式有wav、raw和au等。</p>
+<p>还可以通过ssh登录开发板，将电脑中的wav格式的音频上传到开发板，再用用aplay进行播放。</p>
+</div>
+<div class="section" id="id50">
+<h5>录制音频：<a class="headerlink" href="#id50" title="永久链接至标题">¶</a></h5>
+<p>  咪头位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_071.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_071.png" />
+&lt;400px&gt;</p>
+<p>  使用如下命令进行录制,执行命令后，对着咪头说话（咪头位置如上图红框所示）：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># arecord -vv  --format=cd --device=plughw:0,0  test.wav   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_072.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_072.png" />
+&lt;800px&gt;
+    参数讲解：</p>
+<p>      –format=cd ：设置格式为16 bit little endian, 44100, stereo。</p>
+<p>      –device=plughw:0,0 指定使用card0 device0设备录制声音。</p>
+<p>      test.wav ：指定录音文件的名称以及格式。其中test是文件名称，wav是音频格式。支持的格式有wav、raw和au等。</p>
+</div>
+</div>
+<div class="section" id="id51">
+<h4>RTC测试<a class="headerlink" href="#id51" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过使用date和hwclock命令设置系统时间、硬件时间，并测试当操作系统重启后，系统时钟与硬件时间是否同步。</p>
+<p>  一般的板子都会有一个名为RTC(实时时钟)的硬件，RTC使用钮扣电池供电，在系统关闭时用来维持时钟。RTC维持的时间，被称为硬件时间。</p>
+<p>  Linux系统启动之后，它会自己维持时间，这个时间被称为系统时间。系统时间的初始值来源有二：</p>
+<p>    ① 如果没有RTC，系统时间初始值为1970年1月1日0点0分0秒</p>
+<p>    ② 如果有RTC，Linux启动后，系统时间初始值从RTC读取</p>
+<p>  在实际使用过程中，要注意系统时间、硬件时间的同步问题：</p>
+<p>    ①	 使用date命令查看、设置系统时间，在设置系统时间后，要使用“hwclock  -w”  命令同步到RTC；</p>
+<p>    ②	 使用hwclock查看、设置硬件时间，在设置硬件时间后，要使用“hwclock  -s”命令同步到系统时间。</p>
+<p>    **注意：**如果要使用RTC，要确保板子上已经安装了纽扣电池。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_073.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_073.png" />
+&lt;400px&gt;
+  RTC位置示意图</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_074.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_074.png" />
+&lt;400px&gt;</p>
+<p>  以下命令是设置系统时间、并同步到RTC：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># date -s &quot;2019-06-18 12:00:00&quot;   </span>
+	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># hwclock -w   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_075.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_075.png" />
+&lt;800px&gt;</p>
+<p>  一般不直接设置硬件时间，要设置硬件时间时，先使用date设置系统时间，再使用“hwclock  -w”同步到RTC硬件。</p>
+<p>  你使用date、hwclock命令设置好时间后，可以关闭开发板并等待一会后重启，再用date命令查看时间是否正常。</p>
+<p>  对RTC硬件的操作使用hwclock命令，常见用法如下：</p>
+<p>    hwclock  -r ：显示硬件时钟与日期</p>
+<p>    hwclock  -s ：将系统时钟调整为与目前的硬件时钟一致。</p>
+<p>    hwclock  -w ：将硬件时钟调整为与目前的系统时钟一致。</p>
+<p>  下面是一个示例，读取硬件时间：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_076.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_076.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id52">
+<h4>按键测试<a class="headerlink" href="#id52" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过hexdump命令以及dmesg命令来查看按键是否有反应。按键位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_077.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_077.png" />
+&lt;400px&gt;</p>
+<p>  执行下面命令之后，操作按键，如果一切正常会有打印信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># hexdump  /dev/input/event2   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_078.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_078.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id53">
+<h4>LED灯测试<a class="headerlink" href="#id53" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过操作LED在/sys目录下的对应文件，以点亮、熄灭LED。</p>
+<p>  <strong>注意:</strong> led1/led2/led3灯已经被定义为系统状态灯，仍可在/sys目录中操作对应文件；led4留给用户用于其他目的。</p>
+<p>led灯位置示意图：<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_079.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_079.png" />
+&lt;400px&gt;</p>
+<p>  首先，进入/sys/class/leds目录查看在多少个LED：</p>
+<p>[root&#64;firefly-rk3288:~]# cd /sys/class/leds/<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_080.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_080.png" />
+&lt;800px&gt;</p>
+<p>  这些文件对应的LED是：firefly:blue:power</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_081.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_081.png" />
+&lt;800px&gt;</p>
+<p>  此时我们通过echo输入值到 brightness即可控制灯的亮灭，以下以firefly:blue:power为示例</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:/sys/devices/platform/leds/leds/firefly:blue:power<span class="o">]</span><span class="c1"># echo 1 &gt; brightness  //灯亮   </span>
+	<span class="o">[</span>root@firefly-rk3288:/sys/devices/platform/leds/leds/firefly:blue:power<span class="o">]</span><span class="c1"># echo 0 &gt; brightness  //灯灭   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id54">
+<h4>串口测试<a class="headerlink" href="#id54" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用linux-serial-test程序测试串口的可用性。</p>
+<p>  串口测试连接示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_082.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_082.png" />
+&lt;400px&gt;</p>
+<div class="section" id="id55">
+<h5>压力测试：<a class="headerlink" href="#id55" title="永久链接至标题">¶</a></h5>
+<p>  这发送五秒钟并接收七秒钟，之后它将退出。如果接收的字节数与发送的字节数匹配且接收的模式正确，则退出代码将为零，因此可以将其用作自动测试脚本的一部分。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyS1 -b 115200 -o 5 -i 7   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id56">
+<h5>全速压力测试<a class="headerlink" href="#id56" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@firefly-rk3288:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyS1 -b 3000000   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_045.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_045.png" />
+&lt;800px&gt;
+    参数详解</p>
+<p>      -b， 串口波特率，115200等（默认为115200）</p>
+<p>      -p， port Port（/ dev / ttyS0等）（必须指定）</p>
+<p>      -s， stats每5秒转储串口数据</p>
+<p>      -e， dump-err显示错误</p>
+<p>      -o， tx-time要传输的秒数（默认为0，表示没有限制）</p>
+<p>      -i，  rx-time要接收的秒数（默认为0，表示没有限制）</p>
+</div>
+</div>
+</div>
+<div class="section" id="id57">
+<h3>roc-rk3399-pc 开发板<a class="headerlink" href="#id57" title="永久链接至标题">¶</a></h3>
+<p>  本章介绍如何测试板载功能，开发板各个功能部件所在位置以及名称如下图所示。本章所有的功能测试均在串口登录终端下进行。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_083.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_083.png" />
+&lt;800px&gt;
+<img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_010.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_010.png" />
+&lt;800px&gt;</p>
+<div class="section" id="id58">
+<h4>网卡接口测试<a class="headerlink" href="#id58" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在串口终端下如何设置开发板的ip地址，测试网络的连通性。并使用电脑通过网络浏览器访问开发板，验证开发板的http+php可用,如图5.3.1所示，将网线插到此接口处。</p>
+<p>  **注意：**既然是在开发板和电脑之间测试网如，那双方需要有网络连接。两者之间需要有一个路由器，开发板通过网线与路由器连接。而电脑与路由器之间，可以使用网线连接，也可以使用WIFI连接。</p>
+<p>  网卡接口位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_084.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_084.png" />
+&lt;400px&gt;
+通过udhcpc命令获取ip地址，详细信息如下图(udhcpc获取IP输出示意图)所示：<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_085.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_085.png" />
+&lt;800px&gt;
+  通过上图可知，使用udhcpc命令使开发板获得IP地址192.168.1.52(你的开发板自动获取的IP可能不一样)。</p>
+<p>  如果通过udhcpc命令无法获得IP，也可以使用ifconfig命令强制设置IP：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># ifconfig eth0 192.168.1.112   </span>
+</pre></div>
+</div>
+<p>  通过ifconfig命令查看详细ip信息：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_086.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_086.png" />
+&lt;800px&gt;
+  网络连通性测试：</p>
+<p>  在开发板上执行如下命令，如果有数据返回则表示开发板跟互联网是连通的(前提是你的路由器是可以上网的)：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># ping www.baidu.com    </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_087.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_087.png" />
+&lt;800px&gt;
+  当然，很多时候开发板不能正通互联网，这也没关系，只要能ping通我们的Windows、Ubuntu即可(例如我们的ubuntu IP地址是192.168.1.163)如下为ping通示例：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_088.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_088.png" />
+&lt;800px&gt;
+  http+Php测试：</p>
+<p>    假设开发板的IP为192.168.1.52，在电脑的网络浏览器中输入此IP，就能看到此开发板所支持的php特征描述：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_089.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_089.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id59">
+<h4>USB Host接口测试<a class="headerlink" href="#id59" title="永久链接至标题">¶</a></h4>
+<p>  此节演示在终端下如何在USB Host接口上使用usb存储设备，将usb设备插图图4.3.2所示的usbhost接口处。</p>
+<p>  **注意：**需要准备一个U盘、USB蓝牙模块、usb网卡或者usb摄像头等USB设备。</p>
+<p>  USB host接口位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_090.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_090.png" />
+&lt;400px&gt;
+  下面使用一个16G的U盘作为例子，插到任意一个USB Host接口，会打印出如下设备信���：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_091.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_091.png" />
+&lt;800px&gt;
+  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。</p>
+<p>  有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda即代表整个U盘，也代表第1个分区。</p>
+<p>  我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># fdisk  -l  /dev/sda   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_092.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_092.png" />
+&lt;800px&gt;
+  从上图可知/dev/sda2是FAT16格式，挂载是可以指定类型为“vfat”：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># mount  -t vfat /dev/sda2 /mnt   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_093.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_093.png" />
+&lt;800px&gt;
+  测试完以后，通过umount卸载/mnt，才可拔下usb设备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id60">
+<h4>OTG接口测试<a class="headerlink" href="#id60" title="永久链接至标题">¶</a></h4>
+<p>  此节演示如何测试OTG接口的两种模式，分别是device模式和host模式。</p>
+<p>  **注意：**需要准备一个 OTG转接头(开发板清单中不配)、type C usb数据线(开发板清单里配有)。这2种设备如下图所示：</p>
+<p>  OTG转换头：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_094.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_094.png" />
+&lt;200px&gt;
+  type c usb线：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_095.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_095.png" />
+&lt;200px&gt;</p>
+<div class="section" id="id61">
+<h5>otg device模式测试<a class="headerlink" href="#id61" title="永久链接至标题">¶</a></h5>
+<p>  使用type usb线小的一头插入如下图所示的红色框所在接口，另一端连接电脑USB接口，typeC otg接口位置如下图所示：</p>
+<p>  otg device模式连接示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_096.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_096.png" />
+&lt;400px&gt;</p>
+<p>  开发板作为USB从设备，接到电脑上；电脑会把开发板识别为一个U盘。</p>
+<p>  先执行以下命令卸载正在运行的驱动程序：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># rmmod g_mass_storage   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_097.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_097.png" />
+&lt;800px&gt;
+  此时在电脑的设备管理器中可以看到一个名为 linux File-Stor Gadget USB Device的磁盘设备，在windows资源管理器中也可以看到有新的可移动设备盘符弹出：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_027.png" />
+&lt;800px&gt;</p>
+<p>  测试完成后，在终端下执行“rmmod g_mass_storage ”卸载改模块驱动：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># rmmod g_mass_storage   </span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id62">
+<h5>otg host模式<a class="headerlink" href="#id62" title="永久链接至标题">¶</a></h5>
+<p>  开发板作为usb主设备，其他USB设备通过otg转接头插入开发板，开发板即可识别出这些USB外设备。</p>
+<p>  otg转接头连接示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_096.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_096.png" />
+&lt;400px&gt;</p>
+<p>  下图是把U盘通过otg转接头插入开发板后，在串口打印的信息：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_098.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_098.png" />
+&lt;800px&gt;</p>
+<p>  通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。</p>
+<p>  有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda即代表整个U盘，也代表第1个分区。</p>
+<p>  我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_061.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_061.png" />
+&lt;800px&gt;</p>
+<p>  从上图可知/dev/sda2是FAT16格式，挂载是可以指定类型为“vfat”：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_062.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_062.png" />
+&lt;800px&gt;</p>
+<p>  测试完以后，通过umount卸载/mnt，才可拔下usb设备：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@Roc-rk3399-pc:~<span class="o">]</span><span class="c1"># umount  /mnt   </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id63">
+<h4>RTC测试<a class="headerlink" href="#id63" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过使用date和hwclock命令设置系统时间、硬件时间，并测试当操作系统重启后，系统时钟与硬件时间是否同步。</p>
+<p>  一般的板子都会有一个名为RTC(实时时钟)的硬件，RTC使用钮扣电池供电，在系统关闭时用来维持时钟。RTC维持的时间，被称为硬件时间。</p>
+<p>  Linux系统启动之后，它会自己维持时间，这个时间被称为系统时间。系统时间的初始值来源有二：</p>
+<p>    ① 如果没有RTC，系统时间初始值为1970年1月1日0点0分0秒</p>
+<p>    ② 如果有RTC，Linux启动后，系统时间初始值从RTC读取</p>
+<p>  在实际使用过程中，要注意系统时间、硬件时间的同步问题：</p>
+<p>    ③ 使用date命令查看、设置系统时间，在设置系统时间后，要使用“hwclock  -w”  命令同步到RTC；</p>
+<p>    ② 使用hwclock查看、设置硬件时间，在设置硬件时间后，要使用“hwclock  -s”命令同步到系统时间。</p>
+<p>  注意：如果要使用RTC，要确保板子上已经安装了纽扣电池。</p>
+<p>RTC位置示意图：<br /><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_099.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_099.png" />
+&lt;400px&gt;</p>
+<p>  以下命令是设置系统时间、并同步到RTC：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># date -s &quot;2019-06-18 12:00:00&quot;   </span>
+	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># hwclock -w   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_100.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_100.png" />
+&lt;800px&gt;
+  一般不直接设置硬件时间，要设置硬件时间时，先使用date设置系统时间，再使用“hwclock  -w”同步到RTC硬件。</p>
+<p>  你使用date、hwclock命令设置好时间后，可以关闭开发板并等待一会后重启，再用date命令查看时间是否正常。</p>
+<p>  对RTC硬件的操作使用hwclock命令，常见用法如下：</p>
+<p>    hwclock  -r ：显示硬件时钟与日期</p>
+<p>    hwclock  -s ：将系统时钟调整为与目前的硬件时钟一致。</p>
+<p>    hwclock  -w ：将硬件时钟调整为与目前的系统时钟一致。</p>
+<p>  下面是一个示例，读取硬件时间：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_101.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_101.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id64">
+<h4>按键测试<a class="headerlink" href="#id64" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过hexdump命令以及dmesg命令来查看按键是否有反应。</p>
+<p>  按键位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_102.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_102.png" />
+&lt;400px&gt;</p>
+<p>  执行下面命令之后，操作按键，如果一切正常会有打印信息：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># hexdump  /dev/input/event2   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_078.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_078.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id65">
+<h4>LED灯测试<a class="headerlink" href="#id65" title="永久链接至标题">¶</a></h4>
+<p>  此节演示通过操作LED在/sys目录下的对应文件，以点亮、熄灭LED。</p>
+<p>  注意: led1/led2/led3灯已经被定义为系统状态灯，仍可在/sys目录中操作对应文件；led4留给用户用于其他目的。</p>
+<p>  led灯位置示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_103.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_103.png" />
+&lt;800px&gt;
+  首先，进入/sys/class/leds目录查看在多少个LED：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># cd /sys/class/leds/   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_104.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_104.png" />
+&lt;800px&gt;
+  这些文件对应的LED是：</p>
+<p>    Led1	firefly:red:power  红色电源状态灯</p>
+<p>    Led2	firefly:yellow:heartbeat  系统心跳灯</p>
+<p>    Led3	firefly:yellow:user		用户灯</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_105.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_105.png" />
+&lt;800px&gt;</p>
+<p>  此时我们通过echo输入值到 brightness即可控制灯的亮灭，以下以firefly:yellow:heartbeat为示例</p>
+<p>[root&#64;roc-rk3399-pc:/sys/devices/platform/leds/leds/firefly:yellow:heartbeat]# echo 1 &gt; brightness  //灯亮</p>
+<p>[root&#64;roc-rk3399-pc:/sys/devices/platform/leds/leds/firefly:yellow:heartbeat]# echo 0 &gt; brightness  //灯灭</p>
+</div>
+<div class="section" id="id66">
+<h4>串口测试<a class="headerlink" href="#id66" title="永久链接至标题">¶</a></h4>
+<p>  此节演示使用linux-serial-test程序测试串口的可用性。</p>
+<p>  串口测试连接示意图：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_106.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_106.png" />
+&lt;800px&gt;</p>
+<div class="section" id="id67">
+<h5>压力测试<a class="headerlink" href="#id67" title="永久链接至标题">¶</a></h5>
+<p>  这发送五秒钟并接收七秒钟，之后它将退出。如果接收的字节数与发送的字节数匹配且接收的模式正确，则退出代码将为零，因此可以将其用作自动测试脚本的一部分。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyS1 -b 115200 -o 5 -i 7   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_044.png" />
+&lt;800px&gt;</p>
+</div>
+<div class="section" id="id68">
+<h5>全速压力测试<a class="headerlink" href="#id68" title="永久链接至标题">¶</a></h5>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	<span class="o">[</span>root@roc-rk3399-pc:~<span class="o">]</span><span class="c1"># linux-serial-test -s -e -p /dev/ttyS1 -b 3000000   </span>
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_043.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_043.png" />
+&lt;800px&gt;
+  参数详解</p>
+<p>::-b， 串口波特率，115200等（默认为115200）<br />    -p， port Port（/ dev / ttyS0等）（必须指定）</p>
+<p>    -s， stats每5秒转储串口数据</p>
+<p>    -e， dump-err显示错误</p>
+<p>    -o， tx-time要传输的秒数（默认为0，表示没有限制）</p>
+<p>    -i，  rx-time要接收的秒数（默认为0，表示没有限制）</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id69">
+<h2>后续开发准备工作：准备交叉编译工具链、编译内核<a class="headerlink" href="#id69" title="永久链接至标题">¶</a></h2>
+<p>  当你想开发应用程序、内核、驱动程序时，需要先安装、设置交叉编译工具链。</p>
+<p>  当你想更新内核时，当你想进行驱动开发时，都需要编译内核。</p>
+<p>  对于各个开发板，可以观看本章中对应内容，也可以打开htttp://wiki.100ask.net，找到对应的开发板页面。</p>
+<div class="section" id="id70">
+<h3>100ASK_AM335X开发板<a class="headerlink" href="#id70" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id71">
+<h4>获取源码<a class="headerlink" href="#id71" title="永久链接至标题">¶</a></h4>
+<p>  获取源码的方式有2种：本地拷贝、在线下载。建议使用后者，更加方便。</p>
+<div class="section" id="id72">
+<h5>本地拷贝<a class="headerlink" href="#id72" title="永久链接至标题">¶</a></h5>
+<p>  拷贝资料光盘中的源码通过ftp工具上传到ubuntu系统中。</p>
+</div>
+<div class="section" id="id73">
+<h5>在线下载<a class="headerlink" href="#id73" title="永久链接至标题">¶</a></h5>
+<p>  100ask_am335x开发板所有代码通过repo进行管理，可以通过如下命令进行下载或同步。</p>
+<p>    ① 配置repo</p>
+<p>      下载repo工具前需要设置git的邮箱和用户名，git邮箱和用户名请根据个人情况进行配置：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask$ git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>   
+			book@100ask$ git config --global user.name <span class="s2">&quot;Your Name&quot;</span>   
+</pre></div>
+</div>
+<p>    ②  下载源码</p>
+<p>      通过repo管理多个git仓库中的源码，可以及时更新最新代码，以方便开发者学习使用：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask$ git clone  https://git.dev.tencent.com/codebug8/repo.git   
+			book@100ask:~$  mkdir -p 100ask_am335x <span class="o">&amp;&amp;</span> <span class="nb">cd</span> 100ask_am335x   
+			book@100ask:~/100ask_am335x$ ../repo/repo init -u https://dev.tencent.com/u/weidongshan/p/manifests/git -b linux-sdk -m ti335x/100ask-am335x_linux_release_v1.0.xml --no-repo-verify   
+			book@100ask:~/100ask_am335x$  ../repo/repo sync -j4   
+</pre></div>
+</div>
+<p>      **注意：**repo在线下载的代码和资料光盘中的代码是一致的，后期方便同步更新。</p>
+</div>
+</div>
+<div class="section" id="id74">
+<h4>配置交叉编译工具链<a class="headerlink" href="#id74" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id75">
+<h5>设置交叉编译工具链<a class="headerlink" href="#id75" title="永久链接至标题">¶</a></h5>
+<p>  交叉编译工具链主要是用于在ubuntu主机上编译并声称可以在其它平台上运行的系统。设置交叉编译工具主要是设置PATH， ARCH和CROSS_COMPILE三个环境变量，下面介绍具体设置方法。</p>
+<p>  有3种方法设置这些环境变量。</p>
+<p>    ① 永久生效</p>
+<p>      如需永久修改，请修改用户配置文件, Ubuntu系统下，修改如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			vim ~/.bashrc   
+</pre></div>
+</div>
+<p>      在行尾添加或修改：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			<span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+			<span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+			<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;WORKDIR&gt;100ask_am335x/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+</pre></div>
+</div>
+<p>    ② 临时生效</p>
+<p>      执行完“export”命令后，该设置只对当前终端有效：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;WORKDIR&gt;100ask_am335x/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+			book@100ask$ <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+			book@100ask$ <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+</pre></div>
+</div>
+<p>    ③ 手动指定</p>
+<p>      make编译时指定ARCH架构 CROSS_COMPILE交叉编译工具链，这种方法效率最低：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				book@100ask$ make <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf- <span class="o">[</span>命令<span class="o">]</span>   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id76">
+<h5>测试交叉编译工具链<a class="headerlink" href="#id76" title="永久链接至标题">¶</a></h5>
+<p>  测试环境变量：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">source</span> ~/.bashrc   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$ARCH</span>   
+	arm   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$CROSS_COMPILE</span>   
+	arm-linux-gnueabihf-   
+</pre></div>
+</div>
+<p>  测试交叉编译器：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ arm-linux-gnueabihf-gcc -v   
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_107.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_107.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="id77">
+<h4>编译内核<a class="headerlink" href="#id77" title="永久链接至标题">¶</a></h4>
+<div class="section" id="kernel">
+<h5>5压kernel源码<a class="headerlink" href="#kernel" title="永久链接至标题">¶</a></h5>
+<p>  如果是本地上传代码到Ubuntu，则进入Kernel目录，解压内核源码：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">cd</span> &lt;WORKDIR&gt;/Kernel   
+	book@100ask$ tar -zxvf linux-kernel.tar.gz   
+</pre></div>
+</div>
+<p>  **<font color="#dd0000">注意：</font>**如果你使用的是repo在线同步代码，则不需要上面的解压步骤</p>
+</div>
+<div class="section" id="id78">
+<h5>编译内核<a class="headerlink" href="#id78" title="永久链接至标题">¶</a></h5>
+<p>  **<font color="#dd0000">注意：</font>**需要先安装交叉编译工具链，设置环境变量。</p>
+<p>  不同的开发板对应不同的配置文件，配置文件位linux-kernel/arch/arm/configs/目录,下面以100ask_am335x开发板为例，说明kernel的编译过程：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">cd</span> linux-kernel   
+	book@100ask:linux-kernel$ make mrproper   
+	book@100ask:linux-kernel$ make 100ask_am335x_defconfig   
+	book@100ask:linux-kernel$ make zImage   
+	book@100ask:linux-kernel$ make dtbs   
+</pre></div>
+</div>
+<p>  编译完成后，在arch/arm/boot目录下生成zImage文件, 在arch/arm/boot/dts目录下生成设备树的二进制.dtb文件</p>
+</div>
+</div>
+</div>
+<div class="section" id="id79">
+<h3>Firefly-rk3288 开发板<a class="headerlink" href="#id79" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id80">
+<h4>获取源码<a class="headerlink" href="#id80" title="永久链接至标题">¶</a></h4>
+<p>  获取源码的方式有2种：本地拷贝、在线下载。建议使用后者，更加方便。</p>
+<div class="section" id="id81">
+<h5>本地拷贝<a class="headerlink" href="#id81" title="永久链接至标题">¶</a></h5>
+<p>  拷贝资料光盘中的源码通过ftp工具上传到ubuntu系统中。</p>
+</div>
+<div class="section" id="id82">
+<h5>在线下载<a class="headerlink" href="#id82" title="永久链接至标题">¶</a></h5>
+<p>  Firefly-rk3288开发板所有代码通过repo进行管理，可以通过如下命令进行下载或同步。</p>
+<p>    ① 配置repo</p>
+<p>      下载repo工具前需要设置git的邮箱和用户名，git邮箱和用户名请根据个人情况进行配置：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask$ git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>   
+			book@100ask$ git config --global user.name <span class="s2">&quot;Your Name&quot;</span>   
+</pre></div>
+</div>
+<p>::②  下载源码<br />      通过repo管理多个git仓库中的源码，可以及时更新最新代码，以方便开发者学习使用：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$  git clone  https://git.dev.tencent.com/codebug8/repo.git   
+			book@100ask:~$  mkdir -p 100ask_firefly-rk3288 <span class="o">&amp;&amp;</span> <span class="nb">cd</span> 100ask_firefly-rk3288   
+			book@100ask:~/100ask_firefly-rk3288$  ../repo/repo init -u https://dev.tencent.com/u/weidongshan/p/manifests/git -b linux-sdk -m rk3288/firefly-rk3288_linux_release.xml --no-repo-verify   
+			book@100ask:~/100ask_firefly-rk3288$  ../repo/repo sync -j4   
+</pre></div>
+</div>
+<p>      **注意：**repo在线下载的代码和资料光盘中的代码是一致的，后期方便同步更新。</p>
+<p>      首次下载如果提示 Testing colorized output (for ‘repo diff’, ‘repo status’):  此时输入 y  即可,继续执行 ../repo/repo sync -j4 命令即可开始同步源码。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" />
+&lt;800px&gt;</p>
+<p>      后期同步开发板最新源码只需要在当前所在目录执行如下命令即可同步更新</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		book@100ask:~/100ask_roc-rk3399-pc $  ../repo/repo sync -d   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id83">
+<h4>配置交叉编译工具链<a class="headerlink" href="#id83" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id84">
+<h5>设置交叉编译工具链<a class="headerlink" href="#id84" title="永久链接至标题">¶</a></h5>
+<p>  交叉编译工具链主要是用于在ubuntu主机上编译并声称可以在其它平台上运行的系统。设置交叉编译工具主要是设置PATH， ARCH和CROSS_COMPILE三个环境变量，下面介绍具体设置方法。</p>
+<p>  有3种方法设置这些环境变量。</p>
+<p>    ① 永久生效</p>
+<p>      如需永久修改，请修改用户配置文件, Ubuntu系统下，修改如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			vim ~/.bashrc   
+</pre></div>
+</div>
+<p>      在行尾添加或修改：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			<span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+			<span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+			<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_firefly-rk3288/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+</pre></div>
+</div>
+<p>      ② 临时生效</p>
+<p>        执行完“export”命令后，该设置只对当前终端有效：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>				book@100ask:~$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_firefly-rk3288/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+				book@100ask:~$ <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+				book@100ask:~$ <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+</pre></div>
+</div>
+<p>      ③ 手动指定</p>
+<p>        make编译时指定ARCH架构 CROSS_COMPILE交叉编译工具链，这种方法效率最低：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>			book@100ask$ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- [命令]   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id85">
+<h5>测试交叉编译工具链<a class="headerlink" href="#id85" title="永久链接至标题">¶</a></h5>
+<p>  测试环境变量：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">source</span> ~/.bashrc   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$ARCH</span>   
+	arm   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$CROSS_COMPILE</span>   
+	arm-linux-gnueabihf-   
+</pre></div>
+</div>
+<p>  测试交叉编译器：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ arm-linux-gnueabihf-gcc -v   
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_109.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_109.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="id86">
+<h4>编译内核<a class="headerlink" href="#id86" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id87">
+<h5>解压kernel源码<a class="headerlink" href="#id87" title="永久链接至标题">¶</a></h5>
+<p>  如果是本地上传代码到Ubuntu，则进入Kernel目录，解压内核源码：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~$ <span class="nb">cd</span> /home/book/100ask_firefly-rk3288/   
+	book@100ask: ~/100ask_firefly-rk3288$ tar -zxvf linux-4.4.tar.gz   
+</pre></div>
+</div>
+<p>  **<font color="#dd0000">注意：</font>**如果你使用的是repo在线同步代码，则不需要上面的解压步骤</p>
+</div>
+<div class="section" id="id88">
+<h5>编译内核<a class="headerlink" href="#id88" title="永久链接至标题">¶</a></h5>
+<p>  **<font color="#dd0000">注意：</font>**需要先安装交叉编译工具链，设置环境变量。</p>
+<p>  不同的开发板对应不同的配置文件，配置文件位linux-kernel/arch/arm/configs/目录,下面以firefly-rk3288开发板为例，说明kernel的编译过程：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~/100ask_firefly-rk3288$ <span class="nb">cd</span> linux-kernel   
+	book@100ask:~/100ask_firefly-rk3288/linux-4.4$ make mrproper   
+	book@100ask:~/100ask_firefly-rk3288/linux-4.4$ make 100ask_firefly-rk3288_defconfig   
+	book@100ask:~/100ask_firefly-rk3288/linux-4.4$ make zImage   
+	book@100ask:~/100ask_firefly-rk3288/linux-4.4$ make dtbs   
+</pre></div>
+</div>
+<p>  编译完成后，在arch/arm/boot目录下生成zImage文件, 在arch/arm/boot/dts目录下生成rk3288-firefly.dtb设备树的二进制.dtb文件</p>
+</div>
+</div>
+</div>
+<div class="section" id="id89">
+<h3>Roc-rk3399-pc 开发板<a class="headerlink" href="#id89" title="永久链接至标题">¶</a></h3>
+<div class="section" id="id90">
+<h4>获取源码<a class="headerlink" href="#id90" title="永久链接至标题">¶</a></h4>
+<p>  获取源码的方式有2种：本地拷贝、在线下载。建议使用后者，更加方便。</p>
+<div class="section" id="id91">
+<h5>本地拷贝<a class="headerlink" href="#id91" title="永久链接至标题">¶</a></h5>
+<p>  拷贝资料光盘中的源码通过ftp工具上传到ubuntu系统中。</p>
+</div>
+<div class="section" id="id92">
+<h5>在线下载<a class="headerlink" href="#id92" title="永久链接至标题">¶</a></h5>
+<p>  Roc-rk3399-pc开发板所有代码通过repo进行管理，可以通过如下命令进行下载或同步。</p>
+<p>    ① 配置repo</p>
+<p>      下载repo工具前需要设置git的邮箱和用户名，git邮箱和用户名请根据个人情况进行配置：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		book@100ask$ git config --global user.email &quot;you@example.com&quot;   
+		book@100ask$ git config --global user.name &quot;Your Name&quot;   
+</pre></div>
+</div>
+<p>    ②  下载源码</p>
+<p>      通过repo管理多个git仓库中的源码，可以及时更新最新代码，以方便开发者学习使用：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$  git clone  https://git.dev.tencent.com/codebug8/repo.git   
+			book@100ask:~$  mkdir -p 100ask_roc-rk3399-pc <span class="o">&amp;&amp;</span> <span class="nb">cd</span> 100ask_roc-rk3399-pc   
+			book@100ask:~/100ask_roc-rk3399-pc $ ../repo/repo init -u https://dev.tencent.com/u/weidongshan/p/manifests/git -b linux-sdk -m rk3399/roc-rk3399-pc_linux_release.xml --no-repo-verify   
+			book@100ask:~/100ask_roc-rk3399-pc $  ../repo/repo sync -j4   
+</pre></div>
+</div>
+<p>      注意：repo在线下载的代码和资料光盘中的代码是一致的，后期方便同步更新。</p>
+<p>      首次下载如果提示 Testing colorized output (for ‘repo diff’, ‘repo status’):  此时输入 y  即可,继续执行 ../repo/repo sync -j4 命令即可开始同步源码。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" />
+&lt;800px&gt;
+      后期同步开发板最新源码只需要在当前所在目录执行如下命令即可同步更新</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		book@100ask:~/100ask_roc-rk3399-pc $  ../repo/repo sync -d   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id93">
+<h4>配置交叉编译工具链<a class="headerlink" href="#id93" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id94">
+<h5>设置交叉编译工具链<a class="headerlink" href="#id94" title="永久链接至标题">¶</a></h5>
+<p>  交叉编译工具链主要是用于在ubuntu主机上编译并声称可以在其它平台上运行的系统。设置交叉编译工具主要是设置PATH， ARCH和CROSS_COMPILE三个环境变量，下面介绍具体设置方法。</p>
+<p>  有3种方法设置这些环境变量。</p>
+<p>    ① 永久生效</p>
+<p>      如需永久修改，请修改用户配置文件, Ubuntu系统下，修改如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			vim ~/.bashrc   
+</pre></div>
+</div>
+<p>      在行尾添加或修改：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			xport <span class="nv">ARCH</span><span class="o">=</span>arm64   
+			<span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-   
+			<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin   
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		<span class="n">e</span>   
+</pre></div>
+</div>
+<p>    ② 临时生效</p>
+<p>      执行完“export”命令后，该设置只对当前终端有效：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_roc-rk3399-pc/ToolChain-6.3.1/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin   
+			book@100ask:~$ <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm64   
+			book@100ask:~$ <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-   
+</pre></div>
+</div>
+<p>    ③ 手动指定</p>
+<p>      make编译时指定ARCH架构 CROSS_COMPILE交叉编译工具链，这种方法效率最低：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		book@100ask:~$ make ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu-  [命令]	   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id95">
+<h5>测试交叉编译工具链<a class="headerlink" href="#id95" title="永久链接至标题">¶</a></h5>
+<p>  测试环境变量：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">source</span> ~/.bashrc   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$ARCH</span>   
+	arm64   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$CROSS_COMPILE</span>   
+	aarch64-linux-gnu-    
+</pre></div>
+</div>
+<p>  测试交叉编译器：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~$ aarch64-linux-gnu-gcc  -v   
+</pre></div>
+</div>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_110.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_110.png" />
+&lt;800px&gt;</p>
+</div>
+</div>
+<div class="section" id="id96">
+<h4>编译内核<a class="headerlink" href="#id96" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id97">
+<h5>解压kernel源码<a class="headerlink" href="#id97" title="永久链接至标题">¶</a></h5>
+<p>  如果是本地上传代码到Ubuntu，则进入Kernel目录，解压内核源码：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~$ <span class="nb">cd</span> /home/book/100ask_roc-rk3399-pc/   
+	book@100ask: ~/100ask_roc-rk3399-pc$ tar -zxvf linux-4.4.tar.gz   
+</pre></div>
+</div>
+<p>  **<font color="#dd0000">注意：</font>**如果你使用的是repo在线同步代码，则不需要上面的解压步骤</p>
+</div>
+<div class="section" id="id98">
+<h5>编译内核<a class="headerlink" href="#id98" title="永久链接至标题">¶</a></h5>
+<p>  **<font color="#dd0000">注意：</font>**需要先安装交叉编译工具链，设置环境变量。</p>
+<p>  不同的开发板对应不同的配置文件，配置文件位linux-kernel/arch/arm/configs/目录,下面以roc-rk3399-pc开发板为例，说明kernel的编译过程：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~/100ask_roc-rk3399-pc$ <span class="nb">cd</span> linux-4.4   
+	book@100ask:~/100ask_roc-rk3399-pc/linux-4.4$ make mrproper   
+	book@100ask:~/100ask_roc-rk3399-pc/linux-4.4$ make 100ask_roc-rk3399-pc_defconfig   
+	book@100ask:~/100ask_roc-rk3399-pc/linux-4.4$ make Image   
+	book@100ask:~/100ask_roc-rk3399-pc/linux-4.4$ make dtbs   
+</pre></div>
+</div>
+<p>  编译完成后，在arch/arm/boot目录下生成Image文件, 在arch/arm/boot/dts目录下生成rk3399-roc-pc.dtb设备树的二进制.dtb文件</p>
+</div>
+</div>
+</div>
+<div class="section" id="id99">
+<h3>IMX6ULL开发板<a class="headerlink" href="#id99" title="永久链接至标题">¶</a></h3>
+<p>  野火、正点原子用的内核版本是4.1.15，</p>
+<p>  我们用的内核版本是linux 4.9.88，</p>
+<p>  都是4.x版本，在学习上没有任何差别。</p>
+<p>  你拿到板子后，可以使用他们出厂的系统，</p>
+<p>  也可以根据我们提供的高级用户手册更改为我们的系统，高级手册都存放在WIKI中：打开http://wiki.100ask.net，查看左侧开发板，点击进去即可，如下图所示：</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_011.png" />
+  怎么下载内核、编译内核等等，都可以查看WIKI。</p>
+<p>  下面以百问网imx6ull-qemu虚拟开发板为例说明。</p>
+<div class="section" id="id100">
+<h4>获取源码<a class="headerlink" href="#id100" title="永久链接至标题">¶</a></h4>
+<p>  获取源码的方式有2种：本地拷贝、在线下载。建议使用后者，更加方便。</p>
+<div class="section" id="id101">
+<h5>本地拷贝<a class="headerlink" href="#id101" title="永久链接至标题">¶</a></h5>
+<p>  拷贝资料光盘中的源码通过ftp工具上传到ubuntu系统中。</p>
+</div>
+<div class="section" id="id102">
+<h5>在线下载<a class="headerlink" href="#id102" title="永久链接至标题">¶</a></h5>
+<p>  百问网imx6ull-qemu虚拟开发板所有代码通过repo进行管理，可以通过如下命令进行下载或同步。</p>
+<p>    ① 配置repo</p>
+<p>      下载repo工具前需要设置git的邮箱和用户名，git邮箱和用户名请根据个人情况进行配置：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask$ git config --global user.email <span class="s2">&quot;you@example.com&quot;</span>   
+			book@100ask$ git config --global user.name <span class="s2">&quot;Your Name&quot;</span>   
+</pre></div>
+</div>
+<p>    ②  下载源码</p>
+<p>      通过repo管理多个git仓库中的源码，可以及时更新最新代码，以方便开发者学习使用：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$  git clone  https://git.dev.tencent.com/codebug8/repo.git   
+			book@100ask:~$  mkdir -p 100ask_imx6ull-qemu <span class="o">&amp;&amp;</span> <span class="nb">cd</span> 100ask_imx6ull-qemu   
+			book@100ask:~/100ask_imx6ull-qemu$ ../repo/repo init -u https://dev.tencent.com/u/weidongshan/p/manifests/git -b linux-sdk -m imx6ull/100ask-imx6ull_qemu_release_v1.0.xml --no-repo-verify   
+			book@100ask:~/100ask_imx6ull-qemu$ ../repo/repo sync -j4   
+</pre></div>
+</div>
+<p>      **注意：**repo在线下载的代码和资料光盘中的代码是一致的，后期方便同步更新。</p>
+<p>      首次下载如果提示 Testing colorized output (for ‘repo diff’, ‘repo status’):  此时输入 y  即可,继续执行 ../repo/repo sync -j4 命令即可开始同步源码。</p>
+<p><img alt="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" src="https://weidongshan.readthedocs.io/zh_CN/latest/_images/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_108.png" />
+&lt;800px&gt;
+      后期同步开发板最新源码只需要在当前所在目录执行如下命令即可同步更新</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>		book@100ask:~/100ask_imx6ull-qemu $  ../repo/repo sync -d   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id103">
+<h4>配置交叉编译工具链<a class="headerlink" href="#id103" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id104">
+<h5>设置交叉编译工具链<a class="headerlink" href="#id104" title="永久链接至标题">¶</a></h5>
+<p>  交叉编译工具链主要是用于在ubuntu主机上编译并声称可以在其它平台上运行的系统。设置交叉编译工具主要是设置PATH， ARCH和CROSS_COMPILE三个环境变量，下面介绍具体设置方法。</p>
+<p>  有3种方法设置这些环境变量。</p>
+<p>    ① 永久生效</p>
+<p>      如需永久修改，请修改用户配置文件, Ubuntu系统下，修改如下：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			vim ~/.bashrc   
+</pre></div>
+</div>
+<p>      在行尾添加或修改：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			<span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+			<span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+			<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_imx6ull-qemu/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+</pre></div>
+</div>
+<p>    ② 临时生效</p>
+<p>      执行完“export”命令后，该设置只对当前终端有效：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$ <span class="nb">export</span> <span class="nv">ARCH</span><span class="o">=</span>arm   
+			book@100ask:~$ <span class="nb">export</span> <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-   
+			book@100ask:~$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/home/book/100ask_imx6ull-qemu/ToolChain/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin   
+</pre></div>
+</div>
+<p>    ③ 手动指定</p>
+<p>      make编译时指定ARCH架构 CROSS_COMPILE交叉编译工具链，这种方法效率最低：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>			book@100ask:~$ make <span class="nv">ARCH</span><span class="o">=</span>arm <span class="nv">CROSS_COMPILE</span><span class="o">=</span>arm-linux-gnueabihf-  <span class="o">[</span>命令<span class="o">]</span>	   
+</pre></div>
+</div>
+</div>
+<div class="section" id="id105">
+<h5>测试交叉编译工具链<a class="headerlink" href="#id105" title="永久链接至标题">¶</a></h5>
+<p>  测试环境变量：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask$ <span class="nb">source</span> ~/.bashrc   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$ARCH</span>   
+	arm   
+	book@100ask$ <span class="nb">echo</span> <span class="nv">$CROSS_COMPILE</span>   
+	arm-linux-gnueabihf-    
+</pre></div>
+</div>
+<p>  测试交叉编译器：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~$ arm-linux-gnueabihf-gcc  -v   
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id106">
+<h4>编译内核<a class="headerlink" href="#id106" title="永久链接至标题">¶</a></h4>
+<div class="section" id="id107">
+<h5>解压kernel源码<a class="headerlink" href="#id107" title="永久链接至标题">¶</a></h5>
+<p>  如果是本地上传代码到Ubuntu，则进入Kernel目录，解压内核源码：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~$ <span class="nb">cd</span> /home/book/100ask_imx6ull-qemu/   
+	book@100ask: ~/100ask_imx6ull-qemu$ tar -zxvf  linux-4.9.88.tar.gz   
+</pre></div>
+</div>
+<p>  **<font color="#dd0000">注意：</font>**如果你使用的是repo在线同步代码，则不需要上面的解压步骤</p>
+</div>
+<div class="section" id="id108">
+<h5>编译内核<a class="headerlink" href="#id108" title="永久链接至标题">¶</a></h5>
+<p>  **<font color="#dd0000">注意：</font>**需要先安装交叉编译工具链，设置环境变量。</p>
+<p>  不同的开发板对应不同的配置文件，配置文件位linux-kernel/arch/arm/configs/目录,下面以roc-rk3399-pc开发板为例，说明kernel的编译过程：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>	book@100ask:~/100ask_imx6ull-qemu$ <span class="nb">cd</span> linux-4.9.88   
+	book@100ask:~/100ask_imx6ull-qemu/linux-4.9.88$ make mrproper   
+	book@100ask:~/100ask_imx6ull-qemu/linux-4.9.88$ make 100ask_imx6ull_qemu_defconfig   
+	book@100ask:~/100ask_imx6ull-qemu/linux-4.9.88$ make Image   
+	book@100ask:~/100ask_imx6ull-qemu/linux-4.9.88$ make dtbs   
+</pre></div>
+</div>
+<p>  编译完成后，在arch/arm/boot目录下生成Image文件, 在arch/arm/boot/dts目录下生成100ask_imx6ull_qemu.dtb设备树的二进制.dtb文件</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../chapterfour/index.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="&lt;no title&gt;" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, weidongshan www.100ask.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

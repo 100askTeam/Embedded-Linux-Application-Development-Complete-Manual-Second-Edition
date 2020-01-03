@@ -1,0 +1,630 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; 嵌入式Linux应用开发完全手册第2版 1.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/100ask_net_ico.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="索引"
+              href="../../genindex.html"/>
+        <link rel="search" title="搜索" href="../../search.html"/>
+    <link rel="top" title="嵌入式Linux应用开发完全手册第2版 1.0 文档" href="../../index.html"/>
+        <link rel="next" title="第五篇. 嵌入式Linux驱动开发基础知识" href="ELADCMSecondEditionChapterFive.html"/>
+        <link rel="prev" title="第四篇. 嵌入式Linux应用开发基础知识" href="../chapterfour/ELADCMSecondEditionChapterFour.html"/>
+    <link href="../../_static/default.css" rel="stylesheet" type="text/css">
+
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> 嵌入式Linux应用开发完全手册第2版
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../chapterone/ELADCMSecondEditionChapterOne.html">第一篇. 韦东山全系列视频介绍及资料下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chaptertwo/ELADCMSecondEditionChapterTwo.html">第二篇. Linux基本操作与开发工具使用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterthird/ELADCMSecondEditionChapterThird.html">第三篇. 开发板快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapterfour/ELADCMSecondEditionChapterFour.html">第四篇. 嵌入式Linux应用开发基础知识</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">嵌入式Linux应用开发完全手册第2版</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/source/chapterfive/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html">第五篇. 嵌入式Linux驱动开发基础知识</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#font-color-dd0000-linux-font"><font color="#dd0000">嵌入式后Linux驱动开发基础知识</font>的引导与说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id1">打算讲什么、怎么讲？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id2">需要做什么准备工作</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#hello">Hello驱动(不涉及硬件操作)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#app">APP打开的文件在内核中如何表示</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#struct-file">打开字符设备节点时，内核中也有对应的struct file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id3">请猜猜怎么编写驱动程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id4">请不要啰嗦，表演你的代码吧</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id5">写驱动程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id6">写测试程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id7">测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id8">Hello驱动中的一些补充知识</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#module-init-module-exit">module_init/module_exit的实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#register-chrdev">register_chrdev的内部实现</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#class-destroy-device-create">class_destroy/device_create浅析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#led">硬件知识_LED原理图</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#font-color-dd0000-font"><font color="#dd0000">先来讲讲怎么看原理图</font></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#gpio">普适的GPIO引脚操作方法==</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id9">GPIO模块一般结构</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id10">GPIO寄存器操作</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id11">GPIO的其他功能：防抖动、中断、唤醒</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id12">具体单板的GPIO操作方法</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#am335xgpio">AM335X的GPIO操作方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id13">AM335X的GPIO模块结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id14">AM335X的GPIO相关寄存器</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#set-and-clear">set-and-clear协议</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3288gpio">RK3288的GPIO操作方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id15">RK3288的GPIO模块结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id16">RK3288的GPIO相关寄存器</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3399gpio">RK3399的GPIO操作方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id17">RK3399的GPIO模块结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id18">RK3399的GPIO相关寄存器</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ullgpio">IMX6ULL的GPIO操作方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id19">IMX6ULL的GPIO模块结构</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#ccmgpio">CCM用于设置是否向GPIO模块提供时钟</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#iomuxc-mode">IOMUXC：引脚的模式(Mode、功能)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id20">GPIO模块内部</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id21">怎么编程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id22">读GPIO</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id23">写GPIO</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id24">LED驱动程序框架</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id25">回顾字符设备驱动程序框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id26">对于LED驱动，我们想要什么样的接口？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id27">LED驱动要怎么写，才能支持多个板子？分层。</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id28">写代码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id29">驱动程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#ledled-operations">把LED的操作抽象出一个led_operations结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#file-operations">驱动程序的上层：file_operations结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id30">测试程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id31">上机测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id32">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id33">具体单板的LED驱动程序</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id34">怎么写LED驱动程序？</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#am335xled">AM335X的LED驱动程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id35">原理图</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id36">所涉及的寄存器操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id37">写程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id38">配置内核去掉原有LED驱动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id39">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3288rk3399led">RK3288和RK3399的LED驱动程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id40">原理图</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#fireflye-rk3288led">fireflye RK3288的LED原理图</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#firefly-rk3399led">firefly RK3399的LED原理图</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id41">所涉及的寄存器操作</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3288gpio8-a1">RK3288的GPIO8_A1引脚</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3399gpio2-d3">RK3399的GPIO2_D3引脚</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id42">写程序</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3288">RK3288</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#rk3399">RK3399</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id43">上机实验</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id44">RK3288</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id45">RK3399</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id46">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ullled">野火/正点原子IMX6ULL的LED驱动程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id47">原理图</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#fire-imx6ull-pro">野火fire_imx6ull-pro开发板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#atk-imx6ull-alpha">正点原子Atk_imx6ull-alpha开发板</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id48">所涉及的寄存器操作</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#font-color-dd0000-fire-imx6ull-pro-font"><font color="#dd0000">野火fire_imx6ull-pro</font> 开发板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#font-color-dd0000-atk-imx6ull-alpha-font"><font color="#dd0000">正点原子Atk_imx6ull-alpha</font>开发板</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id49">写程序</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id50"><font color="#dd0000">野火fire_imx6ull-pro</font>开发板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id51"><font color="#dd0000">正点原子Atk_imx6ull-alpha</font>开发板</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id52">上机实验</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id53"><font color="#dd0000">野火fire_imx6ull-pro</font> 开发板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id54"><font color="#dd0000">正点原子Atk_imx6ull-alpha</font>开发板</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id55">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ull-qemuled">百问网IMX6ULL-QEMU的LED驱动程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id56">看原理图确定引脚及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id57">所涉及的寄存器操作</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id58">写程序</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id59">上机实验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id60">课后作业</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id61">驱动设计的思想：面向对象/分层/分离</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id62">面向对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id63">分层</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id64">分离</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id65">写示例代码</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id66">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id67">驱动进化之路：总线设备驱动模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id68">驱动编写的3种方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id69">传统写法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id70">总线设备驱动模型</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id71">设备树</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#linux-bus-dev-drv">在Linux中实现“分离”：Bus/Dev/Drv模型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id72">匹配规则</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-device-driver-overrideplatform-driver-driver-name">最先比较：platform_device. driver_override和platform_driver.driver.name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-device-nameplatform-driver-id-table-i-name">然后比较：platform_device. name和platform_driver.id_table[i].name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-device-nameplatform-driver-driver-name">最后比较：platform_device.name和platform_driver.driver.name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id73">函数调用关系</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id74">常用函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id75">注册/反注册</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id76">获得资源</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id77">怎么写程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-device">分配/设置/注册platform_device结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-driver">分配/设置/注册platform_driver结构体</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id78">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id79">LED模板驱动程序的改造：总线设备驱动模型</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id80">原来的框架</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id81">要实现的框架===</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id82">写代码</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id83">注意事项</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id84">实现platform_device结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id85">实现platform_driver结构体</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id86">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id87">驱动进化之路：设备树的引入及简明教程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id88">设备树的引入与作用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id89">设备树的语法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#devicetree">Devicetree格式</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#dts">DTS文件的格式</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#node">node的格式</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#properties">properties的格式</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#dtsdtsi">dts文件包含dtsi文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id90">常用的属性</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#address-cells-size-cells">address-cells、#size-cells</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#compatible">compatible</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#model">model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#status">status</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#reg">reg</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#name">name(过时了，建议不用)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#device-type">device_type(过时了，建议不用)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id91">常用的节点(node)</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id92">根节点</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#cpu">CPU节点</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#memory">memory节点</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#chosen">chosen节点</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id93">编译、更换设备树</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#make">在内核中直接make</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id94">手工编译</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id95">给开发板更换设备树文件</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#ask-am335x">对于100ask-am335x 单板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#firefly-rk3288">对于firefly-rk3288</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#fireflyroc-rk3399-pc">对于firefly的roc-rk3399-pc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#qemuimx6ull">对于百问网使用QEMU模拟的IMX6ULL板子</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ull-pro">对于野火imx6ull-pro</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ull-alpha">对于正点原子imx6ull-alpha</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id96">板子启动后查看设备树</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id97">内核对设备树的处理</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#dtbdevice-node">dtb中每一个节点都被转换为device_node结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id98">哪些设备树节点会被转换为platform_device</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id99">怎么转换为platform_device</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-deviceplatform-driver">platform_device如何与platform_driver配对</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#driver">最先比较：是否强制选择某个driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id100">然后比较：设备树信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-device-id">接下来比较：platform_device_id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id101">最后比较：platform_device.name和platform_driver.driver.name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id102">一个图概括所有的配对过程</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id103">没有转换为platform_device的节点，如何使用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id104">内核里操作设备树的常用函数</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id105">内核中设备树相关的头文件介绍</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#dtb">处理DTB</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#device-node">处理device_node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id106">处理 platform_device</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id107">platform_device相关的函数</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#of-find-device-by-node">of_find_device_by_node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#platform-get-resource">platform_get_resource</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id108">有些节点不会生成platform_device，怎么访问它们</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id109">找到节点</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id110">找到属性</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id111">获取属性的值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id112">怎么修改设备树文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id113">使用芯片厂家提供的工具</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id114">看绑定文档</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id115">参考同类型单板的设备树文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id116">网上搜索</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id117">实在没办法时, 只能去研究驱动源码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id118">LED模板驱动程序的改造：设备树</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id119">总结3种写驱动程序的方法</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id120">怎么使用设备树写驱动程序</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id121">设备树节点要与platform_driver能匹配</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id122">设备树节点指定资源，platform_driver获得资源</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id123">开始编程</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id124">修改设备树添加led设备节点</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id125">对于100ask-am335x 单板</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id126">对于firefly-rk3288</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id127">对于firefly的roc-rk3399-pc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id128">对于百问网使用QEMU模拟的IMX6ULL板子</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id129">对于野火imx6ull-pro</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id130">对于正点原子imx6ull-alpha</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id131">修改platform_driver的源码</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id132">上机实验</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id133">调试技巧</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id134">设备树的信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id135">platform_device的信息</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id136">platform_driver的信息</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id137">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id138">APP怎么读取按键值</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id139">妈妈怎么知道孩子醒了</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#app4">APP读取按键的4种方法</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id140">查询方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id141">休眠-唤醒方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#poll">poll方式</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id142">异步通知方式</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id143">异步通知的原理：发信号=====</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id144">应用程序之间发信号示例代码</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id145">驱动程序提供能力，不提供策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id146">查询方式的按键驱动程序_编写框架</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id147">LED驱动回顾</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id148">按键驱动编写思路</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id149">编程：先写框架</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#button-operations">把按键的操作抽象出一个button_operations结构体</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id150">驱动程序的上层：file_operations结构体</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id151">测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id152">课后怎业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id153">具体单板的按键驱动程序(查询方式)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id154">GPIO操作回顾</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#am335x">AM335X的按键驱动程序(查询方式)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id155">先看原理图确定引脚及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id156">再看芯片手册确定寄存器及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id157">编程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id158">程序框架</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id159">硬件相关的代码</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id160">测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id161">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id162">RK3288的按键驱动程序(查询方式)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id163">先看原理图确定引脚及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id164">再看芯片手册确定寄存器及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id165">编程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id166">程序框架</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id167">硬件相关的代码</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id168">测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id169">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id170">RK3399的按键驱动程序(查询方式)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id171">先看原理图确定引脚及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id172">再看芯片手册确定寄存器及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id173">编程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id174">程序框架</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id175">硬件相关的代码</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id176">测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id177">课后作业</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#imx6ull-qemu">百问网IMX6ULL-QEMU的按键驱动程序(查询方式)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id178">先看原理图确定引脚及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id179">再看芯片手册确定寄存器及操作方法</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id180">编程</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id181">程序框架</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id182">硬件相关的代码</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id183">测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id184">课后作业</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id185">异常与中断的概念及处理流程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id186">中断的引入</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id187">妈妈怎么知道孩子醒了</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id188">嵌入系统中也有类似的情况</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id189">中断的处理流程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id190">异常向量表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id191">参考资料</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#id192">常见问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ELADCMSecondEditionChapterFive.html#version-magic">安装驱动时version magic不匹配</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="ELADCMSecondEditionChapterFive.html" class="btn btn-neutral float-right" title="第五篇. 嵌入式Linux驱动开发基础知识" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../chapterfour/ELADCMSecondEditionChapterFour.html" class="btn btn-neutral" title="第四篇. 嵌入式Linux应用开发基础知识" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2019, weidongshan www.100ask.net.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/language_data.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
