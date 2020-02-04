@@ -5,14 +5,47 @@
 ## 接线与启动
 ### 100ASK_IMX6ULL 开发板   
 #### 串口接线
+&emsp;&emsp;在后面的操作里，都是通过串口与板子进行“交流”。串口是串行接口的简称，是指数据一位一位地顺序传送，其特点是通信线路简单。<br>
+&emsp;&emsp;在电脑上安装好MobaXterm后，使micro  USB数据线，连接电脑和开发板上的6号接口(USB转串口)。<br>
+&emsp;&emsp;首先如下图所示将串口线与电脑、板子连接，开发板插上电源。<br>
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0058.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0001.png" width="800"/>   
+</center>
+
+&emsp;&emsp;**这里需要特别注意的几点：** <br>
+&emsp;&emsp;&emsp;&emsp;a)	板子的启动选择拨到正确的启动方式，保证该启动方式里面有系统可以运行；<br>
+&emsp;&emsp;&emsp;&emsp;b)	板子如图所示插上配套的电源到电源接口，电源开关暂时不用打开；<br>
+
+&emsp;&emsp;将串口线插上电脑的USB接口上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。<br>
+&emsp;&emsp;打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。<br>
+&emsp;&emsp;这里的“COM12”可能与你电脑上的不一样，记住你电脑上设备管理器中显示的数字。<br>
+    
+&emsp;&emsp;如果电脑没有显示出端口号，就需要手动安装驱动，从驱动精灵官网（www.drivergenius.com）下载一个驱动精灵，安装、运行、检测，会自动安装上串口驱动。<br>
+<center class="half">
+   <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_002.png" width="400"/>   
+</center>
+    
+&emsp;&emsp;最后打开MobaXterm，点击左上角的“Session”，在弹出的界面选中“Serial”，如下图所示设置端口号（前面设备管理器显示的端口号）、波特率（Speed:115200）、流控（Flow control:None）,最后点击“OK”即可。<br>
+&emsp;&emsp;注意：流控（Flow Control）一定要选择none，否则你将无法在MobaXterm中向串口输入数据。<br>
+<center class="half">
+   <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" width="800"/>   
+</center>
+
+&emsp;&emsp;随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：<br>
+<center class="half">
+   <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionChapterTow_039.png" width="800"/>   
 </center>
 
 #### 启动方式选择
+&emsp;&emsp;板子上的红色拨码开关用来设置启动方式，支持这3种方式：**EMMC启动、SD卡启动、USB烧写**。<br>
+&emsp;&emsp;板子背后画有一个表格，表示这3种方式如何设置。<br>
+&emsp;&emsp;表格如下：<br>
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0059.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0002.png" width="800"/>   
 </center>
+
+&emsp;&emsp;**<font color="#dd0000">要注意的是，设置为USB启动时，不能插上SD卡、TF卡。</font>**<br>
+&emsp;&emsp;刚出厂的板子在EMMC上烧写了系统，您可以设置为EMMC启动方式。<br>
 
 ### 100ASK_AM335X 开发板   
 #### 串口连接   
@@ -25,7 +58,7 @@
 &emsp;&emsp;&emsp;&emsp;① 串口模块的电平选择开关拨到如图所示的左边，表示切换到RS232电平；<br>
 &emsp;&emsp;&emsp;&emsp;② RS232延长线连接板子如图所示下方的RS232接口，下方的才是默认的debug接口；<br>
 &emsp;&emsp;&emsp;&emsp;③ 板子的启动选择拨到如图所示的右边，以选择从Nand Flash启动；<br>
-&emsp;&emsp;&emsp;&emsp;④ 板子如图所示插上配套的电源，电源开关暂时不用打开；
+&emsp;&emsp;&emsp;&emsp;④ 板子如图所示插上配套的电源，电源开关暂时不用打开。<br> 
 
 &emsp;&emsp;将USB转RS232/TTL串口模块插在电脑USB上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。<br>
 &emsp;&emsp;打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。<br>
@@ -84,8 +117,7 @@
    <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_003.png" width="800"/>   
 </center>
    
-   
-随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：   
+&emsp;&emsp;随后显示一个黑色的窗口， 此时打开板子的电源开关，将收到板子串口发过来的数据，如下图所示：<br> 
 <center class="half">
    <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_007.png" width="800"/>   
 </center>
@@ -109,7 +141,7 @@
 &emsp;&emsp;&emsp;&emsp;① 串口模块的电平选择开关拨到如图所示的右边，表示切换到TTL电平；<br>
 &emsp;&emsp;&emsp;&emsp;② 串口模块附赠两条排线，使用较宽的那根(2.54mm间距)连接串口模块最中间接口；<br>
 &emsp;&emsp;&emsp;&emsp;③ 排线的另一端插在Firefly-RK3288如图所示位置，注意黑线(GND)在最右面；<br>
-&emsp;&emsp;&emsp;&emsp;④ 板子如图所示准备好配套的电源，因为没有电源开关，插上就自动启动了，所以暂时先不插电源
+&emsp;&emsp;&emsp;&emsp;④ 板子如图所示准备好配套的电源，因为没有电源开关，插上就自动启动了，所以暂时先不插电源<br> 
 
 &emsp;&emsp;将USB转RS232/TTL串口模块插在电脑USB上时，Windows会自动安装驱动(安装可能比较慢，等一分钟左右)。<br>
 &emsp;&emsp;打开电脑的“设备管理器”，在“端口 (COM和LPT)”项下，可以看到如下图 中的“Silicon Labs CP210x USB to UART Bridge (COM12)”。<br>
@@ -175,7 +207,7 @@
 &emsp;&emsp;SD卡启动、Emmc启动，是二选一，只能选择一个。
 &emsp;&emsp;注意: 使用开发板启动系统前需要先设置拨码开关为对应的启动方式。
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0008.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0008.png" width="800"/>   
 </center>
 
 &emsp;&emsp;如上图红框位置为拨码开关，拨码开关的一侧会写着ON 字样，把拨码调至该侧表示对应的选项为高电平1，调至另一侧为0。不同启动方式的见下面表格，也可以直接查看开发板上的丝印说明（一般印在板子背面），表中的X 表示任意电平均可。
@@ -196,7 +228,7 @@
 &emsp;&emsp;使用包装盒配套的micro usb线一端连接到开发板usb otg口另一端连接至电脑usb接口处。
 &emsp;&emsp;usb下载接口位置示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0009.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0009.png" width="800"/>   
 </center>
 
 ##### 运行mfgtools
@@ -204,14 +236,14 @@
 &emsp;&emsp;进入解压缩后的100ask_imx6ull-mfgtools文件夹下，双击buildroot-image-100ask_100ask-ddr512m-emmc4g.vbs打开烧写程序，烧写过程中保持usb连接。
 &emsp;&emsp;&emsp;&emsp;usb otg链接成功示意图，连接成功后点击start按钮开始烧写
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0010.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0010.png" width="800"/>   
 </center>
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0011.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0011.png" width="800"/>   
 </center>
 &emsp;&emsp;&emsp;&emsp;系统烧写中示意图(烧写完成后点击Stop，再点击Exit即可退出)
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0012.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0012.png" width="800"/>   
 </center>
 
 &emsp;&emsp;设置开发板启动方式为Emmc启动即可,(启动方式设置在开发板背面印有丝印说明)
@@ -227,7 +259,7 @@
 &emsp;&emsp;“以管理员身份运行”win32diskimager，如下图选择SD卡、选择映像文件sdcard.img，然后点击“写入”,操作步骤如下图4.2.2.1所示：
 &emsp;&emsp;镜像文件烧写示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0013.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0013.png" width="800"/>   
 </center>
 
 &emsp;&emsp;上图中各序号含义为：
@@ -540,7 +572,7 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 ### 100ASK_IMX6ULL 开发板
 &emsp;&emsp;开发板各个功能所在位置以及名称如下图所示，如下所有的功能测试均在串口登录终端下进行测试：<br>
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0012.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0014.png" width="800"/>   
 </center>
 
 #### 有线网卡接口测试
@@ -549,24 +581,24 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 
 &emsp;&emsp;网卡接口位置示意图
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0013.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0015.png" width="800"/>   
 </center>
 
 &emsp;&emsp;1) 通过ifconfig命令查看ip地址：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0014.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0016.png" width="800"/>   
 </center>
 
 &emsp;&emsp;通过上图可知，开发板已经自动获得IP地址192.168.1.116(你的开发板自动获取的IP可能不一样)。
 &emsp;&emsp;如果开发板未能获取IP，则可以使用 udhcpc命令再次尝试获取IP。
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0015.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0017.png" width="800"/>   
 </center>
 
 &emsp;&emsp;如果通过udhcpc命令无法获得IP，也可以使用ifconfig命令强制设置IP：
 &emsp;&emsp;如下图使用 ifconfig 命令强制指定IP地址为192.168.1.17
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0016.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0018.png" width="800"/>   
 </center>
 
 2) 网络连通性测试：
@@ -576,13 +608,13 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0017.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0019.png" width="800"/>   
 </center>
 
 &emsp;&emsp;当然，很多时候开发板不能正通互联网，这也没关系，只要能ping通我们的Windows、Ubuntu即可：
 &emsp;&emsp;比如我们的Ubuntu系统IP地址为192.168.1.11此时可以通过ping命令测试两者是否可以相互通信
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0018.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0020.png" width="800"/>   
 </center>
 
 3) 使能网卡一接口
@@ -592,7 +624,7 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0019.png" width="800"/>
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0021.png" width="800"/>
 </center>
 
 &emsp;&emsp;启用 eth1网卡设备，并使用udhcpc自动获取ip地址
@@ -602,7 +634,7 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0020.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0022.png" width="800"/>   
 </center>
 
 &emsp;&emsp;参考链接：http://wiki.100ask.org/Category:Netdev
@@ -612,24 +644,24 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 &emsp;&emsp;注意：需要准备一个USB设备，比如U盘、USB蓝牙模块、usb网卡或者usb摄像头等。
 &emsp;&emsp;USB host接口位置示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0021.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0023.png" width="800"/>   
 </center>
 
 &emsp;&emsp;下面使用一个16G的U盘作为例子，插到任意一个USB Host接口，会打印出如下设备信息：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0022.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0024.png" width="800"/>   
 </center>
 
 &emsp;&emsp;通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。
 &emsp;&emsp;有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda既代表整个U盘，也代表第1个分区。
 &emsp;&emsp;我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0023.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0025.png" width="800"/>   
 </center>
 
 &emsp;&emsp;从上图可知/dev/sda2是FAT16格式，挂载时可以指定类型为“vfat”：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0024.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0026.png" width="800"/>   
 </center>
 
 &emsp;&emsp;测试完以后，通过umount卸载/mnt，才可拔下usb设备：
@@ -642,7 +674,7 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 &emsp;&emsp;注意：需要准备一个 OTG转接头(开发板清单中不配)、micro usb数据线(开发板清单里配有)。这2种设备如下图所示：
 &emsp;&emsp;OTG 转换头和 micro usb 线：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0025.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0027.png" width="800"/>   
 </center>
 
 &emsp;&emsp;1) otg device模式测试：
@@ -651,19 +683,19 @@ Roc-rk3399-pc开发板本身没有Flash；如果你买了配套的EMMC Flash模�
 	[root@100ask_imx6ull:~]# modprobe g_mass_storage file=/dev/mmcblk0p1 removable=1
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0026.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0028.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;然后使用micro usb线小的一头插入如下图5.3.1所示的蓝色框所在接口，另一端连接电脑USB接口，micro otg接口位置如下图 5.3.1所示：
 otg device模式连接示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0027.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0029.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;此时在电脑的设备管理器中可以看到一个名为 linux File-Stor Gadget USB Device的磁盘设备，在
 &emsp;&emsp;&emsp;&emsp;windows资源管理器中也可以看到有新的可移动设备盘符弹出：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0028.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0030.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;测试完成后，在终端下执行“rmmod g_mass_storage ”卸载改模块驱动：
@@ -675,24 +707,24 @@ otg device模式连接示意图：
 &emsp;&emsp;&emsp;&emsp;开发板作为usb主设备，其他USB设备通过otg转接头插入开发板，开发板即可识别出这些USB外设备。
 &emsp;&emsp;&emsp;&emsp;otg转接头连接示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0029.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0031.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;下图是把U盘通过otg转接头插入开发板后，在串口打印的信息：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0030.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0032.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;通过打印的设备信息可知，系统为该usb存储设备创建的设备节点为 /dev/sda。一般来说/dev/sda对应整个U盘，/dev/sda1对应该U盘的第1个分区，/dev/sda2对应第2个分区。
 &emsp;&emsp;&emsp;&emsp;有些U盘没有划分分区，它只有一个设备节点/dev/sda，而没有/dev/sda1等节点。对于这种情况，/dev/sda既代表整个U盘，也代表第1个分区。
 &emsp;&emsp;&emsp;&emsp;我们可以挂载某个分区，挂载之前要先通过fdisk命令获取分区类型,如下所示：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0031.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0033.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;从上图可知/dev/sda2是FAT16格式，挂载是可以指定类型为“vfat”：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0032.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0034.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;测试完以后，通过umount卸载/mnt，才可拔下usb设备：
@@ -705,7 +737,7 @@ otg device模式连接示意图：
 &emsp;&emsp;注意: 需要准备一个带麦克风的三段式耳机，如下图5.4.1所示：
 &emsp;&emsp;三段式耳机示意图与耳机连接位置示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0033.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0035.png" width="800"/>   
 </center>
 
 &emsp;&emsp;1) 录制音频：
@@ -713,7 +745,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# arecord -v --format=cd --device=plughw:0,0 test.wav
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0034.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0036.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;参数讲解：
@@ -726,7 +758,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0035.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0037.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;参数讲解：
@@ -743,7 +775,7 @@ otg device模式连接示意图：
 	fb res 1024x600 virtual 1024x600, line_len 4096, bpp 32
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0036.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0038.png" width="800"/>   
 </center>
 
 &emsp;&emsp;2) lcd显示多种颜色：
@@ -754,7 +786,7 @@ otg device模式连接示意图：
 ```
 	
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0037.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0039.png" width="800"/>   
 </center>
 
 
@@ -766,7 +798,7 @@ otg device模式连接示意图：
 ```
 	
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0038.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0040.png" width="800"/>   
 </center>
 
 &emsp;&emsp;如果校准通过，最后会生成较准文件/etc/pointercal。
@@ -781,7 +813,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0039.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0041.png" width="800"/>   
 </center>
 
 &emsp;&emsp;最后设置背光亮度值为1，同时可以观察屏幕背光亮度是否有变化：
@@ -790,7 +822,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0040.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0042.png" width="800"/>   
 </center>
 
 #### RTC测试
@@ -798,12 +830,12 @@ otg device模式连接示意图：
 &emsp;&emsp;一般的板子都会有一个名为RTC(实时时钟)的硬件，RTC使用电池模块来供电，在系统关闭时用来维持时钟。RTC维持的时间，被称为硬件时间。
 &emsp;&emsp;rtc电池模块：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0041.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0043.png" width="800"/>   
 </center>
 
 &emsp;&emsp;RTC位置示意图，这里显示的是电池模块的安装位置：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0042.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0044.png" width="800"/>   
 </center>
 
 &emsp;&emsp;Linux系统启动之后，它会自己维持时间，这个时间被称为系统时间。系统时间的初始值来源有二：
@@ -821,7 +853,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0043.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0045.png" width="800"/>   
 </center>
 
 &emsp;&emsp;一般不直接设置硬件时间，要设置硬件时间时，先使用date设置系统时间，再使用“hwclock -w”同步到RTC硬件。
@@ -833,7 +865,7 @@ otg device模式连接示意图：
 &emsp;&emsp;&emsp;&emsp;hwclock -w ：将硬件时钟调整为与目前的系统时钟一致。
 &emsp;&emsp;下面是一个示例，读取硬件时间：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0044.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0046.png" width="800"/>   
 </center>
 
 #### 无线网卡设备测试
@@ -844,7 +876,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0045.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0047.png" width="800"/>   
 </center>
 
 &emsp;&emsp;2) 启用 wlan0 无线网络设备
@@ -852,7 +884,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# ifconfig wlan0 up
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0046.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0048.png" width="800"/>   
 </center>
 
 &emsp;&emsp;3) 扫描周围网络设备
@@ -860,7 +892,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# iw dev wlan0 scan |grep SSID
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0047.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0049.png" width="800"/>   
 </center>
 
 &emsp;&emsp;4) 配置网络连接参数
@@ -869,7 +901,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# wpa_passphrase Tplink 12345678 >> /etc/wpa_supplicant.conf
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0048.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0050.png" width="800"/>   
 </center>
 
 &emsp;&emsp;5) 连接wifi设备
@@ -877,7 +909,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# wpa_supplicant -B -iwlan0 -c /etc/wpa_supplicant.conf
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0049.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0051.png" width="800"/>   
 </center>
 
 &emsp;&emsp;6) 查看连接状态
@@ -885,7 +917,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# iw wlan0 link
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0050.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0052.png" width="800"/>   
 </center>
 
 &emsp;&emsp;7) 为wlan0获取ip地址
@@ -893,7 +925,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# udhcpc -i wlan0
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0051.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0053.png" width="800"/>   
 </center>
 
 &emsp;&emsp;8) 测试wlan0是否可以上网
@@ -901,7 +933,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# ping -I wlan0 www.baidu.com
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0052.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0054.png" width="800"/>   
 </center>
 
 &emsp;&emsp;参考资料 http://wiki.100ask.org/How_to_setup_wifi_connection
@@ -911,12 +943,12 @@ otg device模式连接示意图：
 &emsp;&emsp;注意：rs485通信时需要2个rs485设备，使用3.5 15EDG 5P插拔式接线端子进行连接测试，以下测试是通过两块开发板进行测试，背面标有丝印 A B接口位置示意图，默认配置不含接线端子，请自行购买连接测试。
 &emsp;&emsp;RS485连接端子示意图:
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0053.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0055.png" width="800"/>   
 </center>
 
 &emsp;&emsp;RS485测试开发板连接位置示意图:
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0054.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0056.png" width="800"/>   
 </center>
 
 &emsp;&emsp;1) 接收端：
@@ -925,7 +957,7 @@ otg device模式连接示意图：
 ```
 
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0055.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0057.png" width="800"/>   
 </center>
 
 &emsp;&emsp;2) 发送端：
@@ -933,7 +965,7 @@ otg device模式连接示意图：
 	[root@100ask_imx6ull:~]# rs485_test -d /dev/ttyO1 -b 115200
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0056.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0058.png" width="800"/>   
 </center>
 
 
@@ -942,12 +974,12 @@ otg device模式连接示意图：
 &emsp;&emsp;CAN通信需要2个设备，本节使用两块100ask_imx6ull开发板做测试。你需要根据原理图找到CAN接口引脚，用3.5 15EDG 5P插拔式接线端子连接线连接两个CAN接口的H、L两条线，L H背面丝印有注明。用户也可以使用自己的Can设备进行测试。
 &emsp;&emsp;CAN接线端子:
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0053.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0055.png" width="800"/>   
 </center>
 
 &emsp;&emsp;CAN测试开发板连接位置示意图:
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0057.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0059.png" width="800"/>   
 </center>
 
 &emsp;&emsp;1) 发送端：
@@ -1470,7 +1502,7 @@ otg device模式连接示意图：
    <img src="http://photos.100ask.net//ELADCMSecond/EmbeddedLinuxApplicationDevelopmentCompleteManualSecondEditionThirdChapter_058.png" width="800"/>   
 </center>
    
-#### 4.2.2 USB Host接口测试   
+#### USB Host接口测试   
 &emsp;&emsp;此节演示在终端下如何在USB Host接口上使用usb存储设备，将usb设备插图图4.2.2所示的usbhost接口处。<br>
 &emsp;&emsp;**注意：**需要准备一个U盘、USB蓝牙模块、usb网卡或者usb摄像头等USB设备。 USB host接口位置示意图:<br>
 <center class="half">
@@ -2067,7 +2099,7 @@ RTC位置示意图：
 ```
 &emsp;&emsp;目录结构如下图所示
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0001.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0003.png" width="800"/>   
 </center>
 
 ##### 在线下载
@@ -2091,7 +2123,7 @@ RTC位置示意图：
 &emsp;&emsp;&emsp;&emsp;首次下载如果提示 Testing colorized output (for 'repo diff', 'repo status'): 此时输入 y 即可,继
 &emsp;&emsp;&emsp;&emsp;续执行 ../repo/repo sync -j4 命令即可开始同步源码。
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0002.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0004.png" width="800"/>   
 </center>
 
 &emsp;&emsp;&emsp;&emsp;注意：repo在线下载的代码和资料光盘中的代码是一致的，我们会每隔一段时间更新一次源码包，如使用在线方式获取源码 可以直接在 ~/100ask_imx6ull-sdk 目录下执行 ../repo/repo sync -c进行同步更新最新代码！
@@ -2146,7 +2178,7 @@ RTC位置示意图：
 	book@100ask:~$ arm-linux-gnueabihf-gcc -v
 ```
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0003.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0005.png" width="800"/>   
 </center>
 
 #### 解压编译bootloader
@@ -2167,7 +2199,7 @@ RTC位置示意图：
 &emsp;&emsp;通过dd命令烧写uboot镜像文件，我们以SD卡为例，首先通过vmware workstation把sd卡设备连接到到ubuntu 18.04虚拟机上，
 &emsp;&emsp;VMware挂载sd卡设备：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0004.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0006.png" width="800"/>   
 </center>
 
 
@@ -2177,7 +2209,7 @@ RTC位置示意图：
 ```
 &emsp;&emsp;设备节点输出示意图：
 <center class="half">
-   <img src="https://weidongshan.coding.net/p/100ask_imx6ull_source/d/100ask_imx6ull_source/git/blob/master/images/100ask_imx6ull_0005.png" width="800"/>   
+   <img src="http://photos.100ask.net//ELADCMSecond/100ask_imx6ull_0007.png" width="800"/>   
 </center>
 
 &emsp;&emsp;使用dd命令烧写img镜像文件到 /dev/sdb设备.
